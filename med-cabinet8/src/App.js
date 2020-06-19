@@ -6,6 +6,7 @@ import Registration from './components/Registration';
 import PrivateRoute from './components/PrivateRoute';
 import Secure from './components/Secure';
 
+
 function App() {
 	return (
 		<Router>
