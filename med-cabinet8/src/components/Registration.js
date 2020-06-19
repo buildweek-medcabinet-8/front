@@ -3,16 +3,18 @@ import * as yup from 'yup';
 import { Grid, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
+import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 
 const useStyles = makeStyles({});
 
-function LoginForm() {
+function RegistrationForm() {
 	const classes = useStyles();
 
 	// Form Control State & Initial Data
 	const initialState = {
 		username: '',
 		password: '',
+		email: '',
 	};
 
 	const [formState, setFormState] = useState(initialState);
@@ -41,14 +43,23 @@ function LoginForm() {
 
 	// Define Form Schema
 	const formSchema = yup.object().shape({
-		username: yup.string().required('Username required!'),
-		password: yup.string().required('Password required!'),
+		username: yup
+			.string()
+			.min(8, 'Must be at least 8 characters')
+			.required('Username required!'),
+		password: yup
+			.string()
+			.matches(
+				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+				'Minimum 8 characters, Upper and Lowercase and at least 1 number'
+			)
+			.required('Password required!'),
+		email: yup.string().email('Email not Valid').required('Email required!'),
 	});
 
 	// Check for proper form entry
 	useEffect(() => {
 		formSchema.isValid(formState).then((isFormValid) => {
-			console.log(isFormValid);
 			setButtonDisabled(!isFormValid);
 		});
 	}, [formState, formSchema]);
@@ -99,6 +110,20 @@ function LoginForm() {
 				<Grid item>
 					<TextField
 						variant='outlined'
+						type='email'
+						id='email'
+						name='email'
+						value={formState.email}
+						onChange={handleChange}
+						label='Email:'
+						error={errors.email ? true : false}
+						helperText={errors.email ? errors.email : null}
+					/>
+				</Grid>
+
+				<Grid item>
+					<TextField
+						variant='outlined'
 						type='password'
 						id='password'
 						name='password'
@@ -117,9 +142,9 @@ function LoginForm() {
 						size='large'
 						type='submit'
 						disabled={buttonDisabled}
-						startIcon={<LockOpenOutlinedIcon />}
+						startIcon={<AccessibilityNewIcon />}
 					>
-						Login
+						Sign Up!
 					</Button>
 				</Grid>
 			</Grid>
@@ -127,4 +152,4 @@ function LoginForm() {
 	);
 }
 
-export default LoginForm;
+export default RegistrationForm;
