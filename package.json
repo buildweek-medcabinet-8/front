@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@material-ui/core": "^4.10.2",
+    "yup": "^0.29.1"
+  }
+}
