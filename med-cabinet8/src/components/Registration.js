@@ -3,10 +3,8 @@ import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import { Grid, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import axiosWithAuth from '../utils/axiosWithAuth';
-
 
 const useStyles = makeStyles({});
 
