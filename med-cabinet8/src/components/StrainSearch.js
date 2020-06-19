@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Paper, Typography, TextField } from '@material-ui/core';
+import {
+	Grid,
+	Button,
+	Typography,
+	Container,
+	TextField,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import clsx from 'clsx';
+
+const useStyles = makeStyles({
+	marginBottom: {
+		marginBottom: '2rem',
+	},
+});
 
 function StrainSearch() {
+	const classes = useStyles();
 	const flavors = [
 		'earthy',
 		'sweet',
@@ -81,11 +95,13 @@ function StrainSearch() {
 	const [searchEffectTerm, setSearchEffectTerm] = useState('');
 
 	// Search Results
-	const [flavorResults, setFlavorResults] = useState(flavors);
-	const [effectResults, setEffectResults] = useState(effects);
+	const [searchFlavorResults, setSearchFlavorResults] = useState(flavors);
+	const [searchEffectResults, setSearchEffectResults] = useState(effects);
 
-	// Consolidated list of all flavors and effects user wants to search for
-	const [allResults, setAllResults] = useState([]);
+	// Data for API Call
+	const [flavorResults, setFlavorResults] = useState([]);
+	const [effectResults, setEffectResults] = useState([]);
+	const [description, setDescription] = useState('');
 
 	// Set Results for flavor search
 	useEffect(() => {
@@ -93,7 +109,7 @@ function StrainSearch() {
 			return flavor.toLowerCase().includes(searchFlavorTerm.toLowerCase());
 		});
 
-		setFlavorResults(newResults);
+		setSearchFlavorResults(newResults);
 	}, [searchFlavorTerm]);
 
 	// Set results for effect search
@@ -102,80 +118,135 @@ function StrainSearch() {
 			return effect.toLowerCase().includes(searchEffectTerm.toLowerCase());
 		});
 
-		setEffectResults(newResults);
+		setSearchEffectResults(newResults);
 	}, [searchEffectTerm]);
 
-	// Testing
-	useEffect(() => {
-		console.log(allResults);
-	}, [allResults]);
-
+	//Input Control
 	function handleFlavorChange(e) {
 		setSearchFlavorTerm(e.target.value);
-		console.log(flavorResults);
 	}
-
 	function handleEffectChange(e) {
 		setSearchEffectTerm(e.target.value);
-		console.log(effectResults);
 	}
 
-	function handleAddResult(result) {
-		console.log(allResults);
-		setAllResults([...allResults, result]);
+	//Set Search Terms for API call
+	function addFlavorResult(result) {
+		setFlavorResults([...flavorResults, result]);
+	}
+	function addEffectResult(result) {
+		setEffectResults([...effectResults, result]);
+	}
+	function addDescription(e) {
+		setDescription(e.target.value);
+	}
+
+	//Make API Call
+	function handleFormSubmission() {
+		//To Do: Add API call
+		console.log(flavorResults);
+		console.log(effectResults);
+		console.log(description);
+		setFlavorResults([]);
+		setEffectResults([]);
+		setDescription('');
 	}
 
 	return (
-		<Grid container direction='column' alignItems='center'>
-			<Grid item>
-				<TextField
-					autoFocus
-					variant='outlined'
-					type='text'
-					id='searchFlavor'
-					name='searchFlavor'
-					value={searchFlavorTerm}
-					onChange={handleFlavorChange}
-					label='Search Flavors:'
-				/>
-			</Grid>
+		<Container>
+			<Grid container direction='column' alignItems='center'>
+				<Grid item className={clsx(classes.marginBottom)}>
+					<TextField
+						autoFocus
+						variant='outlined'
+						type='text'
+						id='searchFlavor'
+						name='searchFlavor'
+						value={searchFlavorTerm}
+						onChange={handleFlavorChange}
+						label='Search Flavors:'
+					/>
+				</Grid>
 
-			<Grid item container spacing={4}>
-				{flavorResults.map((result) => {
-					return (
-						<Grid item key={result}>
-							<Paper onClick={() => handleAddResult(result)}>
-								<Typography variant='subtitle1'>{result}</Typography>
-							</Paper>
-						</Grid>
-					);
-				})}
-			</Grid>
+				<Grid
+					item
+					container
+					spacing={4}
+					justify='center'
+					className={clsx(classes.marginBottom)}
+				>
+					{searchFlavorResults.map((result) => {
+						return (
+							<Grid item key={result}>
+								<Button
+									variant='contained'
+									color='secondary'
+									onClick={() => addFlavorResult(result)}
+								>
+									{result}
+								</Button>
+							</Grid>
+						);
+					})}
+				</Grid>
 
-			<Grid item>
-				<TextField
-					variant='outlined'
-					type='text'
-					id='searchEffect'
-					name='searchEffect'
-					value={searchEffectTerm}
-					onChange={handleEffectChange}
-					label='Search Effects:'
-				/>
-			</Grid>
+				<Grid item className={clsx(classes.marginBottom)}>
+					<TextField
+						variant='outlined'
+						type='text'
+						id='searchEffect'
+						name='searchEffect'
+						value={searchEffectTerm}
+						onChange={handleEffectChange}
+						label='Search Effects:'
+					/>
+				</Grid>
 
-			<Grid item container spacing={3}>
-				{effectResults.map((result) => {
-					return (
-						<Grid item key={result}>
-							<Paper onClick={() => handleAddResult(result)}>
-								<Typography variant='subtitle1'>{result}</Typography>
-							</Paper>
-						</Grid>
-					);
-				})}
+				<Grid
+					item
+					container
+					spacing={4}
+					justify='center'
+					className={clsx(classes.marginBottom)}
+				>
+					{searchEffectResults.map((result) => {
+						return (
+							<Grid item key={result}>
+								<Button
+									variant='contained'
+									color='secondary'
+									onClick={() => addEffectResult(result)}
+								>
+									{result}
+								</Button>
+							</Grid>
+						);
+					})}
+				</Grid>
+
+				<Grid item className={clsx(classes.marginBottom)}>
+					<TextField
+						variant='outlined'
+						type='text'
+						id='description'
+						name='description'
+						value={description}
+						onChange={addDescription}
+						label='Describe your strain...'
+					/>
+				</Grid>
+
+				<Grid item className={clsx(classes.marginBottom)}>
+					<Button
+						variant='contained'
+						color='primary'
+						fullWidth
+						onClick={handleFormSubmission}
+					>
+						Find My Strain
+					</Button>
+				</Grid>
 			</Grid>
-		</Grid>
+		</Container>
 	);
 }
 
