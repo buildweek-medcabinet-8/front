@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import { Grid, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
+import axiosWithAuth from '../utils/axiosWithAuth';
+
 
 const useStyles = makeStyles({});
 
 function RegistrationForm() {
 	const classes = useStyles();
-
+	const { push } = useHistory();
 	// Form Control State & Initial Data
 	const initialState = {
 		username: '',
@@ -34,7 +37,24 @@ function RegistrationForm() {
 	// Form Submission Handling
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log(formState);
+		const newState = {
+			"username": formState.username,
+			"password": formState.password,
+			"email": formState.email
+		}
+        axiosWithAuth()
+        .post("/auth/register", newState)
+        .then((res) => {
+            localStorage.setItem("token", res.data.payload);
+			console.log("register Successful!", res);
+			push("/");
+        })      .catch((err) => {
+        console.log("register error", err.message)
+        setFormState(initialState)
+
+        })
+
+		//console.log(formState);
 		setFormState(initialState);
 	}
 
