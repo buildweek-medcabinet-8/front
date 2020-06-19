@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import { Grid, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 
 const useStyles = makeStyles({});
