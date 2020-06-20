@@ -10,7 +10,7 @@ const useStyles = makeStyles({});
 
 function LoginForm() {
     const { push } = useHistory();
-    const classes = useStyles();
+ //   const classes = useStyles();
 
     // Form Control State & Initial Data
     const initialState = {
@@ -35,8 +35,7 @@ function LoginForm() {
     // Form Submission Handling
     function handleSubmit(e) {
         e.preventDefault();
-        axiosWithAuth()
-        .post("/auth/login", formState)
+        axiosWithAuth().post("/auth/login", formState)
         .then((res) => {
             localStorage.setItem("token", res.data.payload);
             console.log("Login Successful!", res);
