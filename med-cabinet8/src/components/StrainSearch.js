@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
 	Grid,
 	Button,
-	Typography,
+//	Typography,
 	Container,
 	TextField,
 } from '@material-ui/core';
@@ -110,7 +110,7 @@ function StrainSearch() {
 		});
 
 		setSearchFlavorResults(newResults);
-	}, [searchFlavorTerm]);
+	}, [searchFlavorTerm, flavors]);
 
 	// Set results for effect search
 	useEffect(() => {
@@ -119,7 +119,7 @@ function StrainSearch() {
 		});
 
 		setSearchEffectResults(newResults);
-	}, [searchEffectTerm]);
+	}, [searchEffectTerm, effects]);
 
 	//Input Control
 	function handleFlavorChange(e) {
