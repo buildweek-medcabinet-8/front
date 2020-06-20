@@ -9,7 +9,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 const useStyles = makeStyles({});
 
 function RegistrationForm() {
-	const classes = useStyles();
+	//const classes = useStyles();
 	const { push } = useHistory();
 	// Form Control State & Initial Data
 	const initialState = {
@@ -40,8 +40,7 @@ function RegistrationForm() {
 			"password": formState.password,
 			"email": formState.email
 		}
-        axiosWithAuth()
-        .post("/auth/register", newState)
+        axiosWithAuth().post("/auth/register", newState)
         .then((res) => {
             localStorage.setItem("token", res.data.payload);
 			console.log("register Successful!", res);
