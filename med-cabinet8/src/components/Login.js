@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { Grid, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
@@ -8,7 +9,8 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 const useStyles = makeStyles({});
 
 function LoginForm() {
-    const classes = useStyles();
+    const { push } = useHistory();
+ //   const classes = useStyles();
 
     // Form Control State & Initial Data
     const initialState = {
@@ -33,15 +35,15 @@ function LoginForm() {
     // Form Submission Handling
     function handleSubmit(e) {
         e.preventDefault();
-        axiosWithAuth()
-        .post("/auth/login", formState)
+        axiosWithAuth().post("/auth/login", formState)
         .then((res) => {
             localStorage.setItem("token", res.data.payload);
-            console.log("Login Successful!", res)
+            console.log("Login Successful!", res);
+            push("/med-cabinet")
         })      .catch((err) => {
         console.log("login error", err)
         setFormState(initialState)
-            //push user to App page
+
         })
       
         //console.log(formState);
@@ -130,6 +132,7 @@ function LoginForm() {
                     >
                         Login
                     </Button>
+                    <Link to="/register">New User</Link>
                 </Grid>
             </Grid>
         </form>
