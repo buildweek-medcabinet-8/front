@@ -6,7 +6,7 @@ import LoginForm from './components/Login';
 import Registration from './components/Registration';
 import PrivateRoute from './components/PrivateRoute';
 
-import StrainSearch from './components/StrainSearch';
+import StrainSearch from './components/StrainSearchAlt';
 
 function App() {
 	return (

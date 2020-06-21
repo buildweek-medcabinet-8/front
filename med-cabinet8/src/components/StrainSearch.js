@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
+import axios from 'axios';
 
 const useStyles = makeStyles({
 	marginBottom: {
@@ -99,7 +100,6 @@ function StrainSearch() {
 	// Data for API Call
 	const [flavorResults, setFlavorResults] = useState([]);
 	const [effectResults, setEffectResults] = useState([]);
-	const [description, setDescription] = useState('');
 
 	// Set Results for flavor search
 	useEffect(() => {
@@ -134,20 +134,26 @@ function StrainSearch() {
 	function addEffectResult(result) {
 		setEffectResults([...effectResults, result]);
 	}
-	function addDescription(e) {
-		setDescription(e.target.value);
-	}
 
 	//Make API Call
 	function handleFormSubmission(e) {
-		//To Do: Add API call
 		e.preventDefault();
-		console.log(flavorResults);
-		console.log(effectResults);
-		console.log(description);
+
+		let newPreferences = {
+			flavors: flavorResults,
+			effects: effectResults,
+		};
+		axios
+			.post(
+				'https://bw-medcab-8.herokuapp.com/profile/update-preferences',
+				newPreferences
+			)
+			.then((res) => {
+				console.log(res);
+				console.log(newPreferences);
+			});
 		setFlavorResults([]);
 		setEffectResults([]);
-		setDescription('');
 	}
 
 	return (
@@ -221,18 +227,6 @@ function StrainSearch() {
 								</Grid>
 							);
 						})}
-					</Grid>
-
-					<Grid item className={clsx(classes.marginBottom)}>
-						<TextField
-							variant='outlined'
-							type='text'
-							id='description'
-							name='description'
-							value={description}
-							onChange={(e) => addDescription(e)}
-							label='Describe your strain...'
-						/>
 					</Grid>
 
 					<Grid item className={clsx(classes.marginBottom)}>

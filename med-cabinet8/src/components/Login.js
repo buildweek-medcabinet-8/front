@@ -38,7 +38,7 @@ function LoginForm() {
 		axiosWithAuth()
 			.post('/auth/login', formState)
 			.then((res) => {
-				localStorage.setItem('token', res.data.payload);
+				localStorage.setItem('token', res.data.token);
 				console.log('Login Successful!', res);
 				push('/med-cabinet');
 			})
@@ -46,8 +46,6 @@ function LoginForm() {
 				console.log('login error', err);
 				setFormState(initialState);
 			});
-
-		//console.log(formState);
 	}
 
 	// Validation
