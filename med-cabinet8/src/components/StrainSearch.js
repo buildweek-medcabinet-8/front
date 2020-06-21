@@ -8,7 +8,8 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
-import axios from 'axios';
+import axiosWithAuth from '../utils/axiosWithAuth';
+import MultipleSelect from './MultipleSelect';
 
 const useStyles = makeStyles({
 	marginBottom: {
@@ -89,144 +90,83 @@ function StrainSearch() {
 		'Dry Mouth',
 	];
 
-	// Search Terms
-	const [searchFlavorTerm, setSearchFlavorTerm] = useState('');
-	const [searchEffectTerm, setSearchEffectTerm] = useState('');
+	const [formState, setFormState] = useState({
+		flavors: [],
+		effects: [],
+	});
 
-	// Search Results
-	const [searchFlavorResults, setSearchFlavorResults] = useState(flavors);
-	const [searchEffectResults, setSearchEffectResults] = useState(effects);
-
-	// Data for API Call
-	const [flavorResults, setFlavorResults] = useState([]);
-	const [effectResults, setEffectResults] = useState([]);
-
-	// Set Results for flavor search
-	useEffect(() => {
-		const newResults = flavors.filter((flavor) => {
-			return flavor.toLowerCase().includes(searchFlavorTerm.toLowerCase());
-		});
-
-		setSearchFlavorResults(newResults);
-	}, [searchFlavorTerm]);
-
-	// Set results for effect search
-	useEffect(() => {
-		const newResults = effects.filter((effect) => {
-			return effect.toLowerCase().includes(searchEffectTerm.toLowerCase());
-		});
-
-		setSearchEffectResults(newResults);
-	}, [searchEffectTerm]);
-
-	//Input Control
 	function handleFlavorChange(e) {
-		setSearchFlavorTerm(e.target.value);
+		e.persist();
+		const newFormData = {
+			...formState,
+			flavors: e.target.value,
+		};
+		console.log(formState);
+		// console.log(formState);
+		setFormState(newFormData);
 	}
+
 	function handleEffectChange(e) {
-		setSearchEffectTerm(e.target.value);
+		e.persist();
+		const newFormData = {
+			...formState,
+			effects: e.target.value,
+		};
+		console.log(formState);
+		// console.log(formState);
+		setFormState(newFormData);
 	}
 
-	//Set Search Terms for API call
-	function addFlavorResult(result) {
-		setFlavorResults([...flavorResults, result]);
-	}
-	function addEffectResult(result) {
-		setEffectResults([...effectResults, result]);
-	}
-
-	//Make API Call
-	function handleFormSubmission(e) {
+	function handleSubmit(e) {
 		e.preventDefault();
 
 		let newPreferences = {
-			flavors: flavorResults,
-			effects: effectResults,
+			flavors: formState.flavors,
+			effects: formState.effects,
 		};
-		axios
-			.post(
-				'https://bw-medcab-8.herokuapp.com/profile/update-preferences',
-				newPreferences
-			)
+		axiosWithAuth()
+			.post('/profile/update-preferences', newPreferences)
 			.then((res) => {
 				console.log(res);
-				console.log(newPreferences);
+				// console.log(newPreferences);
+			})
+			.catch((err) => {
+				// console.log(err);
+				console.log(JSON.stringify(err.message));
 			});
-		setFlavorResults([]);
-		setEffectResults([]);
+		setFormState({
+			flavors: [],
+			effects: [],
+		});
 	}
 
 	return (
 		<Container>
-			<form onSubmit={handleFormSubmission}>
+			<form onSubmit={handleSubmit}>
 				<Grid container direction='column' alignItems='center'>
-					<Grid item className={clsx(classes.marginBottom)}>
-						<TextField
-							autoFocus
-							variant='outlined'
-							type='text'
-							id='searchFlavor'
-							name='searchFlavor'
-							value={searchFlavorTerm}
-							onChange={handleFlavorChange}
-							label='Search Flavors:'
+					<Grid item>
+						<MultipleSelect
+							inputLabel='Flavors'
+							labelId='flavor-label-id'
+							id='flavors'
+							value={formState.flavors}
+							handleChange={handleFlavorChange}
+							inputId='flavor-input'
+							items={flavors}
+							name='flavors'
 						/>
 					</Grid>
 
-					<Grid
-						item
-						container
-						spacing={4}
-						justify='center'
-						className={clsx(classes.marginBottom)}
-					>
-						{searchFlavorResults.map((result) => {
-							return (
-								<Grid item key={result}>
-									<Button
-										variant='contained'
-										color='secondary'
-										onClick={() => addFlavorResult(result)}
-									>
-										{result}
-									</Button>
-								</Grid>
-							);
-						})}
-					</Grid>
-
-					<Grid item className={clsx(classes.marginBottom)}>
-						<TextField
-							variant='outlined'
-							type='text'
-							id='searchEffect'
-							name='searchEffect'
-							value={searchEffectTerm}
-							onChange={handleEffectChange}
-							label='Search Effects:'
+					<Grid item>
+						<MultipleSelect
+							inputLabel='Effects'
+							labelId='effect-label-id'
+							id='effects'
+							value={formState.effects}
+							handleChange={handleEffectChange}
+							inputId='effect-input'
+							items={effects}
 						/>
-					</Grid>
-
-					<Grid
-						item
-						container
-						spacing={4}
-						justify='center'
-						className={clsx(classes.marginBottom)}
-					>
-						{searchEffectResults.map((result) => {
-							return (
-								<Grid item key={result}>
-									<Button
-										variant='contained'
-										color='secondary'
-										onClick={() => addEffectResult(result)}
-									>
-										{result}
-									</Button>
-								</Grid>
-							);
-						})}
 					</Grid>
 
 					<Grid item className={clsx(classes.marginBottom)}>
