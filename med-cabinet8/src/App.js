@@ -6,25 +6,20 @@ import LoginForm from './components/Login';
 import Registration from './components/Registration';
 import PrivateRoute from './components/PrivateRoute';
 
-
 import StrainSearch from './components/StrainSearch';
 
-
 function App() {
-    return (
-        <Router>
-        <div className='App'>
+	return (
+		<Router>
+			<div className='App'>
+				<h1>Med Cabinet App</h1>
 
-        <h1>Med Cabinet App</h1>
-
-        <Route exact path="/" component={LoginForm} />
-        <Route path="/register" component={Registration} />
-        <PrivateRoute path="/med-cabinet" component={StrainSearch} />
-
-
-        </div>
-        </Router>
-    );
+				<Route exact path='/' component={LoginForm} />
+				<Route path='/register' component={Registration} />
+				<PrivateRoute path='/med-cabinet' component={StrainSearch} />
+			</div>
+		</Router>
+	);
 }
 
 export default App;

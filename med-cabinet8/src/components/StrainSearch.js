@@ -108,7 +108,7 @@ function StrainSearch() {
 		});
 
 		setSearchFlavorResults(newResults);
-	}, [searchFlavorTerm, flavors]);
+	}, [searchFlavorTerm]);
 
 	// Set results for effect search
 	useEffect(() => {
@@ -117,7 +117,7 @@ function StrainSearch() {
 		});
 
 		setSearchEffectResults(newResults);
-	}, [searchEffectTerm, effects]);
+	}, [searchEffectTerm]);
 
 	//Input Control
 	function handleFlavorChange(e) {
@@ -139,8 +139,9 @@ function StrainSearch() {
 	}
 
 	//Make API Call
-	function handleFormSubmission() {
+	function handleFormSubmission(e) {
 		//To Do: Add API call
+		e.preventDefault();
 		console.log(flavorResults);
 		console.log(effectResults);
 		console.log(description);
@@ -151,99 +152,96 @@ function StrainSearch() {
 
 	return (
 		<Container>
-			<Grid container direction='column' alignItems='center'>
-				<Grid item className={clsx(classes.marginBottom)}>
-					<TextField
-						autoFocus
-						variant='outlined'
-						type='text'
-						id='searchFlavor'
-						name='searchFlavor'
-						value={searchFlavorTerm}
-						onChange={handleFlavorChange}
-						label='Search Flavors:'
-					/>
-				</Grid>
+			<form onSubmit={handleFormSubmission}>
+				<Grid container direction='column' alignItems='center'>
+					<Grid item className={clsx(classes.marginBottom)}>
+						<TextField
+							autoFocus
+							variant='outlined'
+							type='text'
+							id='searchFlavor'
+							name='searchFlavor'
+							value={searchFlavorTerm}
+							onChange={handleFlavorChange}
+							label='Search Flavors:'
+						/>
+					</Grid>
 
-				<Grid
-					item
-					container
-					spacing={4}
-					justify='center'
-					className={clsx(classes.marginBottom)}
-				>
-					{searchFlavorResults.map((result) => {
-						return (
-							<Grid item key={result}>
-								<Button
-									variant='contained'
-									color='secondary'
-									onClick={() => addFlavorResult(result)}
-								>
-									{result}
-								</Button>
-							</Grid>
-						);
-					})}
-				</Grid>
-
-				<Grid item className={clsx(classes.marginBottom)}>
-					<TextField
-						variant='outlined'
-						type='text'
-						id='searchEffect'
-						name='searchEffect'
-						value={searchEffectTerm}
-						onChange={handleEffectChange}
-						label='Search Effects:'
-					/>
-				</Grid>
-
-				<Grid
-					item
-					container
-					spacing={4}
-					justify='center'
-					className={clsx(classes.marginBottom)}
-				>
-					{searchEffectResults.map((result) => {
-						return (
-							<Grid item key={result}>
-								<Button
-									variant='contained'
-									color='secondary'
-									onClick={() => addEffectResult(result)}
-								>
-									{result}
-								</Button>
-							</Grid>
-						);
-					})}
-				</Grid>
-
-				<Grid item className={clsx(classes.marginBottom)}>
-					<TextField
-						variant='outlined'
-						type='text'
-						id='description'
-						name='description'
-						value={description}
-						onChange={addDescription}
-						label='Describe your strain...'
-					/>
-				</Grid>
-
-				<Grid item className={clsx(classes.marginBottom)}>
-					<Button
-						variant='contained'
-						color='primary'
-						fullWidth
-						onClick={handleFormSubmission}
+					<Grid
+						item
+						container
+						spacing={4}
+						justify='center'
+						className={clsx(classes.marginBottom)}
 					>
-						Find My Strain
-					</Button>
+						{searchFlavorResults.map((result) => {
+							return (
+								<Grid item key={result}>
+									<Button
+										variant='contained'
+										color='secondary'
+										onClick={() => addFlavorResult(result)}
+									>
+										{result}
+									</Button>
+								</Grid>
+							);
+						})}
+					</Grid>
+
+					<Grid item className={clsx(classes.marginBottom)}>
+						<TextField
+							variant='outlined'
+							type='text'
+							id='searchEffect'
+							name='searchEffect'
+							value={searchEffectTerm}
+							onChange={handleEffectChange}
+							label='Search Effects:'
+						/>
+					</Grid>
+
+					<Grid
+						item
+						container
+						spacing={4}
+						justify='center'
+						className={clsx(classes.marginBottom)}
+					>
+						{searchEffectResults.map((result) => {
+							return (
+								<Grid item key={result}>
+									<Button
+										variant='contained'
+										color='secondary'
+										onClick={() => addEffectResult(result)}
+									>
+										{result}
+									</Button>
+								</Grid>
+							);
+						})}
+					</Grid>
+
+					<Grid item className={clsx(classes.marginBottom)}>
+						<TextField
+							variant='outlined'
+							type='text'
+							id='description'
+							name='description'
+							value={description}
+							onChange={(e) => addDescription(e)}
+							label='Describe your strain...'
+						/>
+					</Grid>
+
+					<Grid item className={clsx(classes.marginBottom)}>
+						<Button variant='contained' color='primary' fullWidth type='submit'>
+							Find My Strain
+						</Button>
+					</Grid>
 				</Grid>
-			</Grid>
+			</form>
 		</Container>
 	);
 }
