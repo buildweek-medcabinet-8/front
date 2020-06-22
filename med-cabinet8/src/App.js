@@ -5,19 +5,24 @@ import LoginForm from './components/Login';
 import Preferences from './components/Preferences';
 import Registration from './components/Registration';
 import PrivateRoute from './components/PrivateRoute';
+import Recommendations from './components/Recommendations';
 import Navbar from './components/Navbar';
 import StrainSearch from './components/StrainSearch';
 
+
 function App() {
+    //state objects needed in app
+    const login=true;
+
 	return (
 		<Router>
-			<div className='App'>
-				<Navbar />
-				<h1>Med Cabinet App</h1>
+			<div className={(login) ? 'App' : 'App splash'}>
+				<Navbar login={login}/>
 				<Route exact path='/' component={LoginForm} />
 				<Route path='/register' component={Registration} />
 				<PrivateRoute path='/med-cabinet' component={StrainSearch} />
 				<PrivateRoute path='/settings' component={Preferences} />
+                <PrivateRoute path='/recommendations' component={Recommendations} />
 			</div>
 		</Router>
 	);

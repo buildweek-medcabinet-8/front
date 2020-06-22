@@ -16,13 +16,13 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function Navbar() {
+function Navbar({login}) {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
 			<AppBar position='sticky' className={classes.appbar}>
 				<Toolbar>
-					<NavMenu />
+					{(login) ? <NavMenu /> : null}
 					<Typography variant='h5' component='span' className={classes.title}>
 						Med-Cabinet
 					</Typography>
