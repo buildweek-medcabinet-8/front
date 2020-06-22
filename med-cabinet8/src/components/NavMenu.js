@@ -13,10 +13,7 @@ export default function SimpleMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const signOut = () => {
-    localStorage.setItem("login", false);
-    localStorage.setItem("token", null);
-  };
+
   return (
     <React.Fragment>
       <IconButton
@@ -55,11 +52,7 @@ export default function SimpleMenu() {
             Set Strain Preferences
           </Button>
         </MenuItem>
-        <MenuItem onClick={signOut}>
-          <Button component={Link} to="/">
-            Sign Out
-          </Button>
-        </MenuItem>
+
       </Menu>
     </React.Fragment>
   );
