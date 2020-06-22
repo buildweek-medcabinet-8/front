@@ -6,8 +6,8 @@ import {
  } from "../actions/";
 
 const initialState = {
-    login: false,
-    rememberMe: false,
+    login: 'false',
+    rememberMe: 'false',
     userName: '',
 
 }
