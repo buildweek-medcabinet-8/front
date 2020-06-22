@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Button, Container } from '@material-ui/core';
+import { Grid, Button, Container, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -87,6 +87,7 @@ function StrainSearch() {
 	const [formState, setFormState] = useState({
 		flavors: [],
 		effects: [],
+		description: '',
 	});
 
 	function handleFlavorChange(e) {
@@ -111,12 +112,23 @@ function StrainSearch() {
 		setFormState(newFormData);
 	}
 
+	function handleDescriptionChange(e) {
+		e.persist();
+
+		const newFormData = {
+			...formState,
+			[e.target.name]: e.target.value,
+		};
+		setFormState(newFormData);
+	}
+
 	function handleSubmit(e) {
 		e.preventDefault();
 
 		let newPreferences = {
 			flavors: formState.flavors,
 			effects: formState.effects,
+			description: formState.description,
 		};
 		axiosWithAuth()
 			.post('/profile/update-preferences', newPreferences)
@@ -131,6 +143,7 @@ function StrainSearch() {
 		setFormState({
 			flavors: [],
 			effects: [],
+			description: '',
 		});
 	}
 
@@ -160,6 +173,17 @@ function StrainSearch() {
 							handleChange={handleEffectChange}
 							inputId='effect-input'
 							items={effects}
+						/>
+					</Grid>
+
+					<Grid item className={classes.marginBottom}>
+						<TextField
+							label='Description'
+							value={formState.description}
+							onChange={handleDescriptionChange}
+							id='description'
+							name='description'
+							placeholder='Description'
 						/>
 					</Grid>
 

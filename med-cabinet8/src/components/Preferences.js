@@ -21,7 +21,7 @@ function Preferences() {
 	}, []);
 
 	return (
-		<Grid container alignItems='center' justify='center'>
+		<Grid container alignItems='center' justify='center' direction='column'>
 			<Grid item>
 				<List>
 					<Typography variant='h5'>Your Desired Effects:</Typography>
