@@ -8,7 +8,12 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 //const useStyles = makeStyles({});
 
+<<<<<<< HEAD
 function LoginForm({ setChecked }) {
+=======
+function LoginForm(props) {
+	console.log(props)
+>>>>>>> 5296e2d2f51d7492d209543d6d747cfdf42e4ca2
 	const { push } = useHistory();
 	//    const classes = useStyles();
 
@@ -39,6 +44,8 @@ function LoginForm({ setChecked }) {
 			.post('/auth/login', formState)
 			.then((res) => {
 				localStorage.setItem('token', res.data.token);
+				localStorage.setItem('login', 'true');
+
 				console.log('Login Successful!', res);
 				push('/med-cabinet');
 				setChecked(true);
@@ -59,7 +66,7 @@ function LoginForm({ setChecked }) {
 
 	useEffect(() => {
 		formSchema.isValid(formState).then((isFormValid) => {
-			console.log(isFormValid);
+		//	console.log(isFormValid);
 			setButtonDisabled(!isFormValid);
 		});
 	}, [formState, formSchema]);
@@ -81,6 +88,8 @@ function LoginForm({ setChecked }) {
 				});
 			});
 	}
+
+
 
 	return (
 		<form onSubmit={handleSubmit}>
