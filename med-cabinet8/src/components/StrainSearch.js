@@ -1,11 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {
-	Grid,
-	Button,
-	//	Typography,
-	Container,
-	TextField,
-} from '@material-ui/core';
+import React, { useState } from 'react';
+import { Grid, Button, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import axiosWithAuth from '../utils/axiosWithAuth';
