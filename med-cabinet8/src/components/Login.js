@@ -8,7 +8,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 //const useStyles = makeStyles({});
 
-function LoginForm() {
+function LoginForm({ setChecked }) {
 	const { push } = useHistory();
 	//    const classes = useStyles();
 
@@ -41,6 +41,7 @@ function LoginForm() {
 				localStorage.setItem('token', res.data.token);
 				console.log('Login Successful!', res);
 				push('/med-cabinet');
+				setChecked(true);
 			})
 			.catch((err) => {
 				console.log('login error', err);

@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import NavMenu from './NavMenu';
+import LogoutSwitch from './Logout';
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -16,16 +17,17 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function Navbar() {
+function Navbar({ checked, setChecked }) {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
-			<AppBar position='sticky' className={classes.appbar}>
+			<AppBar position='fixed' className={classes.appbar}>
 				<Toolbar>
 					<NavMenu />
 					<Typography variant='h5' component='span' className={classes.title}>
 						Med-Cabinet
 					</Typography>
+					<LogoutSwitch checked={checked} setChecked={setChecked} />
 				</Toolbar>
 			</AppBar>
 			<Toolbar />
