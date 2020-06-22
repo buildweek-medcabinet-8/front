@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LoginForm from './components/Login';
 import Preferences from './components/Preferences';
