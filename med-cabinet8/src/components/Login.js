@@ -32,7 +32,7 @@ function LoginForm(props) {
 		validateChange(e);
 		setFormState(newFormState);
 	}
-
+	const [errors, setErrors] = useState(initialState);
 	// Form Submission Handling
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -47,12 +47,13 @@ function LoginForm(props) {
 			})
 			.catch((err) => {
 				console.log('login error', err);
+				setErrors({...errors, loginFail: err.message})
 				setFormState(initialState);
 			});
 	}
 
 	// Validation
-	const [errors, setErrors] = useState(initialState);
+	
 
 	const formSchema = yup.object().shape({
 		username: yup.string().required('Username required!'),
@@ -121,6 +122,7 @@ function LoginForm(props) {
 						label='Password:'
 						error={errors.password ? true : false}
 						helperText={errors.password ? errors.password : null}
+						
 					/>
 				</Grid>
 
@@ -136,6 +138,7 @@ function LoginForm(props) {
 						Login
 					</Button>
 				</Grid>
+				<p className="error" >{errors.loginFail ? errors.loginFail : null}</p>
 				<Grid item>
 					<Button
 						variant='outlined'
