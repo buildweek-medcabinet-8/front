@@ -6,6 +6,7 @@ import LoginForm from './components/Login';
 import Preferences from './components/Preferences';
 import Registration from './components/Registration';
 import PrivateRoute from './components/PrivateRoute';
+import Profile from './components/Profile';
 import Recommendations from './components/Recommendations';
 import Navbar from './components/Navbar';
 import StrainSearch from './components/StrainSearch';
@@ -22,7 +23,9 @@ function App() {
 				<Route path='/register' component={Registration} />
 				<PrivateRoute path='/med-cabinet' component={StrainSearch} />
 				<PrivateRoute path='/settings' component={Preferences} />
-                <PrivateRoute path='/recommendations' component={Recommendations} />
+				<PrivateRoute path='/profile' component={Profile} />
+
+				<PrivateRoute path='/recommendations' component={Recommendations} />
 			</div>
 		</Router>
 	);
