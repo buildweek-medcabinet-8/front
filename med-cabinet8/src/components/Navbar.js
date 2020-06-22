@@ -17,11 +17,7 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-<<<<<<< HEAD
-function Navbar({ checked, setChecked }) {
-=======
 function Navbar({login}) {
->>>>>>> 5296e2d2f51d7492d209543d6d747cfdf42e4ca2
 	const classes = useStyles();
 	return (
 		<React.Fragment>

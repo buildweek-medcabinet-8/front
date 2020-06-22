@@ -8,12 +8,8 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 //const useStyles = makeStyles({});
 
-<<<<<<< HEAD
-function LoginForm({ setChecked }) {
-=======
 function LoginForm(props) {
 	console.log(props)
->>>>>>> 5296e2d2f51d7492d209543d6d747cfdf42e4ca2
 	const { push } = useHistory();
 	//    const classes = useStyles();
 
