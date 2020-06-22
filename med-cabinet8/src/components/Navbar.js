@@ -22,7 +22,7 @@ function Navbar({login}) {
 		<React.Fragment>
 			<AppBar position='sticky' className={classes.appbar}>
 				<Toolbar>
-					{(login) ? <NavMenu /> : null}
+					{(login === 'true') ? <NavMenu /> : null}
 					<Typography variant='h5' component='span' className={classes.title}>
 						Med-Cabinet
 					</Typography>

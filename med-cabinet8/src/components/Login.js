@@ -8,7 +8,8 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 //const useStyles = makeStyles({});
 
-function LoginForm() {
+function LoginForm(props) {
+	console.log(props)
 	const { push } = useHistory();
 	//    const classes = useStyles();
 
@@ -39,6 +40,8 @@ function LoginForm() {
 			.post('/auth/login', formState)
 			.then((res) => {
 				localStorage.setItem('token', res.data.token);
+				localStorage.setItem('login', 'true');
+
 				console.log('Login Successful!', res);
 				push('/med-cabinet');
 			})
@@ -58,7 +61,7 @@ function LoginForm() {
 
 	useEffect(() => {
 		formSchema.isValid(formState).then((isFormValid) => {
-			console.log(isFormValid);
+		//	console.log(isFormValid);
 			setButtonDisabled(!isFormValid);
 		});
 	}, [formState, formSchema]);
@@ -80,6 +83,8 @@ function LoginForm() {
 				});
 			});
 	}
+
+
 
 	return (
 		<form onSubmit={handleSubmit}>

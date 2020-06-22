@@ -4,11 +4,18 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { CssBaseline } from '@material-ui/core';
+import { createStore } from 'redux';
+import { Provider } from "react-redux";
+import uiReducer from './store/reducers/uiReducer';
+
+const store = createStore(uiReducer);
 
 ReactDOM.render(
 	<React.StrictMode>
 		<CssBaseline />
+		<Provider store={store}>
 		<App />
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
