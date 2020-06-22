@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, MenuItem, IconButton } from '@material-ui/core';
+import { Menu, MenuItem, IconButton, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 
@@ -33,13 +33,24 @@ export default function SimpleMenu() {
 				onClose={handleClose}
 			>
 				<MenuItem onClick={handleClose}>
-					<Link to='/profile'>Profile</Link>
+					<Button component={Link} to='/profile'>
+						Profile
+					</Button>
 				</MenuItem>
 				<MenuItem onClick={handleClose}>
-					<Link to='/settings'>Settings</Link>
+					<Button component={Link} to='/settings'>
+						Settings
+					</Button>
 				</MenuItem>
 				<MenuItem onClick={handleClose}>
-					<Link to='/recommendations'>Recommendations</Link>
+					<Button component={Link} to='/recommendations'>
+						Recommendations
+					</Button>
+				</MenuItem>
+				<MenuItem onClick={handleClose}>
+					<Button component={Link} to='/med-cabinet'>
+						Set Strain Preferences
+					</Button>
 				</MenuItem>
 			</Menu>
 		</React.Fragment>

@@ -14,7 +14,6 @@ function App() {
 			<div className='App'>
 				<Navbar />
 				<h1>Med Cabinet App</h1>
-
 				<Route exact path='/' component={LoginForm} />
 				<Route path='/register' component={Registration} />
 				<PrivateRoute path='/med-cabinet' component={StrainSearch} />
