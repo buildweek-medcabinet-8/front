@@ -44,7 +44,7 @@ function RegistrationForm() {
       .post("/auth/register", newState)
       .then((res) => {
         localStorage.setItem("token", res.data.payload);
-        console.log("register Successful!", res);
+      //  console.log("register Successful!", res);
         push("/");
       })
       .catch((err) => {
