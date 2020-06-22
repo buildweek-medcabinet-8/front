@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import NavMenu from './NavMenu';
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -21,6 +22,7 @@ function Navbar() {
 		<React.Fragment>
 			<AppBar position='sticky' className={classes.appbar}>
 				<Toolbar>
+					<NavMenu />
 					<Typography variant='h5' component='span' className={classes.title}>
 						Med-Cabinet
 					</Typography>
