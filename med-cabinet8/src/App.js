@@ -19,11 +19,11 @@ const useStyles = makeStyles({
   app: {
     backgroundColor: "#ddd",
     backgroundImage:
-      " url(https://objective-shirley-f61587.netlify.app/images/home.jpg)",
+      " url(https://github.com/buildweek-medcabinet-8/front/raw/master/med-cabinet8/src/img/splash.jpg)",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
     backgroundBlendMode: "screen",
-    height: "200vh",
+    height: "100vh",
     width: "100vw",
   },
   header: {
