@@ -1,14 +1,14 @@
-body {
-	/* overflow-x: hidden; */
-}
-
 .App {
+	height: 100vh;
+	width: 100vw;
 	text-align: center;
 }
-
-.App-logo {
-	height: 40vmin;
-	pointer-events: none;
+.splash {
+	background-color: #ddd;
+	background-image: url(https://github.com/buildweek-medcabinet-8/front/raw/master/med-cabinet8/src/img/splash.jpg);
+	background-attachment: fixed;
+	background-size: cover;
+	background-blend-mode: screen;
 }
 
 @media (prefers-reduced-motion: no-preference) {
