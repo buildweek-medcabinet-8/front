@@ -1,10 +1,10 @@
-body {
+/* body {
 	background-color: #ddd;
 	background-image: url(https://objective-shirley-f61587.netlify.app/images/home.jpg);
 	background-attachment: fixed;
 	background-size: cover;
 	background-blend-mode: screen;
-}
+} */
 .App {
 	text-align: center;
 }

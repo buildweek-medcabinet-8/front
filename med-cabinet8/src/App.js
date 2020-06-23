@@ -16,12 +16,12 @@ const useStyles = makeStyles({
 	app: {
 		backgroundColor: '#ddd',
 		backgroundImage:
-			' url(https://objective-shirley-f61587.netlify.app/images/home.jpg)',
+			'url(https://objective-shirley-f61587.netlify.app/images/home.jpg)',
 		backgroundAttachment: 'fixed',
 		backgroundSize: 'cover',
 		backgroundBlendMode: 'screen',
-		height: '200vh',
-		width: '100vw',
+		minHeight: '100vh',
+		minWidth: '100vw',
 	},
 	header: {
 		margin: '4rem 0',
@@ -41,7 +41,6 @@ function App() {
 						<Typography variant='h1' align='center' className={classes.header}>
 							Med Cabinet App
 						</Typography>
-						{/* <Route exact path='/' component={LoginForm} /> */}
 						<Route exact path='/'>
 							<LoginForm setChecked={setChecked} />
 						</Route>
