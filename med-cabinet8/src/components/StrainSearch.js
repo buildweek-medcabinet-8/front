@@ -65,7 +65,7 @@ function StrainSearch() {
 		axiosWithAuth()
 			.put('/profile/update-preferences', formState)
 			.then((res) => {
-				alert(res);
+				console.log(res);
 			})
 			.catch((err) => {
 				// console.log(err);
