@@ -1,10 +1,11 @@
-/* body {
-	background-color: #ddd;
+body {
+	/* background-color: #ddd;
 	background-image: url(https://objective-shirley-f61587.netlify.app/images/home.jpg);
 	background-attachment: fixed;
 	background-size: cover;
-	background-blend-mode: screen;
-} */
+	background-blend-mode: screen; */
+	overflow-y: hidden;
+}
 .App {
 	text-align: center;
 }
