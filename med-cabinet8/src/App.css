@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+=======
+
+body {
+	overflow-x: hidden;
+}
+
+>>>>>>> b075d962c8e3db26ec250329dcfb0e5f9e14db63
 .App {
 	height: 100vh;
 	width: 100vw;
@@ -9,6 +17,10 @@
 	background-attachment: fixed;
 	background-size: cover;
 	background-blend-mode: screen;
+<<<<<<< HEAD
+=======
+
+>>>>>>> b075d962c8e3db26ec250329dcfb0e5f9e14db63
 }
 
 @media (prefers-reduced-motion: no-preference) {

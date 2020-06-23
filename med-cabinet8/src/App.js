@@ -44,6 +44,7 @@ function App() {
 						<Typography variant='h1' align='center' className={classes.header}>
 							Med Cabinet App
 						</Typography>
+						{/* <Route exact path='/' component={LoginForm} /> */}
 						<Route exact path='/'>
 							<LoginForm setChecked={setChecked} />
 						</Route>
