@@ -1,5 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, Grid, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import NavMenu from './NavMenu';
 import LogoutSwitch from './Logout';
@@ -23,11 +24,21 @@ function Navbar({ checked, setChecked, login }) {
 		<React.Fragment>
 			<AppBar position='fixed' className={classes.appbar}>
 				<Toolbar>
-					{(login === 'true') ? <NavMenu /> : null}
+					{(login) ? <NavMenu /> : null}
 					<Typography variant='h5' component='span' className={classes.title}>
 						Med-Cabinet
 					</Typography>
-					<LogoutSwitch checked={checked} setChecked={setChecked} />
+					{(login) ?<LogoutSwitch checked={checked} setChecked={setChecked} /> : null}
+					{(!login) ? 				<Grid item>
+					<Button
+						variant='outlined'
+						color='secondary'
+						component={Link}
+						to='/register'
+					>
+						Sign Up!
+					</Button>
+				</Grid> : null}
 				</Toolbar>
 			</AppBar>
 			<Toolbar />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import { Grid, Button, TextField } from '@material-ui/core';
 //import { makeStyles } from '@material-ui/styles';
@@ -139,16 +139,7 @@ function LoginForm({ setChecked }) {
 					</Button>
 				</Grid>
 				<p className="error" >{errors.loginFail ? errors.loginFail : null}</p>
-				<Grid item>
-					<Button
-						variant='outlined'
-						color='secondary'
-						component={Link}
-						to='/register'
-					>
-						Sign Up!
-					</Button>
-				</Grid>
+
 			</Grid>
 		</form>
 	);

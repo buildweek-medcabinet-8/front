@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 function App() {
   const classes = useStyles();
   const [checked, setChecked] = useState(false);
-  const login = "true";
+  const login = checked;
   return (
     <Router>
       <ThemeProvider theme={theme}>
