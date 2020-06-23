@@ -1,118 +1,55 @@
 import React, { useState } from 'react';
-import { Grid, Button, Container, TextField } from '@material-ui/core';
+import Board from 'react-trello';
+import dataFlavors from '../data/dataFlavors.json';
+import dataEffects from '../data/dataEffects.json';
+import { Button, TextField, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import clsx from 'clsx';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import MultipleSelect from './MultipleSelect';
 
 const useStyles = makeStyles({
-	marginBottom: {
-		marginBottom: '2rem',
+	gridItem: {
+		marginBottom: '3rem',
+		// width: '90%',
 	},
 });
 
 function StrainSearch() {
 	const classes = useStyles();
-	const flavors = [
-		'Earthy',
-		'Sweet',
-		'Citrus',
-		'Flowery',
-		'Violet',
-		'Diesel',
-		'Spicy/Herbal',
-		'Sage',
-		'Woody',
-		'Apricot',
-		'Grapefruit',
-		'Orange',
-		'None',
-		'Pungent',
-		'Grape',
-		'Pine',
-		'Skunk',
-		'Berry',
-		'Pepper',
-		'Menthol',
-		'Blue Cheese',
-		'Cheese',
-		'Chemical',
-		'Mango',
-		'Lemon',
-		'Peach',
-		'Vanilla',
-		'Nutty',
-		'Chestnut',
-		'Tea',
-		'Tobacco',
-		'Tropical',
-		'Strawberry',
-		'Blueberry',
-		'Mint',
-		'Apple',
-		'Honey',
-		'Lavender',
-		'Lime',
-		'Coffee',
-		'Ammonia',
-		'Minty',
-		'Tree',
-		'Fruit',
-		'Butter',
-		'Pineapple',
-		'Tar',
-		'Rose',
-		'Plum',
-		'Pear',
-	];
-
-	const effects = [
-		'Creative',
-		'Energetic',
-		'Tingly',
-		'Euphoric',
-		'Relaxed',
-		'Aroused',
-		'Happy',
-		'Uplifted',
-		'Hungry',
-		'Talkative',
-		'None',
-		'Giggly',
-		'Focused',
-		'Sleepy',
-		'Dry Mouth',
-	];
-
 	const [formState, setFormState] = useState({
 		flavors: [],
 		effects: [],
 		description: '',
 	});
 
-	function handleFlavorChange(e) {
-		e.persist();
-		const newFormData = {
-			...formState,
-			flavors: e.target.value,
-		};
-		console.log(formState);
-		// console.log(formState);
-		setFormState(newFormData);
+	function flavorChange(fromLaneId, toLaneId, cardId, index) {
+		// console.log(fromLaneId, toLaneId, cardId, index);
+		if (formState.flavors.indexOf(cardId) === -1 && fromLaneId === 'FLAVORS') {
+			setFormState({ ...formState, flavors: [...formState.flavors, cardId] });
+			console.log(cardId, 'added');
+		} else if (fromLaneId === 'MYFLAVORS') {
+			setFormState({
+				...formState,
+				flavors: [formState.flavors.filter((item) => item !== cardId)],
+			});
+			console.log(cardId, 'deleted');
+		}
 	}
 
-	function handleEffectChange(e) {
-		e.persist();
-		const newFormData = {
-			...formState,
-			effects: e.target.value,
-		};
-		console.log(formState);
-		// console.log(formState);
-		setFormState(newFormData);
+	function effectChange(fromLaneId, toLaneId, cardId, index) {
+		// console.log(fromLaneId, toLaneId, cardId, index);
+		if (formState.effects.indexOf(cardId) === -1 && fromLaneId === 'EFFECTS') {
+			setFormState({ ...formState, effects: [...formState.effects, cardId] });
+			console.log(cardId, 'added');
+		} else if (fromLaneId === 'MYEFFECTS') {
+			setFormState({
+				...formState,
+				effects: [formState.effects.filter((item) => item !== cardId)],
+			});
+			console.log(cardId, 'deleted');
+		}
 	}
 
-	function handleDescriptionChange(e) {
+	function handleChange(e) {
 		e.persist();
 
 		const newFormData = {
@@ -125,76 +62,71 @@ function StrainSearch() {
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		let newPreferences = {
-			flavors: formState.flavors,
-			effects: formState.effects,
-			description: formState.description,
-		};
 		axiosWithAuth()
-			.post('/profile/update-preferences', newPreferences)
+			.put('/profile/update-preferences', formState)
 			.then((res) => {
 				console.log(res);
-				// console.log(newPreferences);
 			})
 			.catch((err) => {
 				// console.log(err);
-				console.log(JSON.stringify(err.message));
+				console.log(err.message);
 			});
-		setFormState({
-			flavors: [],
-			effects: [],
-			description: '',
-		});
 	}
 
 	return (
-		<Container>
-			<form onSubmit={handleSubmit}>
-				<Grid container direction='column' alignItems='center'>
-					<Grid item>
-						<MultipleSelect
-							inputLabel='Flavors'
-							labelId='flavor-label-id'
-							id='flavors'
-							value={formState.flavors}
-							handleChange={handleFlavorChange}
-							inputId='flavor-input'
-							items={flavors}
-							name='flavors'
-						/>
-					</Grid>
-
-					<Grid item>
-						<MultipleSelect
-							inputLabel='Effects'
-							labelId='effect-label-id'
-							id='effects'
-							value={formState.effects}
-							handleChange={handleEffectChange}
-							inputId='effect-input'
-							items={effects}
-						/>
-					</Grid>
-
-					<Grid item className={classes.marginBottom}>
-						<TextField
-							label='Description'
-							value={formState.description}
-							onChange={handleDescriptionChange}
-							id='description'
-							name='description'
-							placeholder='Description'
-						/>
-					</Grid>
-
-					<Grid item className={clsx(classes.marginBottom)}>
-						<Button variant='contained' color='primary' fullWidth type='submit'>
-							Find My Strain
-						</Button>
-					</Grid>
+		<form onSubmit={(e) => handleSubmit(e)}>
+			<Grid container direction='column' alignItems='center' justify='center'>
+				<Grid item className={classes.gridItem}>
+					<Board
+						style={{ maxWidth: '100%', display: 'flex', flexWrap: 'wrap' }}
+						laneStyle={{ width: '48%', height: '100%' }}
+						data={dataFlavors}
+						draggable
+						laneDraggable={false}
+						hideCardDeleteIcon
+						onCardMoveAcrossLanes={(fromLaneId, toLaneId, cardId, index) =>
+							flavorChange(fromLaneId, toLaneId, cardId, index)
+						}
+					/>
 				</Grid>
-			</form>
-		</Container>
+
+				<Grid item className={classes.gridItem}>
+					<Board
+						style={{
+							maxWidth: '100%',
+							display: 'flex',
+							flexWrap: 'wrap',
+							backgroundColor: 'green',
+						}}
+						laneStyle={{ width: '48%', height: '100%' }}
+						data={dataEffects}
+						draggable
+						laneDraggable={false}
+						hideCardDeleteIcon
+						onCardMoveAcrossLanes={(fromLaneId, toLaneId, cardId, index) =>
+							effectChange(fromLaneId, toLaneId, cardId, index)
+						}
+					/>
+				</Grid>
+
+				<Grid item className={classes.gridItem}>
+					<TextField
+						label='Description'
+						value={formState.description}
+						onChange={handleChange}
+						id='description'
+						name='description'
+						placeholder='Description'
+						variant='outlined'
+					/>
+				</Grid>
+				<Grid item className={classes.gridItem}>
+					<Button type='submit' variant='contained' color='primary' fullWidth>
+						Submit
+					</Button>
+				</Grid>
+			</Grid>
+		</form>
 	);
 }
 

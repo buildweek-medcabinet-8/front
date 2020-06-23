@@ -1,0 +1,215 @@
+{
+	"lanes": [
+		{
+			"id": "FLAVORS",
+			"title": "Flavors",
+			"cards": [
+				{
+					"id": "Earthy",
+					"title": "Earthy"
+				},
+				{
+					"id": "Sweet",
+					"title": "Sweet"
+				},
+				{
+					"id": "Citrus",
+					"title": "Citrus"
+				},
+				{
+					"id": "Flowery",
+					"title": "Flowery"
+				},
+				{
+					"id": "Violet",
+					"title": "Violet"
+				},
+				{
+					"id": "Diesel",
+					"title": "Diesel"
+				},
+				{
+					"id": "Spicy/Herbal",
+					"title": "Spicy/Herbal"
+				},
+				{
+					"id": "Sage",
+					"title": "Sage"
+				},
+				{
+					"id": "Woody",
+					"title": "Woody"
+				},
+				{
+					"id": "Apricot",
+					"title": "Apricot"
+				},
+				{
+					"id": "Grapefruit",
+					"title": "Grapefruit"
+				},
+				{
+					"id": "Orange",
+					"title": "Orange"
+				},
+				{
+					"id": "None",
+					"title": "None"
+				},
+				{
+					"id": "Pungent",
+					"title": "Pungent"
+				},
+				{
+					"id": "Grape",
+					"title": "Grape"
+				},
+				{
+					"id": "Pine",
+					"title": "Pine"
+				},
+				{
+					"id": "Skunk",
+					"title": "Skunk"
+				},
+				{
+					"id": "Berry",
+					"title": "Berry"
+				},
+				{
+					"id": "Pepper",
+					"title": "Pepper"
+				},
+				{
+					"id": "Menthol",
+					"title": "Menthol"
+				},
+				{
+					"id": "Blue Cheese",
+					"title": "Blue Cheese"
+				},
+				{
+					"id": "Cheese",
+					"title": "Cheese"
+				},
+				{
+					"id": "Chemical",
+					"title": "Chemical"
+				},
+				{
+					"id": "Mango",
+					"title": "Mango"
+				},
+				{
+					"id": "Lemon",
+					"title": "Lemon"
+				},
+				{
+					"id": "Peach",
+					"title": "Peach"
+				},
+				{
+					"id": "Vanilla",
+					"title": "Vanilla"
+				},
+				{
+					"id": "Nutty",
+					"title": "Nutty"
+				},
+				{
+					"id": "Chestnut",
+					"title": "Chestnut"
+				},
+				{
+					"id": "Tea",
+					"title": "Tea"
+				},
+				{
+					"id": "Tobacco",
+					"title": "Tobacco"
+				},
+				{
+					"id": "Tropical",
+					"title": "Tropical"
+				},
+				{
+					"id": "Strawberry",
+					"title": "Strawberry"
+				},
+				{
+					"id": "Blueberry",
+					"title": "Blueberry"
+				},
+				{
+					"id": "Mint",
+					"title": "Mint"
+				},
+				{
+					"id": "Apple",
+					"title": "Apple"
+				},
+				{
+					"id": "Honey",
+					"title": "Honey"
+				},
+				{
+					"id": "Lavender",
+					"title": "Lavender"
+				},
+				{
+					"id": "Lime",
+					"title": "Lime"
+				},
+				{
+					"id": "Coffee",
+					"title": "Coffee"
+				},
+				{
+					"id": "Ammonia",
+					"title": "Ammonia"
+				},
+				{
+					"id": "Minty",
+					"title": "Minty"
+				},
+				{
+					"id": "Tree",
+					"title": "Tree"
+				},
+				{
+					"id": "Fruit",
+					"title": "Fruit"
+				},
+				{
+					"id": "Butter",
+					"title": "Butter"
+				},
+				{
+					"id": "Pineapple",
+					"title": "Pineapple"
+				},
+				{
+					"id": "Tar",
+					"title": "Tar"
+				},
+				{
+					"id": "Rose",
+					"title": "Rose"
+				},
+				{
+					"id": "Plum",
+					"title": "Plum"
+				},
+				{
+					"id": "Pear",
+					"title": "Pear"
+				}
+			]
+		},
+		{
+			"id": "MYFLAVORS",
+			"title": "My Flavors",
+			"cards": []
+		}
+	]
+}

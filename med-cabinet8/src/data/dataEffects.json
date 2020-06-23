@@ -1,0 +1,75 @@
+{
+	"lanes": [
+		{
+			"id": "EFFECTS",
+			"title": "Effects",
+			"cards": [
+				{
+					"id": "Creative",
+					"title": "Creative"
+				},
+				{
+					"id": "Energetic",
+					"title": "Energetic"
+				},
+				{
+					"id": "Tingly",
+					"title": "Tingly"
+				},
+				{
+					"id": "Euphoric",
+					"title": "Euphoric"
+				},
+				{
+					"id": "Relaxed",
+					"title": "Relaxed"
+				},
+				{
+					"id": "Aroused",
+					"title": "Aroused"
+				},
+				{
+					"id": "Happy",
+					"title": "Happy"
+				},
+				{
+					"id": "Uplifted",
+					"title": "Uplifted"
+				},
+				{
+					"id": "Hungry",
+					"title": "Hungry"
+				},
+				{
+					"id": "Talkative",
+					"title": "Talkative"
+				},
+				{
+					"id": "None",
+					"title": "None"
+				},
+				{
+					"id": "Giggly",
+					"title": "Giggly"
+				},
+				{
+					"id": "Focused",
+					"title": "Focused"
+				},
+				{
+					"id": "Sleepy",
+					"title": "Sleepy"
+				},
+				{
+					"id": "Dry Mouth",
+					"title": "Dry Mouth"
+				}
+			]
+		},
+		{
+			"id": "MYEFFECTS",
+			"title": "My Effects",
+			"cards": []
+		}
+	]
+}
