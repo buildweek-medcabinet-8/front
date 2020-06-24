@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Welcome = ({username}) => {
-    console.log(username)
     return(
         <div className="welcome">
         <h1>Welcome {username}</h1>

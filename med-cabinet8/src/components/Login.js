@@ -38,10 +38,12 @@ function LoginForm({ setChecked, setUsername }) {
     axiosWithAuth()
       .post("/auth/login", formState)
       .then((res) => {
+        setUsername(res.data.user.username);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("login", true);
         setChecked(true);
-    	  setUsername(res.data.user.username);
+        console.log("login success!", res.data.user.username)
+
         push("/med-cabinet");
       })
       .catch((err) => {
