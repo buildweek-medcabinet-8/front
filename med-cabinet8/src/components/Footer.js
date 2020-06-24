@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 const useStyles = makeStyles(() => ({
 	appBar: {
-		// top: 'auto',
+		top: 'auto',
 		bottom: 0,
 		width: '100vw',
 	},
