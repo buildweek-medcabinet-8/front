@@ -58,6 +58,7 @@ function StrainSearch() {
 		};
 		setFormState(newFormData);
 	}
+	const { push } = useHistory();
 
 	function handleSubmit(e) {
 		e.preventDefault();

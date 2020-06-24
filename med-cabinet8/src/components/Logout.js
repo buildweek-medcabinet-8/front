@@ -8,8 +8,8 @@ export default function LogoutSwitch({ checked, setChecked }) {
 
 	function logOut() {
 		setChecked(false);
-		localStorage.removeItem('token');
-		localStorage.removeItem("login");
+		localStorage.setItem('token', '');
+		localStorage.setItem('login', 'false');
 		history.push('/');
 	}
 

@@ -4,9 +4,9 @@ import { Grid, List, ListItem, Typography } from '@material-ui/core';
 
 function Preferences() {
 	const [preferences, setPreferences] = useState({
-		effects: [],
-		flavors: [],
-		message: '',
+		"effects": [],
+		"flavors": [],
+		"message": '',
 	});
 	useEffect(() => {
 		axiosWithAuth()
@@ -16,7 +16,7 @@ function Preferences() {
 				console.log(res.data);
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log(err.message);
 			});
 	}, []);
 
