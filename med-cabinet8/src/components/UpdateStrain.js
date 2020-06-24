@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function UpdateStrain({iflavors, ieffects, idesc, id}) {
+function UpdateStrain({iflavors, ieffects, idesc, pName, id}) {
 
 	const classes = useStyles();
 	const flavors = [
@@ -89,6 +89,7 @@ function UpdateStrain({iflavors, ieffects, idesc, id}) {
 		flavors: [...iflavors],
 		effects: [...ieffects],
 		description: idesc,
+		profileName: pName
 	});
 
 	function handleFlavorChange(e) {
@@ -139,6 +140,7 @@ function UpdateStrain({iflavors, ieffects, idesc, id}) {
 			flavors: [],
 			effects: [],
 			description: '',
+			profileName: '',
 		});
 	}
 
@@ -146,6 +148,16 @@ function UpdateStrain({iflavors, ieffects, idesc, id}) {
 		<Container>
 			<form onSubmit={handleSubmit}>
 				<Grid container direction='column' alignItems='center'>
+				<Grid item>
+						<TextField
+							label='Profile Name'
+							value={formState.profileName}
+							onChange={handleDescriptionChange}
+							id={`profileName${id}`}
+							name='profileName'
+							placeholder='Profile Name'
+						/>
+					</Grid>
 					<Grid item>
 						<MultipleSelect
 							inputLabel='Flavors'

@@ -18,7 +18,7 @@ const ProfileList = ({profile}) => {
                         </div>
                     {(edit) ?
                         <StrainList strains={item.strains} key={ind}/>
-                        :<UpdateStrain ieffects={item.effects} iflavors={item.flavors} idesc={item.description} id={ind} key={ind}/>
+                        :<UpdateStrain ieffects={item.effects} iflavors={item.flavors} idesc={item.description} id={ind} key={ind} pName={item.profileName}/>
                     }
                     </div> 
                 )
