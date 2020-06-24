@@ -14,10 +14,11 @@ import Profile from "./components/Profile";
 import Recommendations from "./components/Recommendations";
 import Navbar from "./components/Navbar";
 import StrainSearch from "./components/StrainSearch";
+import bgImage from "./img/splash.jpg"
 
 function App() {
 
-  const [checked, setChecked] = useState(localStorage.getItem("login") ?? false);
+  const [checked, setChecked] = useState(Boolean(localStorage.getItem("login")) ?? false);
   const [displayStatus, setDisplayStatus] = useState({
     visibility: "hidden",
     opacity: 0,
@@ -43,10 +44,11 @@ function App() {
       backgroundColor: "#ddd",
       backgroundBlendMode: "screen",
       backgroundImage:
-        " url(https://github.com/buildweek-medcabinet-8/front/raw/master/med-cabinet8/src/img/splash.jpg)",
+        ` url(${bgImage})`,
       backgroundAttachment: "fixed",
       backgroundSize: "cover",
-      height: "100vh",
+
+      height: "200vh",
       width: "100vw",
   
     }
@@ -54,7 +56,9 @@ function App() {
   });
   const classes = useStyles();
 
-  
+  if (displayStatus.visibility === "hidden") {
+  return(<Loading />)
+}
 
 
   return (
@@ -67,8 +71,7 @@ function App() {
            }}>
           <Container>
             <Navbar checked={checked} setChecked={setChecked} />
-            
-            {(displayStatus.visibility === "hidden") ? <Loading /> : <div>
+
             {/* <Route exact path='/' component={LoginForm} /> */}
             <Route exact path="/">
               <LoginForm setChecked={setChecked} />
@@ -78,7 +81,7 @@ function App() {
             <PrivateRoute path="/settings" component={Preferences} />
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute path="/recommendations" component={Recommendations} />
-          </div>}
+
           </Container>
         </div>
       </ThemeProvider>

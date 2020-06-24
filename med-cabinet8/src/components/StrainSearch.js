@@ -152,6 +152,7 @@ function StrainSearch() {
 
 	return (
 		<Container>
+			<h3>What do you need today?</h3>
 			<form onSubmit={handleSubmit}>
 				<Grid container direction='column' alignItems='center'>
 					<Grid item>
