@@ -39,7 +39,7 @@ function LoginForm({ setChecked }) {
       .post("/auth/login", formState)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("login", "true");
+        localStorage.setItem("login", true);
         setChecked(true);
     	console.log('Login Successful!');
         push("/med-cabinet");

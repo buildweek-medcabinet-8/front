@@ -10,10 +10,12 @@ import LoginForm from './components/Login';
 import Preferences from './components/Preferences';
 import Registration from './components/Registration';
 import PrivateRoute from './components/PrivateRoute';
+import Welcome from './components/Welcome';
 import Profile from './components/Profile';
 import Recommendations from './components/Recommendations';
 import Navbar from './components/Navbar';
-import StrainSearch from './components/StrainSearch';
+import StrainSearch from './components/StrainSearchOld'
+
 
 const useStyles = makeStyles({
 	app: {
@@ -33,7 +35,7 @@ const useStyles = makeStyles({
 
 function App() {
 	const classes = useStyles();
-	const [checked, setChecked] = useState(false);
+	const [checked, setChecked] = useState(Boolean(localStorage.getItem("login")));
 
 	return (
 		<Router>
@@ -41,13 +43,12 @@ function App() {
 				<div className={classes.app}>
 					<Container>
 						<Navbar checked={checked} setChecked={setChecked}  />
-
-						{/* <Route exact path='/' component={LoginForm} /> */}
 						<Route exact path='/'>
 							<LoginForm setChecked={setChecked} />
 						</Route>
 						<Route path='/register' component={Registration} />
-						<PrivateRoute path='/med-cabinet' component={StrainSearch} />
+						<PrivateRoute path='/med-cabinet' component={Welcome} />
+						<PrivateRoute path='/strain' component={StrainSearch} />
 						<PrivateRoute path='/settings' component={Preferences} />
 						<PrivateRoute path='/profile' component={Profile} />
 						<PrivateRoute path='/recommendations' component={Recommendations} />
