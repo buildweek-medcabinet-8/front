@@ -11,6 +11,7 @@ const ProfileList = ({profile}) => {
     const toggleHidding = (e) => {
         let str = e.target.className.split(" ");
         setId(str[0])
+        toggleEdit(true)
         toggleHide(!hide)
     }
     const toggleEditing = () => {
