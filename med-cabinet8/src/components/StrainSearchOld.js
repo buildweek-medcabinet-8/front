@@ -124,14 +124,8 @@ function StrainSearch() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
-		let newPreferences = {
-			flavors: formState.flavors,
-			effects: formState.effects,
-			description: formState.description,
-		};
 		axiosWithAuth()
-			.put('/profile/update-preferences', newPreferences)
+			.put('/profile/update-preferences', formState)
 			.then((res) => {
 				console.log(res);
 				// console.log(newPreferences);

@@ -3,9 +3,9 @@ import './App.css';
 //import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ThemeProvider, makeStyles } from '@material-ui/core';
-import { Container, Typography } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import theme from './theme';
-
+import bgImg from "./img/splash.jpg";
 import LoginForm from './components/Login';
 import Preferences from './components/Preferences';
 import Registration from './components/Registration';
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 	app: {
 		backgroundColor: '#ddd',
 		backgroundImage:
-			'url(https://objective-shirley-f61587.netlify.app/images/home.jpg)',
+			`url(${bgImg})`,
 		backgroundAttachment: 'fixed',
 		backgroundSize: 'cover',
 		backgroundBlendMode: 'screen',
@@ -34,16 +34,14 @@ const useStyles = makeStyles({
 function App() {
 	const classes = useStyles();
 	const [checked, setChecked] = useState(false);
-	const login = 'true';
+
 	return (
 		<Router>
 			<ThemeProvider theme={theme}>
 				<div className={classes.app}>
 					<Container>
-						<Navbar checked={checked} setChecked={setChecked} login={login} />
-						<Typography variant='h1' align='center' className={classes.header}>
-							Med Cabinet App
-						</Typography>
+						<Navbar checked={checked} setChecked={setChecked}  />
+
 						{/* <Route exact path='/' component={LoginForm} /> */}
 						<Route exact path='/'>
 							<LoginForm setChecked={setChecked} />
