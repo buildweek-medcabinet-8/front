@@ -14,6 +14,7 @@ import Profile from './components/Profile';
 import Recommendations from './components/Recommendations';
 import Navbar from './components/Navbar';
 import StrainSearch from './components/StrainSearch';
+import Footer from './components/Footer';
 
 const useStyles = makeStyles({
 	app: {
@@ -54,6 +55,7 @@ function App() {
 						<PrivateRoute path='/profile' component={Profile} />
 						<PrivateRoute path='/recommendations' component={Recommendations} />
 					</Container>
+					<Footer />
 				</div>
 			</ThemeProvider>
 		</Router>
