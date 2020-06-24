@@ -5,7 +5,7 @@ import UpdateStrain from './UpdateStrain';
 const ProfileList = ({profile}) => {
 
     const [edit, toggleEdit] = useState(false);
-    const [hide, toggleHide] = useState(false);
+    const [hide, toggleHide] = useState(true);
     const [id, setId] = useState(0);
 
     const toggleHidding = (e) => {
