@@ -78,7 +78,7 @@ function StrainSearch() {
 
 	return (
 		<form onSubmit={(e) => handleSubmit(e)}>
-			<Grid container direction='column' alignItems='center' justify='center'>
+			<Grid container direction='row' alignItems='center' justify='center'>
 				<Grid item className={classes.gridItem}>
 					<Board
 						style={{ maxWidth: '100%', display: 'flex', flexWrap: 'wrap' }}

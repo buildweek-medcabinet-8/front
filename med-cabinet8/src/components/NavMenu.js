@@ -48,7 +48,7 @@ export default function SimpleMenu() {
           </Button>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Button component={Link} to="/med-cabinet">
+          <Button component={Link} to="/strain">
             Set Strain Preferences
           </Button>
         </MenuItem>
