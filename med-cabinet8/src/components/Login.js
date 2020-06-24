@@ -42,7 +42,7 @@ function LoginForm({ setChecked, setUsername }) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("login", true);
         setChecked(true);
-        console.log("login success!", res.data.user.username)
+        console.log("login successful! Welcome ", res.data.user.username)
 
         push("/med-cabinet");
       })
