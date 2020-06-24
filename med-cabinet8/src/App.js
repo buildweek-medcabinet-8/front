@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 //import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { Container } from '@material-ui/core';
 import theme from './theme';
 import bgImg from "./img/splash.jpg";
 import LoginForm from './components/Login';
+import Loading from './components/LoadingPage';
 import Preferences from './components/Preferences';
 import Registration from './components/Registration';
 import PrivateRoute from './components/PrivateRoute';
@@ -34,9 +35,27 @@ const useStyles = makeStyles({
 });
 
 function App() {
-	const classes = useStyles();
+  const classes = useStyles();
+  const [username, setUsername] = useState('')
 	const [checked, setChecked] = useState(Boolean(localStorage.getItem("login")));
+  const [displayStatus, setDisplayStatus] = useState({
+    visibility: "hidden",
+    opacity: 0,
+  });
+  function showImage() {
+    //alter state var for new css display rule
+   setTimeout(setDisplayStatus({
+      visibility: "visible",
+      opacity: 1,
+    }), 1000);
+  }
+  useEffect(() => {
+    showImage();
+  }, []);
 
+  if (displayStatus.visibility === "hidden"){
+    return (<Loading />)
+  }
 	return (
 		<Router>
 			<ThemeProvider theme={theme}>
@@ -44,10 +63,10 @@ function App() {
 					<Container>
 						<Navbar checked={checked} setChecked={setChecked}  />
 						<Route exact path='/'>
-							<LoginForm setChecked={setChecked} />
+							<LoginForm setChecked={setChecked} setUsername={setUsername} />
 						</Route>
 						<Route path='/register' component={Registration} />
-						<PrivateRoute path='/med-cabinet' component={Welcome} />
+						<PrivateRoute path='/med-cabinet' component={Welcome} username={username}/>
 						<PrivateRoute path='/strain' component={StrainSearch} />
 						<PrivateRoute path='/settings' component={Preferences} />
 						<PrivateRoute path='/profile' component={Profile} />

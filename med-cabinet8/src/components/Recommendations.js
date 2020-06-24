@@ -15,7 +15,7 @@ class Recommendations extends React.Component {
     axiosWithAuth()
       .get("/profile/recommendations")
       .then((res) => {
-        //  console.log("ea: Recommendations.js getData results:", res.data);
+          console.log("ea: Recommendations.js getData results:", res.data);
         this.setState({
           recommendationList: res.data.content,
           message: res.data.message,
