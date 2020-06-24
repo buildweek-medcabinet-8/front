@@ -39,11 +39,10 @@ function LoginForm({ setChecked, setUsername }) {
       .post("/auth/login", formState)
       .then((res) => {
         setUsername(res.data.user.username);
+        setChecked(true);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("login", true);
-        setChecked(true);
-        console.log("login successful! Welcome ", res.data.user.username)
-
+        console.log("login successful! Welcome", res.data.user.username)
         push("/med-cabinet");
       })
       .catch((err) => {

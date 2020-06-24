@@ -11,8 +11,8 @@ const useStyles = makeStyles({
 	},
 });
 
-function UpdateStrain({iflavors, ieffects, idesc}) {
-	console.log(iflavors, ieffects, idesc)
+function UpdateStrain({iflavors, ieffects, idesc, id}) {
+
 	const classes = useStyles();
 	const flavors = [
 		'Earthy',
@@ -150,10 +150,10 @@ function UpdateStrain({iflavors, ieffects, idesc}) {
 						<MultipleSelect
 							inputLabel='Flavors'
 							labelId='flavor-label-id'
-							id='flavors'
+							id={`flavors${id}`}
 							value={formState.flavors}
 							handleChange={handleFlavorChange}
-							inputId='flavor-input'
+							inputId={`flavor-input${id}`}
 							items={flavors}
 							name='flavors'
 						/>
@@ -163,10 +163,10 @@ function UpdateStrain({iflavors, ieffects, idesc}) {
 						<MultipleSelect
 							inputLabel='Effects'
 							labelId='effect-label-id'
-							id='effects'
+							id={`effects${id}`}
 							value={formState.effects}
 							handleChange={handleEffectChange}
-							inputId='effect-input'
+							inputId={`effect-input${id}`}
 							items={effects}
 						/>
 					</Grid>
@@ -176,7 +176,7 @@ function UpdateStrain({iflavors, ieffects, idesc}) {
 							label='Description'
 							value={formState.description}
 							onChange={handleDescriptionChange}
-							id='description'
+							id={`description${id}`}
 							name='description'
 							placeholder='Description'
 						/>
