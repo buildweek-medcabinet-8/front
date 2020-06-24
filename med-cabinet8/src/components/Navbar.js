@@ -18,18 +18,18 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function Navbar({ checked, setChecked, login }) {
+function Navbar({ checked, setChecked }) {
 	const classes = useStyles();
 	return (
 		<React.Fragment>
 			<AppBar position='fixed' className={classes.appbar}>
 				<Toolbar>
-					{(login) ? <NavMenu /> : null}
+					{(checked === true) ? <NavMenu /> : null}
 					<Typography variant='h5' component='span' className={classes.title}>
 						Med-Cabinet
 					</Typography>
-					{(login) ?<LogoutSwitch checked={checked} setChecked={setChecked} /> : null}
-					{(!login) ? 				<Grid item>
+					{(checked) ?<LogoutSwitch checked={checked} setChecked={setChecked} /> : null}
+					{(!checked) ? 				<Grid item>
 					<Button
 						variant='outlined'
 						color='secondary'

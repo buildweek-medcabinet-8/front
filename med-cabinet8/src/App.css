@@ -4,13 +4,12 @@
 	width: 100vw;
 	text-align: center;
 
+
 }
-.splash {
-	background-color: #ddd;
-	background-image: url(https://github.com/buildweek-medcabinet-8/front/raw/master/med-cabinet8/src/img/splash.jpg);
-	background-attachment: fixed;
-	background-size: cover;
-	background-blend-mode: screen;
+header {
+
+      margin: 4rem 0,
+    
 }
 
 @media (prefers-reduced-motion: no-preference) {

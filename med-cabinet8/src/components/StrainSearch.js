@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Grid, Button, Container, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
@@ -96,8 +97,7 @@ function StrainSearch() {
 			...formState,
 			flavors: e.target.value,
 		};
-		console.log(formState);
-		// console.log(formState);
+		//console.log(formState);
 		setFormState(newFormData);
 	}
 
@@ -107,7 +107,7 @@ function StrainSearch() {
 			...formState,
 			effects: e.target.value,
 		};
-		console.log(formState);
+
 		// console.log(formState);
 		setFormState(newFormData);
 	}
@@ -121,24 +121,27 @@ function StrainSearch() {
 		};
 		setFormState(newFormData);
 	}
+	const { push } = useHistory();
 
 	function handleSubmit(e) {
 		e.preventDefault();
 
 		let newPreferences = {
-			flavors: formState.flavors,
-			effects: formState.effects,
-			description: formState.description,
+			"flavors": formState.flavors,
+			"effects": formState.effects,
+			"description": formState.description,
 		};
+		console.log(newPreferences)
 		axiosWithAuth()
-			.post('/profile/update-preferences', newPreferences)
+			.put('/profile/update-preferences', newPreferences)
 			.then((res) => {
-				console.log(res);
+				//console.log('update prefrences, results:',res);
+				push('/recommendations');
 				// console.log(newPreferences);
 			})
 			.catch((err) => {
 				// console.log(err);
-				console.log(JSON.stringify(err.message));
+				console.log(err.message);
 			});
 		setFormState({
 			flavors: [],
