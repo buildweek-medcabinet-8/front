@@ -55,7 +55,7 @@ function App() {
 						<PrivateRoute path='/profile' component={Profile} />
 						<PrivateRoute path='/recommendations' component={Recommendations} />
 					</Container>
-					{/* <Footer /> */}
+					<Footer />
 				</div>
 			</ThemeProvider>
 		</Router>

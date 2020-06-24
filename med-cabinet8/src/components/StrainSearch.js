@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Board from 'react-trello';
+import { useHistory } from 'react-router-dom';
 import dataFlavors from '../data/dataFlavors.json';
 import dataEffects from '../data/dataEffects.json';
 import { Button, TextField, Grid } from '@material-ui/core';
@@ -68,6 +69,7 @@ function StrainSearch() {
 			.put('/profile/update-preferences', formState)
 			.then((res) => {
 				console.log(res);
+				push('/recommendations');
 			})
 			.catch((err) => {
 				// console.log(err);
