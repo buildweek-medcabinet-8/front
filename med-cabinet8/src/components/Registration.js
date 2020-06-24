@@ -36,15 +36,15 @@ function RegistrationForm() {
   function handleSubmit(e) {
     e.preventDefault();
     const newState = {
-      username: formState.username,
-      password: formState.password,
-      email: formState.email,
+      "username": formState.username,
+      "password": formState.password,
+      "email": formState.email,
     };
     axiosWithAuth()
       .post("/auth/register", newState)
       .then((res) => {
         localStorage.setItem("token", res.data.payload);
-      //  console.log("register Successful!", res);
+        console.log("register Successful!", res);
         push("/");
       })
       .catch((err) => {
