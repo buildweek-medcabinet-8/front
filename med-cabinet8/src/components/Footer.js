@@ -16,7 +16,7 @@ export default function Footer() {
 
 	return (
 		<React.Fragment>
-			<AppBar position='fixed' color='primary' className={classes.appBar}>
+			<AppBar position='static' color='primary' className={classes.appBar}>
 				<Toolbar></Toolbar>
 			</AppBar>
 		</React.Fragment>
