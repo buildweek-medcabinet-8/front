@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function UpdateStrain({iflavors, ieffects, idesc, pName, id}) {
+function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
 
 	const classes = useStyles();
 	const flavors = [
@@ -86,8 +86,8 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id}) {
 	];
 
 	const [formState, setFormState] = useState({
-		flavors: [...iflavors],
-		effects: [...ieffects],
+		flavors: [...iflavors.split(',')],
+		effects: [...ieffects.split(',')],
 		description: idesc,
 		profileName: pName
 	});
@@ -146,6 +146,7 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id}) {
 
 	return (
 		<Container>
+			<button onClick={toggleEditing}>Back to Strains</button>
 			<form onSubmit={handleSubmit}>
 				<Grid container direction='column' alignItems='center'>
 				<Grid item>
@@ -196,7 +197,7 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id}) {
 
 					<Grid item className={clsx(classes.marginBottom)}>
 						<Button variant='contained' color='primary' fullWidth type='submit'>
-							Find My Strain
+							Update My Strain Profile
 						</Button>
 					</Grid>
 				</Grid>
