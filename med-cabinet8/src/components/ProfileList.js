@@ -33,7 +33,7 @@ const ProfileList = ({profile}) => {
             <div className="view-details">
                     {(hide) ?
                        <div></div>
-                       : (edit) ? <StrainList strains={profile[id].strains} toggleEditing={toggleEditing} /> : <UpdateStrain ieffects={profile[id].effects} iflavors={profile[id].flavors} idesc={profile[id].description} pName={profile[id].profileName} toggleEditing={toggleEditing}/>
+                       : (edit) ? <StrainList strains={profile[id].strains} toggleEditing={toggleEditing} /> : <UpdateStrain ieffects={profile[id].effects} iflavors={profile[id].flavors} idesc={profile[id].Description} pName={profile[id].profileName} toggleEditing={toggleEditing}/>
                     }
             </div>
             </div>
