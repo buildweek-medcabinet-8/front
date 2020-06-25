@@ -50,45 +50,51 @@ export default function StrainList({strains, toggleEditing}) {
 		<Grid container spacing={3} className={classes.gridContainer}>
 			<button onClick={toggleEditing}>Edit</button>
 			{recs &&
-				recs.map((rec) => {
+				recs.map((rec, index) => {
 					return (
-						<Grid item key={rec.Strain}>
+						<Grid item container key={index} xs={12} sm={6} md={3}>
 							<Card className={classes.root} variant='outlined'>
 								<CardContent>
-									<Typography
-										className={classes.title}
-										color='textSecondary'
-										gutterBottom
-									>
-									
-									</Typography>
-									<Typography variant='h5' component='h2'>
-										{rec.Strain}
-									</Typography>
-									<Typography className={classes.pos} color='textSecondary'>
-										{rec.Type}
-									</Typography>
-									{renderStars(rec.Rating, rec.Id)}
-									<ListSubheader>Effects:</ListSubheader>
-									<List dense>
-										{rec.Effects.map((effect) => {
-											return (
-												<ListItem key={effect}>
-													<ListItemText>{effect}</ListItemText>
-												</ListItem>
-											);
-										})}
-									</List>
-									<ListSubheader>Flavors:</ListSubheader>
-									<List dense>
-										{rec.Flavor.map((flavor) => {
-											return (
-												<ListItem key={flavor}>
-													<ListItemText>{flavor}</ListItemText>
-												</ListItem>
-											);
-										})}
-									</List>
+									<Grid item>
+										<Typography variant='h5' component='h2'>
+											{rec.Strain}
+										</Typography>
+										<Typography className={classes.pos} color='textSecondary'>
+											{rec.Type}
+										</Typography>
+										{renderStars(rec.Rating)}
+									</Grid>
+									<Grid item>
+										<Typography variant='body1' color='initial'>
+											{rec.Description}
+										</Typography>
+									</Grid>
+									<Grid item container>
+										<Grid item>
+											<ListSubheader>Effects:</ListSubheader>
+											<List dense>
+												{rec.Effects.split(',').map((effect, index) => {
+													return (
+														<ListItem key={index}>
+															<ListItemText>{effect}</ListItemText>
+														</ListItem>
+													);
+												})}
+											</List>
+										</Grid>
+										<Grid item>
+											<ListSubheader>Flavors:</ListSubheader>
+											<List dense>
+												{rec.Flavor.split(',').map((flavor, index) => {
+													return (
+														<ListItem key={index}>
+															<ListItemText>{flavor}</ListItemText>
+														</ListItem>
+													);
+												})}
+											</List>
+										</Grid>
+									</Grid>
 								</CardContent>
 							</Card>
 						</Grid>
