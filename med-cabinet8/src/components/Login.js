@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
-import { Grid, Button, TextField, Typography } from '@material-ui/core';
+import { Grid, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
+import Logo from './Logo';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import theme from '../theme';
 
 const useStyles = makeStyles({
 	whiteText: {
 		color: 'white',
+	},
+	container: {
+		[theme.breakpoints.down('md')]: {
+			flexDirection: 'column-reverse',
+		},
 	},
 });
 
@@ -89,65 +96,78 @@ function LoginForm({ setChecked, setUsername }) {
 	}
 
 	return (
-		<div>
-			{' '}
-			<Typography variant='h1' align='center' className='header'>
-				Med Cabinet App
-			</Typography>
-			<form onSubmit={handleSubmit}>
-				<Grid
-					container
-					direction='column'
-					justify='center'
-					alignItems='center'
-					spacing={4}
-				>
-					<Grid item>
-						<TextField
-							autoFocus
-							variant='outlined'
-							type='text'
-							id='username'
-							name='username'
-							value={formState.username}
-							onChange={handleChange}
-							label='Username:'
-							error={errors.username ? true : false}
-							helperText={errors.username ? errors.username : null}
-						/>
-					</Grid>
+		<Grid
+			container
+			spacing={1}
+			direction='row'
+			justify='space-between'
+			alignItems='center'
+			alignContent='center'
+			wrap='nowrap'
+			className={classes.container}
+		>
+			<Grid item className={classes.formContainer}>
+				<form onSubmit={handleSubmit}>
+					<Grid
+						item
+						container
+						direction='column'
+						justify='center'
+						alignItems='center'
+						spacing={4}
+					>
+						<Grid item>
+							<TextField
+								autoFocus
+								variant='outlined'
+								type='text'
+								id='username'
+								name='username'
+								value={formState.username}
+								onChange={handleChange}
+								label='Username:'
+								error={errors.username ? true : false}
+								helperText={errors.username ? errors.username : null}
+							/>
+						</Grid>
 
-					<Grid item>
-						<TextField
-							variant='outlined'
-							type='password'
-							id='password'
-							name='password'
-							value={formState.password}
-							onChange={handleChange}
-							label='Password:'
-							error={errors.password ? true : false}
-							helperText={errors.password ? errors.password : null}
-						/>
-					</Grid>
+						<Grid item>
+							<TextField
+								variant='outlined'
+								type='password'
+								id='password'
+								name='password'
+								value={formState.password}
+								onChange={handleChange}
+								label='Password:'
+								error={errors.password ? true : false}
+								helperText={errors.password ? errors.password : null}
+							/>
+						</Grid>
 
-					<Grid item>
-						<Button
-							variant='contained'
-							color='primary'
-							size='large'
-							type='submit'
-							className={classes.whiteText}
-							disabled={buttonDisabled}
-							startIcon={<LockOpenOutlinedIcon />}
-						>
-							Login
-						</Button>
+						<Grid item>
+							<Button
+								variant='contained'
+								color='primary'
+								size='large'
+								type='submit'
+								className={classes.whiteText}
+								disabled={buttonDisabled}
+								startIcon={<LockOpenOutlinedIcon />}
+							>
+								Login
+							</Button>
+						</Grid>
+						<p className='error'>
+							{errors.loginFail ? errors.loginFail : null}
+						</p>
 					</Grid>
-					<p className='error'>{errors.loginFail ? errors.loginFail : null}</p>
-				</Grid>
-			</form>
-		</div>
+				</form>
+			</Grid>
+			<Grid item>
+				<Logo />
+			</Grid>
+		</Grid>
 	);
 }
 

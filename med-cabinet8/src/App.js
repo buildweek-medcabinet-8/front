@@ -32,6 +32,12 @@ const useStyles = makeStyles({
 	header: {
 		margin: '4rem 0',
 	},
+	container: {
+		minHeight: '100%',
+		display: 'flex,',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 });
 
 function App() {
@@ -66,7 +72,7 @@ function App() {
 		<Router>
 			<ThemeProvider theme={theme}>
 				<div className={classes.app}>
-					<Container>
+					<Container className={classes.container}>
 						<Navbar checked={checked} setChecked={setChecked} />
 						<Route exact path='/'>
 							<LoginForm setChecked={setChecked} setUsername={setUsername} />

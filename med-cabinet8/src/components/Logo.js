@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../img/Medical-marijuana-logo.png';
 import { makeStyles } from '@material-ui/styles';
 import { Typography } from '@material-ui/core';
-import theme from '../theme';
+// import theme from '../theme';
 
 const useStyles = makeStyles({
 	div: {
@@ -14,18 +14,19 @@ const useStyles = makeStyles({
 		width: '100%',
 		borderRadius: '75px',
 		opacity: '.65',
-		[theme.breakpoints.down('md')]: {
-			flexDirection: 'column',
-		},
+		flexDirection: 'column',
+		// [theme.breakpoints.down('md')]: {
+		// 	flexDirection: 'column',
+		// },
 	},
 	img: {
-		maxWidth: '100%',
+		maxWidth: '75%',
 	},
 	text: {
 		marginLeft: '3rem',
-		[theme.breakpoints.down('md')]: {
-			marginLeft: 0,
-		},
+		// [theme.breakpoints.down('md')]: {
+		// 	marginLeft: 0,
+		// },
 	},
 });
 
