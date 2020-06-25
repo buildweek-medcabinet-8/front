@@ -4,9 +4,7 @@
 	text-align: center;
 }
 header {
-
-      margin: 4rem 0,
-    
+      margin: 4rem 0, 
 }
 .profile-list {
 	display: flex;
@@ -16,7 +14,7 @@ header {
 	padding: 1rem;
 	margin: .5rem;
 	color: white;
-	font-size: 2rem;
+	font-size: clamp(1rem, .5vw, 3rem);
 	border-radius: 6px;
 	width: 20vw;
 	background-color: darkgreen;
@@ -25,7 +23,7 @@ header {
 
 @media (prefers-reduced-motion: no-preference) {
 	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
+		animation: App-logo-spin infinite 40s linear;
 	}
 }
 

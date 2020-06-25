@@ -24,7 +24,7 @@ const ProfileList = ({profile}) => {
                 return(
                     <div className="profile-item" key={ind}>
                         <div className={`${ind} profile-name`} onClick={toggleHidding}>
-                            <h3 className={ind}>{item.profileName}</h3>
+                            <h3 className={ind}>{item.ProfileName}</h3>
                         </div>
                     </div> 
                 )
@@ -33,7 +33,7 @@ const ProfileList = ({profile}) => {
             <div className="view-details">
                     {(hide) ?
                        <div></div>
-                       : (edit) ? <StrainList strains={profile[id].strains} toggleEditing={toggleEditing} /> : <UpdateStrain ieffects={profile[id].effects} iflavors={profile[id].flavors} idesc={profile[id].description} pName={profile[id].profileName} toggleEditing={toggleEditing}/>
+                       : (edit) ? <StrainList strains={profile[id].Strains} toggleEditing={toggleEditing} /> : <UpdateStrain ieffects={profile[id].Effects} iflavors={profile[id].Flavors} idesc={profile[id].Description} pName={profile[id].ProfileName} toggleEditing={toggleEditing}/>
                     }
             </div>
             </div>
