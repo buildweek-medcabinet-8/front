@@ -9,17 +9,22 @@ import theme from '../theme';
 
 const useStyles = makeStyles({
 	container: {
-		marginTop: '20%',
 		backgroundColor: 'lightgray',
-		width: '50%',
+		width: '20%',
 		borderRadius: '50px',
 		margin: '0 auto',
 		padding: '2rem 0',
 		border: '1px solid green',
+		position: 'absolute',
+		top: '50%',
+		left: '50%',
+		transform: 'translate(-50%, -50%)',
 
 		[theme.breakpoints.down('md')]: {
-			marginTop: '10%',
-			width: '75%',
+			width: '50%',
+		},
+		[theme.breakpoints.down('sm')]: {
+			width: '90%',
 		},
 	},
 });

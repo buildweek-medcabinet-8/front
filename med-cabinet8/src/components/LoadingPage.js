@@ -41,25 +41,25 @@ const useStyles = makeStyles({
 	},
 
 	l: {
-		animationDelay: '.2s',
+		animationDelay: '.1s',
 	},
 	o: {
-		animationDelay: '.4s',
+		animationDelay: '.2s',
 	},
 	a: {
-		animationDelay: '.6s',
+		animationDelay: '.3s',
 	},
 	d: {
-		animationDelay: '.8s',
+		animationDelay: '.4s',
 	},
 	i: {
-		animationDelay: '1s',
+		animationDelay: '.5s',
 	},
 	n: {
-		animationDelay: '1.2s',
+		animationDelay: '.6s',
 	},
 	g: {
-		animationDelay: '1.4s',
+		animationDelay: '.7s',
 	},
 });
 
