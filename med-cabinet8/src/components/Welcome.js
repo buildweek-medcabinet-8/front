@@ -4,7 +4,7 @@ import ProfileList from './ProfileList';
 
 const Welcome = (props, {username, edit}) => {
     // eslint-disable-next-line 
-    const [profile, setProfile] = useState(data.savedProfiles);
+    const [profile, setProfile] = useState(data.SavedProfiles);
 
     return(
         <div className="welcome">
