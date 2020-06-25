@@ -69,32 +69,8 @@ export default function StrainList({strains, toggleEditing}) {
 											{rec.Description}
 										</Typography>
 									</Grid>
-<Grid item container>
-										<Grid item>
-											<ListSubheader>Effects:</ListSubheader>
-											<List dense>
-												{rec.Effects.split(',').map((effect, index) => {
-													return (
-														<ListItem key={index}>
-															<ListItemText>{effect}</ListItemText>
-														</ListItem>
-													);
-												})}
-											</List>
-										</Grid>
-										<Grid item>
-											<ListSubheader>Flavors:</ListSubheader>
-											<List dense>
-												{rec.Flavor.split(',').map((flavor, index) => {
-													return (
-														<ListItem key={index}>
-															<ListItemText>{flavor}</ListItemText>
-														</ListItem>
-													);
-												})}
-											</List>
-										</Grid>
-									</Grid>
+
+
 								</CardContent>
 							</Card>
 						</Grid>
