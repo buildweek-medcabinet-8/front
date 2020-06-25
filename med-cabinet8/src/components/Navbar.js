@@ -38,7 +38,7 @@ function Navbar({ checked, setChecked }) {
 					{!checked ? (
 						<Grid item>
 							<Button
-								variant='outlined'
+								variant='contained'
 								color='secondary'
 								component={Link}
 								to='/register'

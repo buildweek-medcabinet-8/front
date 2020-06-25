@@ -9,6 +9,9 @@ const useStyles = makeStyles({
 	marginBottom: {
 		marginBottom: '2rem',
 	},
+	whiteText: {
+		color: 'white',
+	},
 });
 
 function StrainSearch() {
@@ -182,7 +185,13 @@ function StrainSearch() {
 					</Grid>
 
 					<Grid item className={clsx(classes.marginBottom)}>
-						<Button variant='contained' color='primary' fullWidth type='submit'>
+						<Button
+							variant='contained'
+							color='primary'
+							fullWidth
+							type='submit'
+							className={classes.whiteText}
+						>
 							Find My Strain
 						</Button>
 					</Grid>

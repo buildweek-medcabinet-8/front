@@ -15,7 +15,8 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 const useStyles = makeStyles({
 	root: {
-		minWidth: 275,
+		minWidth: '100%',
+		minHeight: '100%',
 	},
 	bullet: {
 		display: 'inline-block',
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
 		marginBottom: 12,
 	},
 	gridContainer: {
-		marginBottom: '1rem',
+		margin: '1rem 0',
 	},
 });
 
@@ -41,8 +42,11 @@ export default function Recommendations() {
 		axiosWithAuth()
 			.get('/profile/recommendations')
 			.then((res) => {
-				console.log(res.data.content);
-				setRecs(res.data.content);
+				console.log(res.data.recommendations, 'data');
+				setRecs(res.data.recommendations);
+			})
+			.catch((err) => {
+				console.log(err.message);
 			});
 	}, []);
 
@@ -57,45 +61,51 @@ export default function Recommendations() {
 	return (
 		<Grid container spacing={3} className={classes.gridContainer}>
 			{recs &&
-				recs.map((rec) => {
+				recs.map((rec, index) => {
 					return (
-						<Grid item key={rec.Strain}>
+						<Grid item container key={index} xs={12} sm={6} md={3}>
 							<Card className={classes.root} variant='outlined'>
 								<CardContent>
-									<Typography
-										className={classes.title}
-										color='textSecondary'
-										gutterBottom
-									>
-										{rec.yourName}
-									</Typography>
-									<Typography variant='h5' component='h2'>
-										{rec.Strain}
-									</Typography>
-									<Typography className={classes.pos} color='textSecondary'>
-										{rec.type}
-									</Typography>
-									{renderStars(rec.rating)}
-									<ListSubheader>Effects:</ListSubheader>
-									<List dense>
-										{rec.effect.map((effect) => {
-											return (
-												<ListItem key={effect}>
-													<ListItemText>{effect}</ListItemText>
-												</ListItem>
-											);
-										})}
-									</List>
-									<ListSubheader>Flavors:</ListSubheader>
-									<List dense>
-										{rec.flavor.map((flavor) => {
-											return (
-												<ListItem key={flavor}>
-													<ListItemText>{flavor}</ListItemText>
-												</ListItem>
-											);
-										})}
-									</List>
+									<Grid item>
+										<Typography variant='h5' component='h2'>
+											{rec.Strain}
+										</Typography>
+										<Typography className={classes.pos} color='textSecondary'>
+											{rec.Type}
+										</Typography>
+										{renderStars(rec.Rating)}
+									</Grid>
+									<Grid item>
+										<Typography variant='body1' color='initial'>
+											{rec.Description}
+										</Typography>
+									</Grid>
+									<Grid item container>
+										<Grid item>
+											<ListSubheader>Effects:</ListSubheader>
+											<List dense>
+												{rec.Effects.split(',').map((effect, index) => {
+													return (
+														<ListItem key={index}>
+															<ListItemText>{effect}</ListItemText>
+														</ListItem>
+													);
+												})}
+											</List>
+										</Grid>
+										<Grid item>
+											<ListSubheader>Flavors:</ListSubheader>
+											<List dense>
+												{rec.Flavor.split(',').map((flavor, index) => {
+													return (
+														<ListItem key={index}>
+															<ListItemText>{flavor}</ListItemText>
+														</ListItem>
+													);
+												})}
+											</List>
+										</Grid>
+									</Grid>
 								</CardContent>
 							</Card>
 						</Grid>
