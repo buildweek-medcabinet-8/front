@@ -8,7 +8,10 @@ header {
       margin: 4rem 0,
     
 }
-
+.profile-list {
+	display: flex;
+	flex-direction: row;
+}
 .profile-name {
 	padding: 1rem;
 	margin: .5rem;

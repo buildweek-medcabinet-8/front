@@ -32,7 +32,7 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function StrainList({strains}) {
+export default function StrainList({strains, toggleEditing}) {
 	const classes = useStyles();
 	// eslint-disable-next-line
 	const [recs, setRecs] = useState(strains);
@@ -48,6 +48,7 @@ export default function StrainList({strains}) {
 
 	return (
 		<Grid container spacing={3} className={classes.gridContainer}>
+			<button onClick={toggleEditing}>Edit</button>
 			{recs &&
 				recs.map((rec) => {
 					return (
