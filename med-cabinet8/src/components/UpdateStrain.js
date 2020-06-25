@@ -86,8 +86,8 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
 	];
 
 	const [formState, setFormState] = useState({
-		flavors: [...iflavors],
-		effects: [...ieffects],
+		flavors: [...iflavors.split(',')],
+		effects: [...ieffects.split(',')],
 		description: idesc,
 		profileName: pName
 	});
