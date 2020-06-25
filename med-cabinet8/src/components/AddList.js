@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
+function AddList() {
 
 	const classes = useStyles();
 	const flavors = [
@@ -86,17 +86,17 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
 	];
 
 	const [formState, setFormState] = useState({
-		flavors: [...iflavors.split(',')],
-		effects: [...ieffects.split(',')],
-		description: idesc,
-		listName: pName
+		"list_flavors": [],
+		"effects": [],
+		"userDescription": '',
+        "listName": '',
 	});
 
 	function handleFlavorChange(e) {
 		e.persist();
 		const newFormData = {
 			...formState,
-			flavors: e.target.value,
+			list_flavors: e.target.value,
 		};
 		console.log(formState);
 		// console.log(formState);
@@ -127,26 +127,25 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
 	function handleSubmit(e) {
 		e.preventDefault();
 		axiosWithAuth()
-			.put('/profile/update-list', formState)
+			.post('profile/recs/add-list', formState)
 			.then((res) => {
 				console.log(res);
 				// console.log(newPreferences);
 			})
 			.catch((err) => {
 				// console.log(err);
-				console.log(err.response);
+				console.log(err.message, err.response);
 			});
 		setFormState({
-			flavors: [],
+			list_flavors: [],
 			effects: [],
-			description: '',
+			userDescription: '',
 			listName: '',
 		});
 	}
 
 	return (
 		<Container>
-			<button onClick={toggleEditing}>Back to Strains</button>
 			<form onSubmit={handleSubmit}>
 				<Grid container direction='column' alignItems='center'>
 				<Grid item>
@@ -154,7 +153,7 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
 							label='Profile Name'
 							value={formState.listName}
 							onChange={handleDescriptionChange}
-							id={`listName${id}`}
+							id={`listName`}
 							name='listName'
 							placeholder='Profile Name'
 						/>
@@ -162,11 +161,11 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
 					<Grid item>
 						<MultipleSelect
 							inputLabel='Flavors'
-							labelId='flavor-label-id'
-							id={`flavors${id}`}
-							value={formState.flavors}
+							labelId='list_flavors-label-id'
+							id={`list_flavors`}
+							value={formState.list_flavors}
 							handleChange={handleFlavorChange}
-							inputId={`flavor-input${id}`}
+							inputId={`list_flavors-input`}
 							items={flavors}
 							name='flavors'
 						/>
@@ -176,29 +175,29 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
 						<MultipleSelect
 							inputLabel='Effects'
 							labelId='effect-label-id'
-							id={`effects${id}`}
+							id={`effects`}
 							value={formState.effects}
 							handleChange={handleEffectChange}
-							inputId={`effect-input${id}`}
+							inputId={`effect-input`}
 							items={effects}
 						/>
 					</Grid>
 
 					<Grid item className={classes.marginBottom}>
 						<TextField
-							multiline
+                            multiline
 							label='Description'
-							value={formState.description}
+							value={formState.userDescription}
 							onChange={handleDescriptionChange}
-							id={`description${id}`}
-							name='description'
+							id={`userDescription`}
+							name='userDescription'
 							placeholder='Description'
 						/>
 					</Grid>
 
 					<Grid item className={clsx(classes.marginBottom)}>
 						<Button variant='contained' color='primary' fullWidth type='submit'>
-							Update My Strain Profile
+							Create My Strain Profile
 						</Button>
 					</Grid>
 				</Grid>
@@ -207,4 +206,4 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
 	);
 }
 
-export default UpdateStrain;
+export default AddList;
