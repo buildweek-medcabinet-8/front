@@ -46,7 +46,7 @@ useEffect(()=>{
         )
       );
   };
-// eslint-disable-next-line
+
   const changePassword = () => {
     const pWord = {"password": password}
     axiosWithAuth()
@@ -64,7 +64,7 @@ useEffect(()=>{
       );
   };
 
-console.log(password, setPassword)
+console.log(password, changePassword)
     return (
       <div>
         <p>TODO ADD form to change password</p>

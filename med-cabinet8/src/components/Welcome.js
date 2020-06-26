@@ -6,7 +6,8 @@ import data from "../data/savedProfile.json";
 
 const Welcome = (props, {username, edit}) => {
     // eslint-disable-next-line 
-    const [profile, setProfile] = useState(data.SavedProfiles);
+	const [profile, setProfile] = useState(data.resObj);
+
 	useEffect(() => {
 		axiosWithAuth()
 			.get('/profile/list')
@@ -21,7 +22,7 @@ const Welcome = (props, {username, edit}) => {
     return(
         <div className="welcome">
         <h1>Welcome To Med-Cabinet {username}</h1>
-        <ProfileList profile={profile}/>
+        <ProfileList profileObj={profile}/>
         </div>
     )
 }

@@ -4,8 +4,9 @@ import UpdateStrain from './UpdateStrain';
 import AddList from './AddList';
 import add from "../store/svg/add.svg"
 
-const ProfileList = ({profile}) => {
+const ProfileList = ({profileObj}) => {
 
+    const [profile, setProfile] = useState(Object.entries(profileObj))
     const [edit, toggleEdit] = useState(false);
     const [hide, toggleHide] = useState(false);
     const [showAdd, toggleShow] = useState(false)
@@ -33,10 +34,11 @@ const ProfileList = ({profile}) => {
             <div className="profile-list">
             <button onClick={toggleEditing}>Edit Profile</button>
             {(profile.length > 0) ? profile.map((item, ind) => {
+
                 return(
                     <div className="profile-item" key={ind}>
                         <div className={`${ind} profile-name`} onClick={toggleHidding}>
-                            <h3 className={ind}>{item.listName}</h3>
+                            <h3 className={ind}>{item[0]}</h3>
 
                         </div>
                     </div> 
@@ -52,7 +54,7 @@ const ProfileList = ({profile}) => {
             <div className="view-details">
                     {(hide) ?
                        <div></div>
-                       : (edit) ? <Recommendations prefs={profile[id]}/> : <UpdateStrain ieffects={profile[id].effects} iflavors={profile[id].list_flavors} idesc={profile[id].userDescription} pName={profile[id].listName} toggleEditing={toggleEditing}/> 
+                       : (edit) ? <Recommendations object={profile[id]}/> : null
                     }
                     {(showAdd) ? <AddList /> : null }
             </div>
