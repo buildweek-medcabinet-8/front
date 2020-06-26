@@ -6,10 +6,6 @@ import add from '../store/svg/add.svg';
 
 const ProfileList = ({ profile }) => {
 	const [edit, toggleEdit] = useState(false);
-	const [hide, toggleHide] = useState(true);
-	const [id, setId] = useState(0);
-
-	const [edit, toggleEdit] = useState(false);
 	const [hide, toggleHide] = useState(false);
 	const [showAdd, toggleShow] = useState(false);
 	const [id, setId] = useState(0);
