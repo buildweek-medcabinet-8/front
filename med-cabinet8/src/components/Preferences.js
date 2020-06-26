@@ -2,21 +2,22 @@ import React, { useEffect, useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { Grid, List, ListItem, Typography } from '@material-ui/core';
 
-function Preferences() {
+function Preferences({list}) {
 	const [preferences, setPreferences] = useState({
 		"effects": [],
 		"flavors": [],
-		"message": '',
+		"description": '',
+		"message": ''
 	});
 	useEffect(() => {
 		axiosWithAuth()
-			.get('/profile/preferences')
+			.get('/profile/preferences', {listName: ""})
 			.then((res) => {
 				setPreferences(res.data);
 				console.log(res.data);
 			})
 			.catch((err) => {
-				console.log(err.message);
+				console.log(err.results);
 			});
 	}, []);
 
