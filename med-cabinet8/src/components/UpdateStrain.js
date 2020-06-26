@@ -146,7 +146,8 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
 
 	return (
 		<Container>
-			<button onClick={toggleEditing}>Back to Strains</button>
+			<button onClick={toggleEditing}>Cancel Editing</button>
+			<button>Delete This Profile</button>
 			<form onSubmit={handleSubmit}>
 				<Grid container direction='column' alignItems='center'>
 				<Grid item>
@@ -203,6 +204,7 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
 					</Grid>
 				</Grid>
 			</form>
+
 		</Container>
 	);
 }

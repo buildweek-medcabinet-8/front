@@ -34,7 +34,7 @@ export default function SimpleMenu() {
 				onClose={handleClose}
 			>
 				<MenuItem onClick={handleClose}>
-					<Button component={Link} to='/profile'>
+					<Button component={Link} to='/med-cabinet'>
 						Profile
 					</Button>
 				</MenuItem>
@@ -43,11 +43,11 @@ export default function SimpleMenu() {
 						Settings
 					</Button>
 				</MenuItem>
-				<MenuItem onClick={handleClose}>
+				{/* <MenuItem onClick={handleClose}>
 					<Button component={Link} to='/recommendations'>
 						Recommendations
 					</Button>
-				</MenuItem>
+				</MenuItem> */}
 				<MenuItem onClick={handleClose}>
 					<Button component={Link} to='/strain'>
 						Set Strain Preferences
