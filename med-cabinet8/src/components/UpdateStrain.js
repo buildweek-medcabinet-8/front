@@ -11,8 +11,8 @@ const useStyles = makeStyles({
 	},
 });
 
-function UpdateStrain({object, toggleEditing, id}) {
-	console.log(object)
+function UpdateStrain({object, toggleEditing, id, profile, setProfile}) {
+
 	const initialState = {
 		"listName" : '',
 		"effects": [],
@@ -138,30 +138,48 @@ function UpdateStrain({object, toggleEditing, id}) {
 		setFormState(newFormData);
 	}
 
+	function handleDelete(e) {
+		e.preventDefault();
+		axiosWithAuth()
+			.delete("/profile/delete-list", {"listName": prefs.listName})
+			.then((res) => {
+				setProfile(profile.filter((item) => item[0] !== prefs.listName))
+			})
+			.catch((err) => {
+				console.log('/profile/delete-list', err.response)
+			})
+			setFormState({
+				flavors: [],
+				effects: [],
+				description: '',
+				listName: '',
+			});
+	}
+
 	function handleSubmit(e) {
 		e.preventDefault();
+		const addList = [
+			formState.listName, {effects: formState.effects, flavors: formState.flavors, description: [formState.description]}
+		]
 		axiosWithAuth()
 			.put('/profile/update-list', formState)
 			.then((res) => {
-				console.log(res);
+
+				setProfile([...profile.filter((item) => item[0] !== addList[0]), addList])
 				// console.log(newPreferences);
+				//console.log("profile/update-list", profile[0][0], addList[0]);
 			})
 			.catch((err) => {
 				// console.log(err);
-				console.log(err.response);
+				console.log("profile/update-list", err.response);
 			});
-		setFormState({
-			flavors: [],
-			effects: [],
-			description: '',
-			listName: '',
-		});
+
 	}
 
 	return (
 		<Container>
 			<button onClick={toggleEditing}>Cancel Editing</button>
-			<button>Delete This Profile</button>
+			<button onClick={handleDelete}>Delete This Profile</button>
 			<form onSubmit={handleSubmit}>
 				<Grid container direction='column' alignItems='center'>
 				<Grid item>
