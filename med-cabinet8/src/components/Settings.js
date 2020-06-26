@@ -6,17 +6,15 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 
 export const Profile = () =>  {
 const { push } = useHistory();
-const [message, setMessage] = useState('');
+// eslint-disable-next-line
 const [password, setPassword] = useState('');
 
 const getData = () => {
   axiosWithAuth()
     .get("/profile")
     .then((res) => {
-      //  console.log("ea: Recommendations.js getData results:", res.data);
-      setMessage(
-        res.data.message,
-      );
+        console.log("ea: Recommendations.js getData results:", res.data);
+;
     })
     .catch((err) =>
       console.error(
@@ -48,7 +46,7 @@ useEffect(()=>{
         )
       );
   };
-
+// eslint-disable-next-line
   const changePassword = () => {
     const pWord = {"password": password}
     axiosWithAuth()
@@ -66,7 +64,7 @@ useEffect(()=>{
       );
   };
 
-
+console.log(password, setPassword)
     return (
       <div>
         <p>TODO ADD form to change password</p>

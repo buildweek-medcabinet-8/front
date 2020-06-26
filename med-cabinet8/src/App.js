@@ -8,7 +8,6 @@ import theme from './theme';
 
 import LoginForm from './components/Login';
 import Loading from './components/LoadingPage';
-import Preferences from './components/Preferences';
 import Registration from './components/Registration';
 import PrivateRoute from './components/PrivateRoute';
 import Welcome from './components/Welcome';

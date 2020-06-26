@@ -5,7 +5,7 @@ import AddList from './AddList';
 import add from "../store/svg/add.svg"
 
 const ProfileList = ({profile}) => {
-    console.log(profile)
+
     const [edit, toggleEdit] = useState(false);
     const [hide, toggleHide] = useState(false);
     const [showAdd, toggleShow] = useState(false)
