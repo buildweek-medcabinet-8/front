@@ -1,28 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import ProfileList from './ProfileList';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import data from "../data/savedProfile.json";
+
 
 
 const Welcome = ({username, edit}) => {
 
-	const [profile, setProfile] = useState(data.resObj)
+	const [profile, setProfile] = useState([])
+	const [error, setError] = useState('')
 
 	useEffect(() => {
 		axiosWithAuth()
-			.get('/profile/list')
+			.get('/profile/lists')
 			.then((res) => {
-			
-				console.log(res.data) 
+				setProfile(res.data.resObj)
+				setError('')
+				//console.log('/profile/lists data.resObj', res.data.resObj) 
 			})
 			.catch((err) => {
-				console.log(err.message);
+				setError(err.message)
+				console.log(err.response);
 			});
 	}, []);
+	if(profile.length === 0 && error.length === 0){
+		return(
+			<div>Loading</div>
+		)
+	}
     return(
         <div className="welcome">
         <h1>Welcome To Med-Cabinet {username}</h1>
-        <ProfileList profileObj={profile}/>
+	{(error !== '') ??  <p className="error">{error}</p>}
+<ProfileList profileObj={profile}/>
         </div>
     )
 }

@@ -5,14 +5,14 @@ import AddList from './AddList';
 import add from "../store/svg/add.svg"
 
 const ProfileList = ({profileObj}) => {
-
-    // eslint-disable-next-line 
+   // console.log('Profile list', profileObj)
     const [profile, setProfile] = useState(useState(Object.entries(profileObj))[0]) 
     const [edit, toggleEdit] = useState(false);
-    const [hide, toggleHide] = useState(false);
+    const [hide, toggleHide] = useState(true);
     const [showAdd, toggleShow] = useState(false)
     const [id, setId] = useState(0);
-	console.log(profile)
+
+
     const toggleHidding = (e) => {
         let str = e.target.className.split(" ");
         setId(str[0])
@@ -26,6 +26,7 @@ const ProfileList = ({profileObj}) => {
         toggleShow(!showAdd);
         toggleHide(true)
     }
+
         return(
             <div>
 
@@ -34,8 +35,7 @@ const ProfileList = ({profileObj}) => {
             
 			 <div className='profile-list'>
 				<button onClick={toggleEditing}>Edit Profile</button>
-				{profile.length > 0
-					? profile.map((item, ind) => {
+				{profile.map((item, ind) => {
 	
 							return (
 								<div className='profile-item' key={ind}>
@@ -48,7 +48,7 @@ const ProfileList = ({profileObj}) => {
 								</div>
 							);
 					  })
-					: null}
+}
 			
             <div className="profile-item">
                 <div className="+ profile-name" onClick={toggleShowAdd}>
@@ -57,11 +57,10 @@ const ProfileList = ({profileObj}) => {
             </div>
             </div>
             <div className="view-details">
-                    {(hide) ?
-                       <div></div>
-                       : (edit) ? <Recommendations object={profile[id]}/> : <UpdateStrain object={profile[id]} toggleEditing={toggleEditing}/> 
+            {(hide) ? <div></div> :
+                    (edit) ? <Recommendations object={profile[id]}/> : <UpdateStrain object={profile[id]} toggleEditing={toggleEditing} profile={profile} setProfile={setProfile}/> 
                     }
-                    {(showAdd) ? <AddList /> : null }
+                    {showAdd ? <AddList profile={profile} setProfile={setProfile}/> : null}
             </div>
             </div>
         )

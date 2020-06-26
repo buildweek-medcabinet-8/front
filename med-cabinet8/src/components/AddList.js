@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function AddList() {
+function AddList({setProfile, profile}) {
 
 	const classes = useStyles();
 	const flavors = [
@@ -89,7 +89,7 @@ function AddList() {
 		"listName": '',
 		"flavors": [],
 		"effects": [],
-		"description": ''
+		"description": []
 
 	});
 
@@ -110,7 +110,7 @@ function AddList() {
 			...formState,
 			effects: e.target.value,
 		};
-		console.log(formState);
+		//console.log(formState);
 		// console.log(formState);
 		setFormState(newFormData);
 	}
@@ -127,11 +127,16 @@ function AddList() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
+		const addList = [
+			formState.listName, {effects: formState.effects, flavors: formState.flavors, description: [formState.description]}
+		]
 		axiosWithAuth()
 			.post('profile/add-list', formState)
 			.then((res) => {
-				console.log(res);
+
+				setProfile([...profile, addList])
 				// console.log(newPreferences);
+				console.log("combined profile", profile)
 			})
 			.catch((err) => {
 				// console.log(err);
@@ -141,7 +146,7 @@ function AddList() {
 			listName: '',
 			flavors: [],
 			effects: [],
-			description: ''
+			description: []
 ,
 		});
 	}
