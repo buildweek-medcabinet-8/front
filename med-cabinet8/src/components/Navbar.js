@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import NavMenu from './NavMenu';
 import LogoutSwitch from './Logout';
+import logo from '../store/svg/logo.svg'
 
 const useStyles = makeStyles(() => ({
 	whiteText: {
@@ -29,8 +30,8 @@ function Navbar({ checked, setChecked }) {
 			>
 				<Toolbar>
 					{checked === true ? <NavMenu /> : null}
-					<Typography variant='h5' component='span' className={classes.title}>
-						Med-Cabinet
+					<Typography variant='h4' component='span' className={classes.title}>
+						<img src={logo} alt="Med-Cabinet Logo" className="logo"/>Med-Cabinet
 					</Typography>
 					{checked ? (
 						<LogoutSwitch checked={checked} setChecked={setChecked} />

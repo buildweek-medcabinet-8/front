@@ -12,13 +12,23 @@ header {
 }
 .profile-name {
 	padding: 1rem;
-	margin: .5rem;
+	margin: 1rem;
 	color: white;
-	font-size: clamp(1rem, .5vw, 3rem);
+	font-size: clamp(1rem, .9vw, 3rem);
 	border-radius: 6px;
-	width: 20vw;
+	width: 10vw;
+	height: 9vw;
 	background-color: darkgreen;
 	cursor: pointer;
+	width: 80%;
+}
+.logo {
+	height: 2.2rem;
+	margin-right: .5rem;
+}
+.add {
+	margin: 0 auto;
+	width: clamp(1rem, 8vw, 3.8rem);
 }
 
 @media (prefers-reduced-motion: no-preference) {

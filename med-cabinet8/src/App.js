@@ -8,11 +8,10 @@ import theme from './theme';
 
 import LoginForm from './components/Login';
 import Loading from './components/LoadingPage';
-import Preferences from './components/Preferences';
 import Registration from './components/Registration';
 import PrivateRoute from './components/PrivateRoute';
 import Welcome from './components/Welcome';
-import Profile from './components/Profile';
+import Settings from './components/Settings';
 import Recommendations from './components/Recommendations';
 import Navbar from './components/Navbar';
 import StrainSearch from './components/StrainSearchOld';
@@ -84,8 +83,8 @@ function App() {
 							username={username}
 						/>
 						<PrivateRoute path='/strain' component={StrainSearch} />
-						<PrivateRoute path='/settings' component={Preferences} />
-						<PrivateRoute path='/profile' component={Profile} />
+						<PrivateRoute path='/settings' component={Settings} />
+
 						<PrivateRoute path='/recommendations' component={Recommendations} />
 					</Container>
 					<Footer />
