@@ -70,21 +70,6 @@ export const Profile = () => {
 			});
 	}
 
-	const getData = () => {
-		axiosWithAuth()
-			.get('/profile/preferences/', {listName: "Sleepy", user_id: "user2"})
-			.then((res) => {
-				console.log('ea: /profile getData results:', res.data);
-			})
-			.catch((err) =>
-				console.error('ea: /profile/preferences: ', err.response)
-			);
-	};
-
-	useEffect(() => {
-		getData();
-	}, []);
-
 	const deleteUser = () => {
 		axiosWithAuth()
 			.delete('/profile/del-user')
