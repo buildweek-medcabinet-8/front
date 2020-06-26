@@ -69,7 +69,7 @@ function RegistrationForm() {
 				push('/');
 			})
 			.catch((err) => {
-				console.log('register error', err.message);
+				console.log('register error', err.response);
 				setFormState(initialState);
 			});
 

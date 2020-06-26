@@ -4,15 +4,16 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 import data from "../data/savedProfile.json";
 
 
-const Welcome = (props, {username, edit}) => {
-    // eslint-disable-next-line 
-    const [profile, setProfile] = useState(data.SavedProfiles);
+const Welcome = ({username, edit}) => {
+
+	const [profile, setProfile] = useState(data.resObj)
+
 	useEffect(() => {
 		axiosWithAuth()
 			.get('/profile/list')
 			.then((res) => {
-                console.log(res.data)
-				//setProfile((res.data.list) ? res.data.list : [] );
+			
+				console.log(res.data) 
 			})
 			.catch((err) => {
 				console.log(err.message);
@@ -21,7 +22,7 @@ const Welcome = (props, {username, edit}) => {
     return(
         <div className="welcome">
         <h1>Welcome To Med-Cabinet {username}</h1>
-        <ProfileList profile={profile}/>
+        <ProfileList profileObj={profile}/>
         </div>
     )
 }

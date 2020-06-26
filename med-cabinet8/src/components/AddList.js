@@ -86,17 +86,18 @@ function AddList() {
 	];
 
 	const [formState, setFormState] = useState({
-		"list_flavors": [],
+		"listName": '',
+		"flavors": [],
 		"effects": [],
-		"userDescription": '',
-        "listName": '',
+		"description": ''
+
 	});
 
 	function handleFlavorChange(e) {
 		e.persist();
 		const newFormData = {
 			...formState,
-			list_flavors: e.target.value,
+			flavors: e.target.value,
 		};
 		console.log(formState);
 		// console.log(formState);
@@ -127,7 +128,7 @@ function AddList() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		axiosWithAuth()
-			.post('profile/recs/add-list', formState)
+			.post('profile/add-list', formState)
 			.then((res) => {
 				console.log(res);
 				// console.log(newPreferences);
@@ -137,10 +138,11 @@ function AddList() {
 				console.log(err.message, err.response);
 			});
 		setFormState({
-			list_flavors: [],
-			effects: [],
-			userDescription: '',
 			listName: '',
+			flavors: [],
+			effects: [],
+			description: ''
+,
 		});
 	}
 
@@ -161,11 +163,11 @@ function AddList() {
 					<Grid item>
 						<MultipleSelect
 							inputLabel='Flavors'
-							labelId='list_flavors-label-id'
-							id={`list_flavors`}
-							value={formState.list_flavors}
+							labelId='flavors-label-id'
+							id={`flavors`}
+							value={formState.flavors}
 							handleChange={handleFlavorChange}
-							inputId={`list_flavors-input`}
+							inputId={`flavors-input`}
 							items={flavors}
 							name='flavors'
 						/>
@@ -180,6 +182,7 @@ function AddList() {
 							handleChange={handleEffectChange}
 							inputId={`effect-input`}
 							items={effects}
+							name="effects"
 						/>
 					</Grid>
 
@@ -187,10 +190,10 @@ function AddList() {
 						<TextField
                             multiline
 							label='Description'
-							value={formState.userDescription}
+							value={formState.description}
 							onChange={handleDescriptionChange}
-							id={`userDescription`}
-							name='userDescription'
+							id={`description`}
+							name='description'
 							placeholder='Description'
 						/>
 					</Grid>

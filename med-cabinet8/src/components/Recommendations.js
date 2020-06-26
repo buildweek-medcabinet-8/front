@@ -45,20 +45,23 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Recommendations({ prefs }) {
+export default function Recommendations({ object }) {
+	const initialState = {
+		"listName" : '',
+
+	  }
+	
+	  const prefs = { ...initialState,
+		  "listName" : object[0] ? object[0] : '',
+	  }
   const classes = useStyles();
   const [recs, setRecs] = useState([]);
   const [error, setError] = useState("");
 
+
   useEffect(() => {
-    const newPrefs = {
-      prefs: `${prefs.effects.split()} ${prefs.list_flavors.split()} ${
-        prefs.userDescription
-      }  ${prefs.listName}`,
-    };
-    console.log(newPrefs);
     axiosWithAuth()
-      .get("/profile/recommendations", newPrefs)
+      .get(`/profile/recommendations/:${prefs.listName}`)
       .then((res) => {
         console.log(res.data.recommendations, "data");
         setRecs(res.data.recommendations);
@@ -69,10 +72,7 @@ export default function Recommendations({ prefs }) {
         setError(err.message);
       });
   }, [
-    prefs.effects,
     prefs.listName,
-    prefs.list_flavors,
-    prefs.userDescription,
   ]);
 
   function renderStars(rating) {
@@ -89,7 +89,11 @@ export default function Recommendations({ prefs }) {
     }
     return stars;
   }
-
+  if (recs.length === 0 && error.length === 0) {
+    return(
+      <div>Loading</div>
+    )
+  }
   return (
     <Grid
       container

@@ -1,17 +1,61 @@
 {
-    "UserName": "user1",
-    "SavedProfiles": [
-        {
-            "listName": "Mondays",
-            "effects": "Focused,Uplifted,Happy,Creative,Relaxed",
-            "list_flavors": "Lemon,Citrus,Sweet",
-            "userDescription": "Something to start the week"
+    "message": "better data shapes, happier users. Wouldn't you say, user2? :)",
+    "resObj": {
+        "Sleepy": {
+            "effects": [
+                "Creative",
+                "Energetic",
+                "Tingly",
+                "Euphoric",
+                "Relaxed",
+                "Uplifted"
+            ],
+            "flavors": [
+                "Earthy",
+                "Sweet",
+                "Citrus",
+                "Flowery",
+                "Violet",
+                "Sage"
+            ],
+            "description": [
+                "don't"
+            ]
         },
-        {
-            "listName": "SleepyTime",
-            "effects": "Focused,Uplifted,Happy,Creative,Relaxed",
-            "list_flavors": "Lemon,Citrus,Sweet",
-            "userDescription": "Goodnight moon, goodnight weed"
+        "Creative": {
+            "effects": [
+                "Tingly",
+                "Relaxed",
+                "Aroused",
+                "Happy",
+                "Uplifted",
+                "Hungry",
+                "Talkative",
+                "None"
+            ],
+            "flavors": [
+                "Citrus",
+                "Violet",
+                "Diesel",
+                "Spicy/Herbal",
+                "Sage",
+                "Woody",
+                "Apricot",
+                "Grapefruit"
+            ],
+            "description": [
+                "stop"
+            ]
+        },
+        "Couch": {
+            "effects": [
+                "Talkative",
+                "None"
+            ],
+
+            "description": [
+                "me"
+            ]
         }
-    ]
+    }
 }

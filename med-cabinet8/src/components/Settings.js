@@ -70,24 +70,9 @@ export const Profile = () => {
 			});
 	}
 
-	const getData = () => {
-		axiosWithAuth()
-			.get('/profile')
-			.then((res) => {
-				console.log('ea: Recommendations.js getData results:', res.data);
-			})
-			.catch((err) =>
-				console.error('ea: Profile.js: getData: err.message: ', err.message)
-			);
-	};
-
-	useEffect(() => {
-		getData();
-	}, []);
-
 	const deleteUser = () => {
 		axiosWithAuth()
-			.delete('/profile/delete-user')
+			.delete('/profile/del-user')
 			.then((res) => {
 				console.log(res.data);
 				localStorage.removeItem('token');

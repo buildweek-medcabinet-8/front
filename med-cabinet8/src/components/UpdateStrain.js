@@ -11,7 +11,21 @@ const useStyles = makeStyles({
 	},
 });
 
-function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
+function UpdateStrain({object, toggleEditing, id}) {
+	console.log(object)
+	const initialState = {
+		"listName" : '',
+		"effects": [],
+		"flavors": [],
+		"description": '', 
+	  }
+	
+	  const prefs = { ...initialState,
+		  "listName" : object[0] ? object[0] : '',
+		  "effects": object[1].effects ? object[1].effects : [],
+		  "flavors": object[1].flavors ? object[1].flavors : [],
+		  "description": object[1].description ? object[1].description : ''
+	  }
 
 	const classes = useStyles();
 	const flavors = [
@@ -86,10 +100,10 @@ function UpdateStrain({iflavors, ieffects, idesc, pName, id, toggleEditing}) {
 	];
 
 	const [formState, setFormState] = useState({
-		flavors: [...iflavors.split(',')],
-		effects: [...ieffects.split(',')],
-		description: idesc,
-		listName: pName
+		flavors: prefs.flavors,
+		effects: prefs.effects,
+		description: prefs.description,
+		listName: prefs.listName
 	});
 
 	function handleFlavorChange(e) {
