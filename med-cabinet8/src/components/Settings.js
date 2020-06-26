@@ -81,6 +81,7 @@ export const Profile = () => {
 			);
 	};
 
+<<<<<<< HEAD
 	useEffect(() => {
 		getData();
 	}, []);
@@ -117,6 +118,50 @@ export const Profile = () => {
 				)
 			);
 	};
+=======
+  const deleteUser = () => {
+    axiosWithAuth()
+      .delete("/profile/delete-user")
+      .then((res) => {
+        console.log(res.data)
+        localStorage.removeItem('token');
+        localStorage.removeItem("login");
+        push('/');
+      })
+      .catch((err) =>
+        console.error(
+          "ea: Profile.js: delete-user: err.message: ",
+          err.results
+        )
+      );
+  };
+
+  const changePassword = () => {
+    const pWord = {"password": password}
+    axiosWithAuth()
+      .put("/profile/change-password", pWord)
+      .then((res) => {
+        localStorage.removeItem('token');
+        localStorage.removeItem("login");
+        push('/');
+      })
+      .catch((err) =>
+        console.error(
+          "ea: Profile.js: chg-password: err.message: ",
+          err.results
+        )
+      );
+  };
+
+console.log(password, changePassword)
+    return (
+      <div>
+        <p>TODO ADD form to change password</p>
+        <button onClick={deleteUser}>Delete Profile</button>
+      </div>
+    );
+  }
+>>>>>>> dc87061b2961936a3553e1788af0516bab5a523f
 
 	const handleChange = (e) => {
 		e.persist();
