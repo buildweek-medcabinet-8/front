@@ -72,23 +72,22 @@ export const Profile = () => {
 
 	const getData = () => {
 		axiosWithAuth()
-			.get('/profile')
+			.get('/profile/preferences/', {listName: "Sleepy", user_id: "user2"})
 			.then((res) => {
-				console.log('ea: Recommendations.js getData results:', res.data);
+				console.log('ea: /profile getData results:', res.data);
 			})
 			.catch((err) =>
-				console.error('ea: Profile.js: getData: err.message: ', err.message)
+				console.error('ea: /profile/preferences: ', err.response)
 			);
 	};
 
-<<<<<<< HEAD
 	useEffect(() => {
 		getData();
 	}, []);
 
 	const deleteUser = () => {
 		axiosWithAuth()
-			.delete('/profile/delete-user')
+			.delete('/profile/del-user')
 			.then((res) => {
 				console.log(res.data);
 				localStorage.removeItem('token');
@@ -118,50 +117,6 @@ export const Profile = () => {
 				)
 			);
 	};
-=======
-  const deleteUser = () => {
-    axiosWithAuth()
-      .delete("/profile/delete-user")
-      .then((res) => {
-        console.log(res.data)
-        localStorage.removeItem('token');
-        localStorage.removeItem("login");
-        push('/');
-      })
-      .catch((err) =>
-        console.error(
-          "ea: Profile.js: delete-user: err.message: ",
-          err.results
-        )
-      );
-  };
-
-  const changePassword = () => {
-    const pWord = {"password": password}
-    axiosWithAuth()
-      .put("/profile/change-password", pWord)
-      .then((res) => {
-        localStorage.removeItem('token');
-        localStorage.removeItem("login");
-        push('/');
-      })
-      .catch((err) =>
-        console.error(
-          "ea: Profile.js: chg-password: err.message: ",
-          err.results
-        )
-      );
-  };
-
-console.log(password, changePassword)
-    return (
-      <div>
-        <p>TODO ADD form to change password</p>
-        <button onClick={deleteUser}>Delete Profile</button>
-      </div>
-    );
-  }
->>>>>>> dc87061b2961936a3553e1788af0516bab5a523f
 
 	const handleChange = (e) => {
 		e.persist();

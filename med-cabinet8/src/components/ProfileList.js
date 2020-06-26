@@ -2,50 +2,54 @@ import React, { useState } from 'react';
 import Recommendations from './Recommendations';
 import UpdateStrain from './UpdateStrain';
 import AddList from './AddList';
-import add from '../store/svg/add.svg';
+import add from "../store/svg/add.svg"
 
 const ProfileList = ({profileObj}) => {
 
-    const [profile, setProfile] = useState(Object.entries(profileObj))
+    // eslint-disable-next-line 
+    const [profile, setProfile] = useState(useState(Object.entries(profileObj))[0]) 
     const [edit, toggleEdit] = useState(false);
     const [hide, toggleHide] = useState(false);
     const [showAdd, toggleShow] = useState(false)
     const [id, setId] = useState(0);
+	console.log(profile)
+    const toggleHidding = (e) => {
+        let str = e.target.className.split(" ");
+        setId(str[0])
+        toggleHide(!hide)
+        toggleShow(false)
+    }
+    const toggleEditing = () => {
+        toggleEdit(!edit);
+    }
+    const toggleShowAdd = () => {
+        toggleShow(!showAdd);
+        toggleHide(true)
+    }
+        return(
+            <div>
 
-			<div className='profile-list'>
+             {(profile.length === 0) ? <p>You don't have any profiles yet click the plus to get started</p> : null}
+             
+            
+			 <div className='profile-list'>
 				<button onClick={toggleEditing}>Edit Profile</button>
 				{profile.length > 0
 					? profile.map((item, ind) => {
+	
 							return (
 								<div className='profile-item' key={ind}>
 									<div
 										className={`${ind} profile-name`}
 										onClick={toggleHidding}
 									>
-										<h3 className={ind}>{item.listName}</h3>
+										<h3 className={ind}>{item[0]}</h3>
 									</div>
 								</div>
 							);
 					  })
 					: null}
-
-             {(profile.length === 0) ? <p>You don't have any profiles yet click the plus to get started</p> : null}
-             
-            
-            <div className="profile-list">
-            <button onClick={toggleEditing}>Edit Profile</button>
-            {(profile.length > 0) ? profile.map((item, ind) => {
-
-                return(
-                    <div className="profile-item" key={ind}>
-                        <div className={`${ind} profile-name`} onClick={toggleHidding}>
-                            <h3 className={ind}>{item[0]}</h3>
-
-                        </div>
-                    </div> 
-                )
-            }) : null}
-
+			
             <div className="profile-item">
                 <div className="+ profile-name" onClick={toggleShowAdd}>
                     <img src={add} alt="add a profile" className="add" />
@@ -55,7 +59,7 @@ const ProfileList = ({profileObj}) => {
             <div className="view-details">
                     {(hide) ?
                        <div></div>
-                       : (edit) ? <Recommendations object={profile[id]}/> : null
+                       : (edit) ? <Recommendations object={profile[id]}/> : <UpdateStrain object={profile[id]} toggleEditing={toggleEditing}/> 
                     }
                     {(showAdd) ? <AddList /> : null }
             </div>
@@ -63,4 +67,4 @@ const ProfileList = ({profileObj}) => {
         )
 };
 
-export default ProfileList;
+export default ProfileList

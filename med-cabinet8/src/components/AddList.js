@@ -190,7 +190,7 @@ function AddList() {
 						<TextField
                             multiline
 							label='Description'
-							value={formState.userDescription}
+							value={formState.description}
 							onChange={handleDescriptionChange}
 							id={`description`}
 							name='description'

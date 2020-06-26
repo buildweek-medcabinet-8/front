@@ -46,33 +46,22 @@ const useStyles = makeStyles({
 });
 
 export default function Recommendations({ object }) {
-  const initialState = {
-    "listName" : '',
-    "effects": [],
-    "flavors": [],
-    "description": '', 
-  }
-  console.log(object[1].effects)
-  const classes = useStyles();
-  const prefs = { ...initialState,
-      "listName" : object[0],
-      "effects": object[1].effects,
-      "flavors": object[1].flavors,
-      "description": object[1].description,
-  }
+	const initialState = {
+		"listName" : '',
 
+	  }
+	
+	  const prefs = { ...initialState,
+		  "listName" : object[0] ? object[0] : '',
+	  }
+  const classes = useStyles();
   const [recs, setRecs] = useState([]);
   const [error, setError] = useState("");
 
 
   useEffect(() => {
-    const newPrefs = {
-      prefs: `${prefs.effects.split()} ${prefs.flavors.split()} ${prefs.description}  ${prefs.listName}`
-
-    };
-    console.log(newPrefs);
     axiosWithAuth()
-      .get("/profile/recommendations", newPrefs)
+      .get(`/profile/recommendations/:${prefs.listName}`)
       .then((res) => {
         console.log(res.data.recommendations, "data");
         setRecs(res.data.recommendations);
@@ -83,10 +72,7 @@ export default function Recommendations({ object }) {
         setError(err.message);
       });
   }, [
-    prefs.effects,
     prefs.listName,
-    prefs.flavors,
-    prefs.description,
   ]);
 
   function renderStars(rating) {
@@ -103,7 +89,11 @@ export default function Recommendations({ object }) {
     }
     return stars;
   }
-
+  if (recs.length === 0 && error.length === 0) {
+    return(
+      <div>Loading</div>
+    )
+  }
   return (
     <Grid
       container
@@ -161,7 +151,7 @@ export default function Recommendations({ object }) {
                     <Grid item>
                       <ListSubheader>Effects:</ListSubheader>
                       <List dense>
-                        {rec.effects.split(",").map((effect, index) => {
+                        {rec.Effects.split(",").map((effect, index) => {
                           return (
                             <ListItem key={index}>
                               <ListItemText>{effect}</ListItemText>
@@ -173,7 +163,7 @@ export default function Recommendations({ object }) {
                     <Grid item>
                       <ListSubheader>Flavors:</ListSubheader>
                       <List dense>
-                        {rec.flavors.split(",").map((flavor, index) => {
+                        {rec.Flavor.split(",").map((flavor, index) => {
                           return (
                             <ListItem key={index}>
                               <ListItemText>{flavor}</ListItemText>
