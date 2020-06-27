@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
+function UpdateStrain({ object, id, profile, setProfile, setDialogOpen, handleClose }) {
 	// eslint-disable-next-line
 	const [prefs, setPrefs] = useState({
 		listName: object[0],
@@ -145,16 +145,12 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 			.delete('/profile/delete-list', { data: delList })
 			.then((res) => {
 				setProfile(profile.filter((item) => item[0] !== prefs.listName));
+				handleClose()
 			})
 			.catch((err) => {
 				console.log('/profile/delete-list', err.response);
 			});
-		setFormState({
-			listName: '',
-			flavors: [],
-			effects: [],
-			description: '',
-		});
+
 	}
 
 	function handleSubmit(e) {
@@ -164,15 +160,16 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 			{
 				effects: formState.effects,
 				flavors: formState.flavors,
-				description: [formState.description],
+				description: formState.description,
 			},
 		];
 		setDialogOpen(false);
 		axiosWithAuth()
 			.put('/profile/update-list', formState)
 			.then((res) => {
+				console.log("/profile/update-list")
 				setProfile([
-					...profile.filter((item) => item[0] !== addList[0]),
+					...profile.filter((item) => item[0] !== prefs.listName),
 					addList,
 				]);
 			})
@@ -189,14 +186,7 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 			<form onSubmit={handleSubmit}>
 				<Grid container direction='column' alignItems='center'>
 					<Grid item>
-						<TextField
-							label='Profile Name'
-							value={formState.listName}
-							onChange={handleDescriptionChange}
-							id={`listName${id}`}
-							name='listName'
-							placeholder='Profile Name'
-						/>
+						<p>{formState.listName}</p>
 					</Grid>
 					<Grid item>
 						<MultipleSelect

@@ -47,12 +47,12 @@ export default function SimpleMenu() {
 					<Button component={Link} to='/recommendations'>
 						Recommendations
 					</Button>
-				</MenuItem> */}
+				</MenuItem>
 				<MenuItem onClick={handleClose}>
 					<Button component={Link} to='/strain'>
 						Set Strain Preferences
 					</Button>
-				</MenuItem>
+				</MenuItem> */}
 			</Menu>
 		</React.Fragment>
 	);
