@@ -41,7 +41,7 @@ const ProfileList = ({ profileObj }) => {
 	};
 
 	return (
-		<Grid container direction='row'>
+		<Grid container direction='column'>
 			<Grid item container>
 				<Grid item>
 					{profile.length === 0 ? (
@@ -84,6 +84,8 @@ const ProfileList = ({ profileObj }) => {
 							value={value}
 							onChange={handleChange}
 							aria-label='simple tabs example'
+							className={classes.tab}
+							variant='scrollable'
 						>
 							{profile.map((item, index) => {
 								return <Tab key={index} label={item[0]} />;

@@ -9,6 +9,9 @@ const useStyles = makeStyles({
 	marginBottom: {
 		marginBottom: '2rem',
 	},
+	tab: {
+		width: '100%',
+	},
 });
 
 function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
