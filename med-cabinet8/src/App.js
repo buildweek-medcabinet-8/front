@@ -20,8 +20,7 @@ import splash from './img/splash.jpg';
 const useStyles = makeStyles({
 	app: {
 		backgroundColor: '#ddd',
-		backgroundImage:
-			`url(${splash})`,
+		backgroundImage: `url(${splash})`,
 		backgroundAttachment: 'fixed',
 		backgroundSize: 'cover',
 		backgroundBlendMode: 'screen',
@@ -45,7 +44,6 @@ function App() {
 	const [checked, setChecked] = useState(
 		Boolean(localStorage.getItem('login'))
 	);
-
 
 	return (
 		<Router>

@@ -9,6 +9,12 @@ const useStyles = makeStyles({
 	marginBottom: {
 		marginBottom: '2rem',
 	},
+	tab: {
+		width: '100%',
+	},
+	container: {
+		padding: '1rem',
+	},
 });
 
 function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
@@ -134,6 +140,7 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 	function handleDelete(e) {
 		e.preventDefault();
 		const delList = { listName: prefs.listName };
+		setDialogOpen();
 		axiosWithAuth()
 			.delete('/profile/delete-list', { data: delList })
 			.then((res) => {
@@ -175,8 +182,10 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 	}
 
 	return (
-		<Container>
-			<button onClick={handleDelete}>Delete This Profile</button>
+		<Container className={classes.container}>
+			<Button fullWidth onClick={handleDelete}>
+				Delete This Profile
+			</Button>
 			<form onSubmit={handleSubmit}>
 				<Grid container direction='column' alignItems='center'>
 					<Grid item>
