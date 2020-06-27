@@ -72,7 +72,7 @@ export const Profile = () => {
 
 	const deleteUser = () => {
 		axiosWithAuth()
-			.delete('/profile/del-user')
+			.delete('/profile/delete-user')
 			.then((res) => {
 				console.log(res.data);
 				localStorage.removeItem('token');

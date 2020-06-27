@@ -45,7 +45,7 @@ const ProfileList = ({ profileObj }) => {
 			<Grid item container>
 				<Grid item>
 					{profile.length === 0 ? (
-						<Typography variant='p'>
+						<Typography variant='subtitle1'>
 							You don't have any profiles yet click the plus to get started
 						</Typography>
 					) : null}

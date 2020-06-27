@@ -57,8 +57,8 @@ function LoginForm({ setChecked, setUsername }) {
 				push('/med-cabinet');
 			})
 			.catch((err) => {
-				console.log('login error', err);
-				setErrors({ ...errors, loginFail: err.message });
+				console.log('login error', err.response);
+				setErrors({ ...errors, loginFail: err.response.data.message });
 				setFormState(initialState);
 			});
 	}
