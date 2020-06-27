@@ -13,19 +13,14 @@ const useStyles = makeStyles({
 
 function UpdateStrain({object, toggleEditing, id, profile, setProfile}) {
 
-	const initialState = {
-		"listName" : '',
-		"effects": [],
-		"flavors": [],
-		"description": '', 
-	  }
-	
-	  const prefs = { ...initialState,
-		  "listName" : object[0] ? object[0] : '',
-		  "effects": object[1].effects ? object[1].effects : [],
-		  "flavors": object[1].flavors ? object[1].flavors : [],
-		  "description": object[1].description ? object[1].description : ''
-	  }
+// eslint-disable-next-line
+	const [prefs, setPrefs] = useState({
+		"listName" : object[0],
+		"effects": object[1].effects,
+		"flavors": object[1].flavors,
+		"description": object[1].description
+	})
+
 
 	const classes = useStyles();
 	const flavors = [
@@ -106,6 +101,8 @@ function UpdateStrain({object, toggleEditing, id, profile, setProfile}) {
 		listName: prefs.listName
 	});
 
+
+
 	function handleFlavorChange(e) {
 		e.persist();
 		const newFormData = {
@@ -140,8 +137,9 @@ function UpdateStrain({object, toggleEditing, id, profile, setProfile}) {
 
 	function handleDelete(e) {
 		e.preventDefault();
+		const delList =  {"listName": prefs.listName}
 		axiosWithAuth()
-			.delete("/profile/delete-list", {"listName": prefs.listName})
+			.delete("/profile/delete-list", {"data": delList})
 			.then((res) => {
 				setProfile(profile.filter((item) => item[0] !== prefs.listName))
 			})
