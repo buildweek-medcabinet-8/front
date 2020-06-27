@@ -107,6 +107,7 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 	});
 
 	//Validation
+	const [buttonDisabled, setButtonDisabled] = useState(true);
 	const [errors, setErrors] = useState({
 		flavors: '',
 		effects: '',
@@ -117,14 +118,14 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 	const formSchema = yup.object().shape({
 		flavors: yup.array().min(1).required('Enter at least 1 flavor!'),
 		effects: yup.array().min(1).required('Enter at least 1 effect!'),
-		description: yup.string(),
+		description: yup.string().required('Please enter a brief description...'),
 		listName: yup.string().required('Please Enter a Name for List!'),
 	});
 
 	useEffect(() => {
 		formSchema.isValid(formState).then((isFormValid) => {
 			console.log(isFormValid);
-			// setButtonDisabled(!isFormValid);
+			setButtonDisabled(!isFormValid);
 		});
 	}, [formState, formSchema]);
 
@@ -278,7 +279,13 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 					</Grid>
 
 					<Grid item className={clsx(classes.marginBottom)}>
-						<Button variant='contained' color='primary' fullWidth type='submit'>
+						<Button
+							variant='contained'
+							color='primary'
+							fullWidth
+							type='submit'
+							disabled={buttonDisabled}
+						>
 							Update My Strain Profile
 						</Button>
 					</Grid>

@@ -93,6 +93,7 @@ function AddList({ setProfile, profile, setDialogOpen }) {
 	});
 
 	//Validation
+	const [buttonDisabled, setButtonDisabled] = useState(true);
 	const [errors, setErrors] = useState({
 		flavors: '',
 		effects: '',
@@ -103,14 +104,14 @@ function AddList({ setProfile, profile, setDialogOpen }) {
 	const formSchema = yup.object().shape({
 		flavors: yup.array().min(1).required('Enter at least 1 flavor!'),
 		effects: yup.array().min(1).required('Enter at least 1 effect!'),
-		description: yup.string(),
+		description: yup.string().required('Please enter a brief description...'),
 		listName: yup.string().required('Please Enter a Name for List!'),
 	});
 
 	useEffect(() => {
 		formSchema.isValid(formState).then((isFormValid) => {
 			console.log(isFormValid);
-			// setButtonDisabled(!isFormValid);
+			setButtonDisabled(!isFormValid);
 		});
 	}, [formState, formSchema]);
 
@@ -247,7 +248,13 @@ function AddList({ setProfile, profile, setDialogOpen }) {
 					</Grid>
 
 					<Grid item className={clsx(classes.marginBottom)}>
-						<Button variant='contained' color='primary' fullWidth type='submit'>
+						<Button
+							variant='contained'
+							color='primary'
+							fullWidth
+							type='submit'
+							disabled={buttonDisabled}
+						>
 							Create My Strain Profile
 						</Button>
 					</Grid>
