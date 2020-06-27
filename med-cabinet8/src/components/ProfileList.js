@@ -19,6 +19,9 @@ const useStyles = makeStyles({
 	buttons: {
 		marginBottom: '2rem',
 	},
+	tabs: {
+		width: '100%',
+	},
 });
 
 const ProfileList = ({ profileObj }) => {
@@ -78,12 +81,14 @@ const ProfileList = ({ profileObj }) => {
 						</Button>
 					</Grid>
 				</Grid>
-				<Grid item>
+				<Grid item className={classes.tabs}>
 					<Paper>
 						<Tabs
 							value={value}
 							onChange={handleChange}
 							aria-label='simple tabs example'
+							centered
+							variant='fullWidth'
 						>
 							{profile.map((item, index) => {
 								return <Tab key={index} label={item[0]} />;
