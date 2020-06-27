@@ -46,22 +46,25 @@ const useStyles = makeStyles({
 });
 
 export default function Recommendations({ object }) {
-	const initialState = {
-		"listName" : '',
 
-	  }
-	
-	  const prefs = { ...initialState,
-		  "listName" : object[0] ? object[0] : '',
-	  }
   const classes = useStyles();
   const [recs, setRecs] = useState([]);
   const [error, setError] = useState("");
+  const [prefs, setPrefs] = useState({
+		"listName" : '',
+	  });
+
+
+
+
 
 
   useEffect(() => {
+    if (object){
+      setPrefs({ "listName": object[0] ? object[0] : '',});
+    }
     axiosWithAuth()
-      .get(`/profile/recommendations/:${prefs.listName}`)
+      .get(`/profile/recommendations/${prefs.listName}`)
       .then((res) => {
         console.log(res.data.recommendations, "data");
         setRecs(res.data.recommendations);
@@ -69,10 +72,10 @@ export default function Recommendations({ object }) {
       })
       .catch((err) => {
         console.log(err.response);
-        setError(err.message);
+        setError(err.response.data.message);
       });
   }, [
-    prefs.listName,
+    object, prefs.listName,
   ]);
 
   function renderStars(rating) {
