@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 		minWidth: '100vw',
 	},
 	header: {
-		margin: '4rem 0',
+		margin: '4rem auto',
 	},
 	container: {
 		minHeight: '100%',

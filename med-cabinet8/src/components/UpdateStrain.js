@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Button, Container, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import MultipleSelect from './MultipleSelect';
+import * as yup from 'yup';
 
 const useStyles = makeStyles({
 	marginBottom: {
@@ -105,6 +106,46 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 		listName: prefs.listName,
 	});
 
+	//Validation
+	const [errors, setErrors] = useState({
+		flavors: '',
+		effects: '',
+		description: '',
+		listName: '',
+	});
+
+	const formSchema = yup.object().shape({
+		flavors: yup.array().min(1).required('Enter at least 1 flavor!'),
+		effects: yup.array().min(1).required('Enter at least 1 effect!'),
+		description: yup.string(),
+		listName: yup.string().required('Please Enter a Name for List!'),
+	});
+
+	useEffect(() => {
+		formSchema.isValid(formState).then((isFormValid) => {
+			console.log(isFormValid);
+			// setButtonDisabled(!isFormValid);
+		});
+	}, [formState, formSchema]);
+
+	function validateChange(e) {
+		yup
+			.reach(formSchema, e.target.name)
+			.validate(e.target.value)
+			.then(() => {
+				setErrors({
+					...errors,
+					[e.target.name]: '',
+				});
+			})
+			.catch((err) => {
+				setErrors({
+					...errors,
+					[e.target.name]: err.errors[0],
+				});
+			});
+	}
+
 	function handleFlavorChange(e) {
 		e.persist();
 		const newFormData = {
@@ -112,7 +153,7 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 			flavors: e.target.value,
 		};
 		console.log(formState);
-		// console.log(formState);
+		validateChange(e);
 		setFormState(newFormData);
 	}
 
@@ -123,7 +164,7 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 			effects: e.target.value,
 		};
 		console.log(formState);
-		// console.log(formState);
+		validateChange(e);
 		setFormState(newFormData);
 	}
 
@@ -135,6 +176,7 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
 			[e.target.name]: e.target.value,
 		};
 		setFormState(newFormData);
+		validateChange(e);
 	}
 
 	function handleDelete(e) {
