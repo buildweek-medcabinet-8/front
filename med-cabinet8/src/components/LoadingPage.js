@@ -36,8 +36,8 @@ const useStyles = makeStyles({
 		margin: 0,
 		padding: 0,
 		backgroundColor: 'black',
-		height: '100vh',
-		width: '100vw',
+		height: '100%',
+		width: '100%',
 	},
 
 	l: {
