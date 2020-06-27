@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function AddList({ setProfile, profile }) {
+function AddList({ setProfile, profile, setDialogOpen }) {
 	const classes = useStyles();
 	const flavors = [
 		'Earthy',
@@ -131,7 +131,7 @@ function AddList({ setProfile, profile }) {
 				description: [formState.description],
 			},
 		];
-
+		setDialogOpen(false);
 		axiosWithAuth()
 			.post('profile/add-list', formState)
 			.then((res) => {

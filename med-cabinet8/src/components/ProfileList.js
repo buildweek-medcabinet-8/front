@@ -24,20 +24,20 @@ const useStyles = makeStyles({
 const ProfileList = ({ profileObj }) => {
 	const classes = useStyles();
 	const [profile, setProfile] = useState(Object.entries(profileObj));
-	const [edit, toggleEdit] = useState(false);
-
-	const toggleEditing = () => {
-		toggleEdit(!edit);
-	};
 
 	const [value, setValue] = useState(0);
 	const handleChange = (e, newValue) => {
 		setValue(newValue);
 	};
 
-	const [modalOpen, setModalOpen] = useState(false);
+	const [addModalOpen, setAddModalOpen] = useState(false);
 	const handleModalClose = () => {
-		setModalOpen(false);
+		setAddModalOpen(false);
+	};
+
+	const [editModalOpen, setEditModalOpen] = useState(false);
+	const handleEditModalClose = () => {
+		setEditModalOpen(false);
 	};
 
 	return (
@@ -45,7 +45,7 @@ const ProfileList = ({ profileObj }) => {
 			<Grid item container>
 				<Grid item>
 					{profile.length === 0 ? (
-						<Typography variant='p'>
+						<Typography variant='subtitle1'>
 							You don't have any profiles yet click the plus to get started
 						</Typography>
 					) : null}
@@ -63,7 +63,7 @@ const ProfileList = ({ profileObj }) => {
 						<Button
 							variant='contained'
 							color='secondary'
-							onClick={toggleEditing}
+							onClick={() => setEditModalOpen(true)}
 						>
 							Edit Profile
 						</Button>
@@ -72,7 +72,7 @@ const ProfileList = ({ profileObj }) => {
 						<Button
 							variant='contained'
 							color='secondary'
-							onClick={() => setModalOpen(true)}
+							onClick={() => setAddModalOpen(true)}
 						>
 							Add Profile
 						</Button>
@@ -92,31 +92,31 @@ const ProfileList = ({ profileObj }) => {
 					</Paper>
 					<Grid item>
 						{profile.map((item, index) => {
-							if (!edit) {
-								return (
-									<TabPanel value={value} index={index}>
-										<Recommendations object={profile[index]} />
-									</TabPanel>
-								);
-							} else {
-								return (
-									<TabPanel value={value} index={index}>
+							return (
+								<TabPanel value={value} index={index}>
+									<Recommendations object={profile[index]} />
+									<Dialog open={editModalOpen} onClose={handleEditModalClose}>
 										<UpdateStrain
 											object={profile[index]}
-											toggleEditing={toggleEditing}
 											profile={profile}
 											setProfile={setProfile}
+											id={index}
+											setDialogOpen={setEditModalOpen}
 										/>
-									</TabPanel>
-								);
-							}
+									</Dialog>
+								</TabPanel>
+							);
 						})}
 					</Grid>
 				</Grid>
 			</Grid>
 
-			<Dialog open={modalOpen} onClose={handleModalClose}>
-				<AddList profile={profile} setProfile={setProfile} />
+			<Dialog open={addModalOpen} onClose={handleModalClose}>
+				<AddList
+					profile={profile}
+					setProfile={setProfile}
+					setDialogOpen={setAddModalOpen}
+				/>
 			</Dialog>
 		</Grid>
 	);
