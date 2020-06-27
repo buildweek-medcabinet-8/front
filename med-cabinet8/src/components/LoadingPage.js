@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
+import theme from '../theme';
 
 const useStyles = makeStyles({
 	'@keyframes loading': {
@@ -31,13 +32,10 @@ const useStyles = makeStyles({
 		letterSpacing: 12,
 		animation: '$loading 1s ease-in-out 0s infinite',
 		fontSize: '8rem',
-	},
-	div: {
-		margin: 0,
-		padding: 0,
-		backgroundColor: 'black',
-		height: '100%',
-		width: '100%',
+
+		[theme.breakpoints.down('md')]: {
+			fontSize: '3rem',
+		},
 	},
 
 	l: {
@@ -66,17 +64,15 @@ const useStyles = makeStyles({
 function Smoke() {
 	const classes = useStyles();
 	return (
-		<div className={classes.div}>
-			<ul className={classes.ul}>
-				<li className={clsx(classes.li, classes.l)}>L</li>
-				<li className={clsx(classes.li, classes.o)}>O</li>
-				<li className={clsx(classes.li, classes.a)}>A</li>
-				<li className={clsx(classes.li, classes.d)}>D</li>
-				<li className={clsx(classes.li, classes.i)}>I</li>
-				<li className={clsx(classes.li, classes.n)}>N</li>
-				<li className={clsx(classes.li, classes.g)}>G</li>
-			</ul>
-		</div>
+		<ul className={classes.ul}>
+			<li className={clsx(classes.li, classes.l)}>L</li>
+			<li className={clsx(classes.li, classes.o)}>O</li>
+			<li className={clsx(classes.li, classes.a)}>A</li>
+			<li className={clsx(classes.li, classes.d)}>D</li>
+			<li className={clsx(classes.li, classes.i)}>I</li>
+			<li className={clsx(classes.li, classes.n)}>N</li>
+			<li className={clsx(classes.li, classes.g)}>G</li>
+		</ul>
 	);
 }
 
