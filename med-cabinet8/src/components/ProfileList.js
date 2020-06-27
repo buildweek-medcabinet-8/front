@@ -2,55 +2,81 @@ import React, { useState } from 'react';
 import Recommendations from './Recommendations';
 import UpdateStrain from './UpdateStrain';
 import AddList from './AddList';
-import add from '../store/svg/add.svg';
-import { Grid, Typography, Button, Paper, Tabs, Tab } from '@material-ui/core';
+import {
+	Grid,
+	Typography,
+	Button,
+	Paper,
+	Tabs,
+	Tab,
+	Dialog,
+} from '@material-ui/core';
 import TabPanel from './TabPanel';
+
 import { makeStyles } from '@material-ui/styles';
 
-const ProfileList = ({ profileObj }) => {
-	const [profile, setProfile] = useState(Object.entries(profileObj));
-	// const [profile, setProfile] = useState([Object.entries(profileObj)[0]]);
-	const [edit, toggleEdit] = useState(false);
-	const [hide, toggleHide] = useState(true);
-	const [showAdd, toggleShow] = useState(false);
-	const [id, setId] = useState(0);
+const useStyles = makeStyles({
+	buttons: {
+		marginBottom: '2rem',
+	},
+});
 
-	const toggleHidding = (e) => {
-		let str = e.target.className.split(' ');
-		setId(str[0]);
-		toggleHide(!hide);
-		toggleShow(false);
-	};
+const ProfileList = ({ profileObj }) => {
+	const classes = useStyles();
+	const [profile, setProfile] = useState(Object.entries(profileObj));
+	const [edit, toggleEdit] = useState(false);
+
 	const toggleEditing = () => {
 		toggleEdit(!edit);
-	};
-	const toggleShowAdd = () => {
-		toggleShow(!showAdd);
-		toggleHide(true);
 	};
 
 	const [value, setValue] = useState(0);
 	const handleChange = (e, newValue) => {
 		setValue(newValue);
-		let str = e.target.className.split(' ');
-		setId(str[0]);
+	};
+
+	const [modalOpen, setModalOpen] = useState(false);
+	const handleModalClose = () => {
+		setModalOpen(false);
 	};
 
 	return (
 		<Grid container direction='row'>
-			<Grid item>
-				{profile.length === 0 ? (
-					<Typography variant='p'>
-						You don't have any profiles yet click the plus to get started
-					</Typography>
-				) : null}
-			</Grid>
-
-			<Grid item container direction='column' alignItems='center'>
+			<Grid item container>
 				<Grid item>
-					<Button variant='contained' color='secondary' onClick={toggleEditing}>
-						Edit Profile
-					</Button>
+					{profile.length === 0 ? (
+						<Typography variant='p'>
+							You don't have any profiles yet click the plus to get started
+						</Typography>
+					) : null}
+				</Grid>
+
+				<Grid
+					item
+					container
+					direction='row'
+					alignItems='center'
+					justify='space-around'
+					className={classes.buttons}
+				>
+					<Grid item>
+						<Button
+							variant='contained'
+							color='secondary'
+							onClick={toggleEditing}
+						>
+							Edit Profile
+						</Button>
+					</Grid>
+					<Grid item>
+						<Button
+							variant='contained'
+							color='secondary'
+							onClick={() => setModalOpen(true)}
+						>
+							Add Profile
+						</Button>
+					</Grid>
 				</Grid>
 				<Grid item>
 					<Paper>
@@ -66,47 +92,32 @@ const ProfileList = ({ profileObj }) => {
 					</Paper>
 					<Grid item>
 						{profile.map((item, index) => {
-							return (
-								<TabPanel value={value} index={index}>
-									{/* <Recommendations object={profile[0]} /> */}
-								</TabPanel>
-							);
+							if (!edit) {
+								return (
+									<TabPanel value={value} index={index}>
+										<Recommendations object={profile[index]} />
+									</TabPanel>
+								);
+							} else {
+								return (
+									<TabPanel value={value} index={index}>
+										<UpdateStrain
+											object={profile[index]}
+											toggleEditing={toggleEditing}
+											profile={profile}
+											setProfile={setProfile}
+										/>
+									</TabPanel>
+								);
+							}
 						})}
 					</Grid>
 				</Grid>
-				{profile.map((item, ind) => {
-					return (
-						<Grid item className='profile-item' key={ind}>
-							<div className={`${ind} profile-name`} onClick={toggleHidding}>
-								<Typography variant='h3' className={ind}>
-									{item[0]}
-								</Typography>
-							</div>
-						</Grid>
-					);
-				})}
+			</Grid>
 
-				<Grid item className='profile-item'>
-					<div className='+ profile-name' onClick={toggleShowAdd}>
-						<img src={add} alt='add a profile' className='add' />
-					</div>
-				</Grid>
-			</Grid>
-			<Grid className='view-details'>
-				{hide ? (
-					<div></div>
-				) : edit ? (
-					<Recommendations object={profile[id]} />
-				) : (
-					<UpdateStrain
-						object={profile[id]}
-						toggleEditing={toggleEditing}
-						profile={profile}
-						setProfile={setProfile}
-					/>
-				)}
-				{showAdd ? <AddList profile={profile} setProfile={setProfile} /> : null}
-			</Grid>
+			<Dialog open={modalOpen} onClose={handleModalClose}>
+				<AddList profile={profile} setProfile={setProfile} />
+			</Dialog>
 		</Grid>
 	);
 };
