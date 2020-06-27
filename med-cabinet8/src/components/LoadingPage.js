@@ -5,15 +5,15 @@ import clsx from 'clsx';
 const useStyles = makeStyles({
 	'@keyframes loading': {
 		'0%': {
-			color: '#fff',
+			color: '#3a5240',
 		},
-		'90%': {
-			color: '##fff',
-			textShadow: '0px 100px 100px #fff',
+		'50%': {
+			color: '#466e50',
+			textShadow: '0px 100px 100px #000',
 		},
 		'100%': {
 			color: '#517d23',
-			textShadow: '0 5px 50px #ccc',
+			textShadow: '0 5px 50px #000',
 		},
 	},
 	ul: {
@@ -27,9 +27,9 @@ const useStyles = makeStyles({
 	},
 	li: {
 		listStyle: 'none',
-		color: 'rgba(255, 255, 255, .3)',
+		color: 'rgba(122, 230, 150, .3)',
 		letterSpacing: 12,
-		animation: '$loading 2s ease-in-out 0s infinite',
+		animation: '$loading 1s ease-in-out 0s infinite',
 		fontSize: '8rem',
 	},
 	div: {
