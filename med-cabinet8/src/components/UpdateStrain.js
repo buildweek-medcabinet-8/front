@@ -11,16 +11,14 @@ const useStyles = makeStyles({
 	},
 });
 
-function UpdateStrain({{ object, id, profile, setProfile, setDialogOpen }}) {
-
-// eslint-disable-next-line
+function UpdateStrain({ object, id, profile, setProfile, setDialogOpen }) {
+	// eslint-disable-next-line
 	const [prefs, setPrefs] = useState({
-		"listName" : object[0],
-		"effects": object[1].effects,
-		"flavors": object[1].flavors,
-		"description": object[1].description
-	})
-
+		listName: object[0],
+		effects: object[1].effects,
+		flavors: object[1].flavors,
+		description: object[1].description,
+	});
 
 	const classes = useStyles();
 	const flavors = [
@@ -101,8 +99,6 @@ function UpdateStrain({{ object, id, profile, setProfile, setDialogOpen }}) {
 		listName: prefs.listName,
 	});
 
-
-
 	function handleFlavorChange(e) {
 		e.persist();
 		const newFormData = {
@@ -137,9 +133,9 @@ function UpdateStrain({{ object, id, profile, setProfile, setDialogOpen }}) {
 
 	function handleDelete(e) {
 		e.preventDefault();
-		const delList =  {"listName": prefs.listName}
+		const delList = { listName: prefs.listName };
 		axiosWithAuth()
-			.delete("/profile/delete-list", {"data": delList})
+			.delete('/profile/delete-list', { data: delList })
 			.then((res) => {
 				setProfile(profile.filter((item) => item[0] !== prefs.listName));
 			})
