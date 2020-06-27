@@ -19,6 +19,13 @@ const useStyles = makeStyles({
 	buttons: {
 		marginBottom: '2rem',
 	},
+	root: {
+		flexGrow: 1,
+	},
+	paper: {
+		// width: '100%',
+		minWidth: '100%',
+	},
 });
 
 const ProfileList = ({ profileObj }) => {
@@ -78,14 +85,16 @@ const ProfileList = ({ profileObj }) => {
 						</Button>
 					</Grid>
 				</Grid>
-				<Grid item>
-					<Paper>
+				<Grid item className={classes.paper}>
+					<Paper className={classes.paper}>
 						<Tabs
 							value={value}
 							onChange={handleChange}
 							aria-label='simple tabs example'
-							className={classes.tab}
-							variant='scrollable'
+							className={classes.root}
+							textColor='primary'
+							variant='fullWidth'
+							centered
 						>
 							{profile.map((item, index) => {
 								return <Tab key={index} label={item[0]} />;
