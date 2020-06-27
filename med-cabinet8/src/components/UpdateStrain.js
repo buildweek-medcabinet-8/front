@@ -15,10 +15,18 @@ const useStyles = makeStyles({
 	},
 	container: {
 		padding: '1rem',
+		width: '100%',
 	},
 });
 
-function UpdateStrain({ object, id, profile, setProfile, setDialogOpen, handleClose }) {
+function UpdateStrain({
+	object,
+	id,
+	profile,
+	setProfile,
+	setDialogOpen,
+	handleClose,
+}) {
 	// eslint-disable-next-line
 	const [prefs, setPrefs] = useState({
 		listName: object[0],
@@ -188,12 +196,11 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen, handleCl
 			.delete('/profile/delete-list', { data: delList })
 			.then((res) => {
 				setProfile(profile.filter((item) => item[0] !== prefs.listName));
-				handleClose()
+				handleClose();
 			})
 			.catch((err) => {
 				console.log('/profile/delete-list', err.response);
 			});
-
 	}
 
 	function handleSubmit(e) {
@@ -210,7 +217,7 @@ function UpdateStrain({ object, id, profile, setProfile, setDialogOpen, handleCl
 		axiosWithAuth()
 			.put('/profile/update-list', formState)
 			.then((res) => {
-				console.log("/profile/update-list")
+				console.log('/profile/update-list');
 				setProfile([
 					...profile.filter((item) => item[0] !== prefs.listName),
 					addList,

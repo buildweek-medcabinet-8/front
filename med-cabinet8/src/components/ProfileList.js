@@ -34,6 +34,9 @@ const useStyles = makeStyles({
 	worksText: {
 		padding: '2rem',
 	},
+	editModal: {
+		width: '50%',
+	},
 });
 
 const ProfileList = ({ profileObj }) => {
@@ -46,7 +49,7 @@ const ProfileList = ({ profileObj }) => {
 	};
 
 	const [addModalOpen, setAddModalOpen] = useState(false);
-	const handleModalClose = () => {
+	const handleAddModalClose = () => {
 		setAddModalOpen(false);
 	};
 
@@ -67,12 +70,16 @@ const ProfileList = ({ profileObj }) => {
 
 			<Grid item className={classes.works}>
 				<Paper className={classes.worksText}>
-					<Typography variant='p' color='initial' align='center'>
-						To get started, click on "Add Profile", and create a profile by
-						giving it a name, providing at least 1 desired flavor and 1 desired
-						effect, and a brief description, and we will return a list of our 5
-						best recommendations that meet your needs. You can change any
-						profile at any time by choosing "Update Profile".
+					<Typography variant='subtitle1' color='initial' align='center'>
+						To get started, click on 'Add Profile' to create a strain
+						recommendation profile. Please provide a name, including at least 1
+						desired flavor and effect, and a description.
+					</Typography>
+					<br />
+					<Typography variant='subtitle1' color='initial' align='center'>
+						Our engine will return a list of our 5 best recommendations that
+						meet your needs. You can change any profile at any time by clicking
+						'Update Profile'.
 					</Typography>
 				</Paper>
 			</Grid>
@@ -123,7 +130,11 @@ const ProfileList = ({ profileObj }) => {
 						return (
 							<TabPanel value={value} index={index}>
 								<Recommendations object={profile[index]} />
-								<Dialog open={editModalOpen} onClose={handleEditModalClose}>
+								<Dialog
+									open={editModalOpen}
+									onClose={handleEditModalClose}
+									className={classes.editModal}
+								>
 									<UpdateStrain
 										object={profile[index]}
 										profile={profile}
@@ -139,7 +150,11 @@ const ProfileList = ({ profileObj }) => {
 				</Grid>
 			</Grid>
 
-			<Dialog open={addModalOpen} onClose={handleModalClose}>
+			<Dialog
+				open={addModalOpen}
+				onClose={handleAddModalClose}
+				className={classes.addModal}
+			>
 				<AddList
 					profile={profile}
 					setProfile={setProfile}
