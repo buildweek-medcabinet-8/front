@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import StarsIcon from "@material-ui/icons/Stars";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import LoadingPage from './LoadingPage';
 
 const useStyles = makeStyles({
   root: {
@@ -93,11 +94,7 @@ export default function Recommendations({ object }) {
     return stars;
   }
   if (recs.length === 0) {
-    return(
-      <div>Loading
-        <p className="error">{error}</p>
-      </div>
-    )
+    return <LoadingPage />
   }
   return (
     <Grid

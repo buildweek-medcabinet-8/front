@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Grid, Button, Container, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
@@ -13,12 +13,7 @@ const useStyles = makeStyles({
 
 function UpdateStrain({object, toggleEditing, id, profile, setProfile}) {
 
-	const initialState = {
-		"listName" : '',
-		"effects": [],
-		"flavors": [],
-		"description": '', 
-	  }
+// eslint-disable-next-line
 	const [prefs, setPrefs] = useState({
 		"listName" : object[0],
 		"effects": object[1].effects,
