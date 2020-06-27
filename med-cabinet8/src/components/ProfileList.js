@@ -46,7 +46,7 @@ const ProfileList = ({ profileObj }) => {
 				<Grid item>
 					{profile.length === 0 ? (
 						<Typography variant='subtitle1'>
-							You don't have any profiles yet click the plus to get started
+							<p className="intro">You don't have any profiles yet click add profile to get started</p>
 						</Typography>
 					) : null}
 				</Grid>
@@ -102,6 +102,7 @@ const ProfileList = ({ profileObj }) => {
 											setProfile={setProfile}
 											id={index}
 											setDialogOpen={setEditModalOpen}
+											handleClose={handleEditModalClose}
 										/>
 									</Dialog>
 								</TabPanel>
