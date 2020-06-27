@@ -92,9 +92,11 @@ export default function Recommendations({ object }) {
     }
     return stars;
   }
-  if (recs.length === 0 && error.length === 0) {
+  if (recs.length === 0) {
     return(
-      <div>Loading</div>
+      <div>Loading
+        <p className="error">{error}</p>
+      </div>
     )
   }
   return (

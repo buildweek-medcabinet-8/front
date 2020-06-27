@@ -11,8 +11,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function AddList({setProfile, profile}) {
-
+function AddList({ setProfile, profile }) {
 	const classes = useStyles();
 	const flavors = [
 		'Earthy',
@@ -86,11 +85,10 @@ function AddList({setProfile, profile}) {
 	];
 
 	const [formState, setFormState] = useState({
-		"listName": '',
-		"flavors": [],
-		"effects": [],
-		"description": []
-
+		listName: '',
+		flavors: [],
+		effects: [],
+		description: [],
 	});
 
 	function handleFlavorChange(e) {
@@ -110,8 +108,6 @@ function AddList({setProfile, profile}) {
 			...formState,
 			effects: e.target.value,
 		};
-		//console.log(formState);
-		// console.log(formState);
 		setFormState(newFormData);
 	}
 
@@ -128,15 +124,20 @@ function AddList({setProfile, profile}) {
 	function handleSubmit(e) {
 		e.preventDefault();
 		const addList = [
-			formState.listName, {effects: formState.effects, flavors: formState.flavors, description: [formState.description]}
-		]
+			formState.listName,
+			{
+				effects: formState.effects,
+				flavors: formState.flavors,
+				description: [formState.description],
+			},
+		];
+
 		axiosWithAuth()
 			.post('profile/add-list', formState)
 			.then((res) => {
-
-				setProfile([...profile, addList])
+				setProfile([...profile, addList]);
 				// console.log(newPreferences);
-				console.log("combined profile", profile)
+				console.log('combined profile', profile);
 			})
 			.catch((err) => {
 				// console.log(err);
@@ -146,8 +147,7 @@ function AddList({setProfile, profile}) {
 			listName: '',
 			flavors: [],
 			effects: [],
-			description: []
-,
+			description: [],
 		});
 	}
 
@@ -155,7 +155,7 @@ function AddList({setProfile, profile}) {
 		<Container>
 			<form onSubmit={handleSubmit}>
 				<Grid container direction='column' alignItems='center'>
-				<Grid item>
+					<Grid item>
 						<TextField
 							label='Profile Name'
 							value={formState.listName}
@@ -187,13 +187,13 @@ function AddList({setProfile, profile}) {
 							handleChange={handleEffectChange}
 							inputId={`effect-input`}
 							items={effects}
-							name="effects"
+							name='effects'
 						/>
 					</Grid>
 
 					<Grid item className={classes.marginBottom}>
 						<TextField
-                            multiline
+							multiline
 							label='Description'
 							value={formState.description}
 							onChange={handleDescriptionChange}
