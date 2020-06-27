@@ -133,4 +133,5 @@ function StrainSearch() {
 	);
 }
 
-export default StrainSearch;
+export default StrainS
+earch;
