@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+// import './App.css';
 //import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ThemeProvider, makeStyles } from '@material-ui/core';
