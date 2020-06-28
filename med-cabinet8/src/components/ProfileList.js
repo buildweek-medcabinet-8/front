@@ -60,25 +60,21 @@ const ProfileList = ({ profileObj }) => {
 
 	return (
 		<Grid container direction='column' alignItems='center' justify='center'>
-			<Grid item>
+			<Grid item className={classes.works}>
 				{profile.length === 0 ? (
+				<Paper className={classes.worksText}>
 					<Typography variant='subtitle1' color='initial' align='center'>
 						To get started, click on 'Add Profile' to create a strain
 						recommendation profile. Please provide a name, including at least 1
 						desired flavor and effect, and a description.
 					</Typography>
-				) : null}
-			</Grid>
-
-			<Grid item className={classes.works}>
-				<Paper className={classes.worksText}>
-					
 					<Typography variant='subtitle1' color='initial' align='center'>
 						Our engine will return a list of our 5 best recommendations that
 						meet your needs. You can change any profile at any time by clicking
 						'Update Profile'.
 					</Typography>
 				</Paper>
+				) : null}
 			</Grid>
 
 			<Grid
