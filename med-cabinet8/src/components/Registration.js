@@ -64,7 +64,7 @@ function RegistrationForm() {
 		axiosWithAuth()
 			.post('/auth/register', newState)
 			.then((res) => {
-				setError('');
+				// setError('');
 				localStorage.setItem('token', res.data.payload);
 				console.log('register Successful!', res);
 				setFormState(initialState);
@@ -73,18 +73,21 @@ function RegistrationForm() {
 			})
 			.catch((err) => {
 				console.log('register error', err.response);
-				setError(err.response.data.message);
+				// setError(err.response.data.message);
 				if (
 					err.response.data.err ===
 					'insert into "users" ("email", "password", "username") values ($1, $2, $3) - duplicate key value violates unique constraint "users_username_unique"'
 				) {
-					setError('Sorry, a user with that name already exists');
+					setErrors({
+						...errors,
+						username: 'Sorry, a user with that name already exists',
+					});
 				}
 				if (
 					err.response.data.err ===
 					'insert into "users" ("email", "password", "username") values ($1, $2, $3) - duplicate key value violates unique constraint "users_email_unique"'
 				) {
-					setError('Sorry, that email is already used');
+					setErrors({ ...errors, email: 'Sorry, that email is already used' });
 				}
 			});
 	}
@@ -199,7 +202,7 @@ function RegistrationForm() {
 						Sign Up!
 					</Button>
 				</Grid>
-				<Grid item className={classes.works}>
+				{/* <Grid item className={classes.works}>
 					{error !== '' ? (
 						<Paper className={classes.worksText}>
 							<Typography variant='subtitle1' color='initial' align='center'>
@@ -207,7 +210,7 @@ function RegistrationForm() {
 							</Typography>
 						</Paper>
 					) : null}
-				</Grid>
+				</Grid> */}
 			</Grid>
 		</form>
 	);
