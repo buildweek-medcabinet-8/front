@@ -68,15 +68,21 @@ const ProfileList = ({ profileObj }) => {
 						recommendation profile. Please provide a name, including at least 1
 						desired flavor and effect, and a description.
 					</Typography>
+				</Paper>
+				) : null}
+			</Grid>
+			<Grid item className={classes.works}>
+				{profile.length > 0 ? (
+				<Paper className={classes.worksText}>
 					<Typography variant='subtitle1' color='initial' align='center'>
-						Our engine will return a list of our 5 best recommendations that
+						Click on any of your profiles and 
+						our engine will return a list of our 5 best recommendations that
 						meet your needs. You can change any profile at any time by clicking
 						'Update Profile'.
 					</Typography>
 				</Paper>
 				) : null}
 			</Grid>
-
 			<Grid
 				item
 				container
@@ -85,7 +91,8 @@ const ProfileList = ({ profileObj }) => {
 				justify='space-around'
 				className={classes.buttons}
 			>
-				<Grid item>
+
+{profile.length > 0 ? (<Grid item>
 					<Button
 						variant='contained'
 						color='secondary'
@@ -93,7 +100,7 @@ const ProfileList = ({ profileObj }) => {
 					>
 						Update Profile
 					</Button>
-				</Grid>
+				</Grid>) : null}
 				<Grid item>
 					<Button
 						variant='contained'
