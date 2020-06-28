@@ -62,20 +62,17 @@ const ProfileList = ({ profileObj }) => {
 		<Grid container direction='column' alignItems='center' justify='center'>
 			<Grid item>
 				{profile.length === 0 ? (
-					<Typography variant='subtitle1'>
-						You don't have any profiles yet click add profile to get started
+					<Typography variant='subtitle1' color='initial' align='center'>
+						To get started, click on 'Add Profile' to create a strain
+						recommendation profile. Please provide a name, including at least 1
+						desired flavor and effect, and a description.
 					</Typography>
 				) : null}
 			</Grid>
 
 			<Grid item className={classes.works}>
 				<Paper className={classes.worksText}>
-					<Typography variant='subtitle1' color='initial' align='center'>
-						To get started, click on 'Add Profile' to create a strain
-						recommendation profile. Please provide a name, including at least 1
-						desired flavor and effect, and a description.
-					</Typography>
-					<br />
+					
 					<Typography variant='subtitle1' color='initial' align='center'>
 						Our engine will return a list of our 5 best recommendations that
 						meet your needs. You can change any profile at any time by clicking
@@ -98,7 +95,7 @@ const ProfileList = ({ profileObj }) => {
 						color='secondary'
 						onClick={() => setEditModalOpen(true)}
 					>
-						Edit Profile
+						Update Profile
 					</Button>
 				</Grid>
 				<Grid item>
