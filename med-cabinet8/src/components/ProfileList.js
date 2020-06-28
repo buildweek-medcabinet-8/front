@@ -128,7 +128,7 @@ const ProfileList = ({ profileObj }) => {
 				<Grid item>
 					{profile.map((item, index) => {
 						return (
-							<TabPanel value={value} index={index}>
+							<TabPanel value={value} index={index} key={index}>
 								<Recommendations object={profile[index]} />
 								<Dialog
 									open={editModalOpen}

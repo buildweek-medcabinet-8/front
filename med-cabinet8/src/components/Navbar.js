@@ -39,10 +39,13 @@ function Navbar({ checked, setChecked }) {
 			>
 				<Toolbar className={classes.toolbar}>
 					{checked === true ? <NavMenu /> : null}
-					<img src={logo} alt='Med-Cabinet Logo' className={classes.logo} />
+					<Link to='/'>
+						<img src={logo} alt='Med-Cabinet Logo' className={classes.logo} />
+					</Link>
 					<Typography variant='h4' component='span' className={classes.title}>
 						Med-Cabinet
 					</Typography>
+
 					{checked ? (
 						<LogoutSwitch checked={checked} setChecked={setChecked} />
 					) : null}

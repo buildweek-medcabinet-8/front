@@ -121,6 +121,7 @@ function UpdateStrain({
 		effects: '',
 		description: '',
 		listName: '',
+		message: '',
 	});
 
 	const formSchema = yup.object().shape({
@@ -132,7 +133,7 @@ function UpdateStrain({
 
 	useEffect(() => {
 		formSchema.isValid(formState).then((isFormValid) => {
-			console.log(isFormValid);
+			//console.log(isFormValid);
 			setButtonDisabled(!isFormValid);
 		});
 	}, [formState, formSchema]);
@@ -161,7 +162,7 @@ function UpdateStrain({
 			...formState,
 			flavors: e.target.value,
 		};
-		console.log(formState);
+		//console.log(formState);
 		validateChange(e);
 		setFormState(newFormData);
 	}
@@ -172,7 +173,7 @@ function UpdateStrain({
 			...formState,
 			effects: e.target.value,
 		};
-		console.log(formState);
+		//console.log(formState);
 		validateChange(e);
 		setFormState(newFormData);
 	}
@@ -217,14 +218,15 @@ function UpdateStrain({
 		axiosWithAuth()
 			.put('/profile/update-list', formState)
 			.then((res) => {
-				console.log('/profile/update-list');
+				//console.log('/profile/update-list', res.data.message);
 				setProfile([
 					...profile.filter((item) => item[0] !== prefs.listName),
 					addList,
 				]);
 			})
 			.catch((err) => {
-				console.log('profile/update-list', err.response);
+				setErrors({errors, message: err.response.data.message})
+				console.log('profile/update-list', errors.message);
 			});
 	}
 

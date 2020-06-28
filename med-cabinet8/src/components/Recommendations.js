@@ -13,12 +13,16 @@ import {
 import StarsIcon from '@material-ui/icons/Stars';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import LoadingPage from './LoadingPage';
-import theme from '../theme';
 
 const useStyles = makeStyles({
 	root: {
 		minWidth: '100%',
 		minHeight: '100%',
+	},
+	bullet: {
+		display: 'inline-block',
+		margin: '0 2px',
+		transform: 'scale(0.8)',
 	},
 	title: {
 		fontSize: 14,
@@ -28,9 +32,6 @@ const useStyles = makeStyles({
 	},
 	gridContainer: {
 		margin: '1rem 0',
-		// [theme.breakpoints.down('sm')]: {
-		// 	margin: '0 auto',
-		// },
 	},
 	ratingText: {
 		verticalAlign: 'top',
@@ -43,7 +44,6 @@ const useStyles = makeStyles({
 	description: {
 		marginBottom: '1rem',
 	},
-	container: {},
 });
 
 export default function Recommendations({ object }) {
@@ -58,17 +58,25 @@ export default function Recommendations({ object }) {
 		if (object) {
 			setPrefs({ listName: object[0] ? object[0] : '' });
 		}
-		axiosWithAuth()
-			.get(`/profile/recommendations/${prefs.listName}`)
-			.then((res) => {
-				console.log(res.data.recommendations, 'data');
-				setRecs(res.data.recommendations);
-				setError('');
-			})
-			.catch((err) => {
-				console.log(err.response);
-				setError(err.response.data.message);
-			});
+		if (prefs.listName !== '') {
+			axiosWithAuth()
+				.get(`/profile/recommendations/${prefs.listName}`)
+				.then((res) => {
+					console.log(
+						`/profile/recommendations/${prefs.listName}`,
+						res.data.recommendations
+					);
+					setRecs(res.data.recommendations);
+					setError('');
+				})
+				.catch((err) => {
+					console.log(
+						`/profile/recommendations/${prefs.listName}`,
+						err.response
+					);
+					setError(err.response.data.message);
+				});
+		}
 	}, [object, prefs.listName]);
 
 	function renderStars(rating) {

@@ -89,7 +89,7 @@ function AddList({ setProfile, profile, setDialogOpen }) {
 		listName: '',
 		flavors: [],
 		effects: [],
-		description: '',
+		description: ''
 	});
 
 	//Validation
@@ -99,6 +99,7 @@ function AddList({ setProfile, profile, setDialogOpen }) {
 		effects: '',
 		description: '',
 		listName: '',
+		message: ''
 	});
 
 	const formSchema = yup.object().shape({
@@ -110,7 +111,7 @@ function AddList({ setProfile, profile, setDialogOpen }) {
 
 	useEffect(() => {
 		formSchema.isValid(formState).then((isFormValid) => {
-			console.log(isFormValid);
+			//console.log(isFormValid);
 			setButtonDisabled(!isFormValid);
 		});
 	}, [formState, formSchema]);
@@ -139,7 +140,7 @@ function AddList({ setProfile, profile, setDialogOpen }) {
 			...formState,
 			flavors: e.target.value,
 		};
-		console.log(formState);
+		//console.log(formState);
 		validateChange(e);
 		setFormState(newFormData);
 	}
@@ -181,18 +182,18 @@ function AddList({ setProfile, profile, setDialogOpen }) {
 			.then((res) => {
 				setProfile([...profile, addList]);
 				// console.log(newPreferences);
-				console.log('combined profile', profile);
+				//console.log('combined profile', profile);
 			})
 			.catch((err) => {
-				// console.log(err);
-				console.log(err.message, err.response);
+				alert("Sorry a List with that name already exist")
+				
 			});
-		setFormState({
-			listName: '',
-			flavors: [],
-			effects: [],
-			description: '',
-		});
+		// setFormState({
+		// 	listName: '',
+		// 	flavors: [],
+		// 	effects: [],
+		// 	description: '',
+		// });
 	}
 
 	return (

@@ -52,7 +52,7 @@ function App() {
 					<Container className={classes.container}>
 						<Navbar checked={checked} setChecked={setChecked} />
 						<Route exact path='/'>
-							<LoginForm setChecked={setChecked} setUsername={setUsername} />
+							<LoginForm setChecked={setChecked} checked={checked} setUsername={setUsername} />
 						</Route>
 						<Route path='/register' component={Registration} />
 						<PrivateRoute
