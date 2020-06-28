@@ -64,6 +64,7 @@ export default function Recommendations({ object }) {
     if (object){
       setPrefs({ "listName": object[0] ? object[0] : '',});
     }
+    if (prefs.listName !== ''){
     axiosWithAuth()
       .get(`/profile/recommendations/${prefs.listName}`)
       .then((res) => {
@@ -75,9 +76,8 @@ export default function Recommendations({ object }) {
         console.log(err.response);
         setError(err.response.data.message);
       });
-  }, [
-    object, prefs.listName,
-  ]);
+    }
+  }, [prefs.listName, object ]);
 
   function renderStars(rating) {
     let stars = [];
