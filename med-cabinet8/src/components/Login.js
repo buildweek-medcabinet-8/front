@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function LoginForm({ setChecked, setUsername }) {
+function LoginForm({ checked, setChecked, setUsername }) {
 	const { push } = useHistory();
 	const classes = useStyles();
 
@@ -106,6 +106,7 @@ function LoginForm({ setChecked, setUsername }) {
 			wrap='nowrap'
 			className={classes.container}
 		>
+			{!checked ? (
 			<Grid item className={classes.formContainer}>
 				<form onSubmit={handleSubmit}>
 					<Grid
@@ -163,7 +164,7 @@ function LoginForm({ setChecked, setUsername }) {
 						</p>
 					</Grid>
 				</form>
-			</Grid>
+			</Grid>) : null}
 			<Grid item>
 				<Logo />
 			</Grid>
