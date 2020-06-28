@@ -66,15 +66,18 @@ function RegistrationForm() {
 			.then((res) => {
 				localStorage.setItem('token', res.data.payload);
 				console.log('register Successful!', res);
+				setFormState(initialState);
+				setErrors(initialState);
 				push('/');
 			})
 			.catch((err) => {
 				console.log('register error', err.response);
-				setFormState(initialState);
+				// setFormState(initialState);
+				setErrors({
+					...errors,
+					username: 'Username already taken!',
+				});
 			});
-
-		//console.log(formState);
-		setFormState(initialState);
 	}
 
 	// Validation

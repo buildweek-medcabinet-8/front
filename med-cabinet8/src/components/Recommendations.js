@@ -13,16 +13,12 @@ import {
 import StarsIcon from '@material-ui/icons/Stars';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import LoadingPage from './LoadingPage';
+import theme from '../theme';
 
 const useStyles = makeStyles({
 	root: {
 		minWidth: '100%',
 		minHeight: '100%',
-	},
-	bullet: {
-		display: 'inline-block',
-		margin: '0 2px',
-		transform: 'scale(0.8)',
 	},
 	title: {
 		fontSize: 14,
@@ -32,6 +28,9 @@ const useStyles = makeStyles({
 	},
 	gridContainer: {
 		margin: '1rem 0',
+		// [theme.breakpoints.down('sm')]: {
+		// 	margin: '0 auto',
+		// },
 	},
 	ratingText: {
 		verticalAlign: 'top',
@@ -44,6 +43,7 @@ const useStyles = makeStyles({
 	description: {
 		marginBottom: '1rem',
 	},
+	container: {},
 });
 
 export default function Recommendations({ object }) {
@@ -95,25 +95,23 @@ export default function Recommendations({ object }) {
 			className={classes.gridContainer}
 			justify='space-evenly'
 		>
-			{' '}
 			{error && (
-				<div>
-					<p>No Recommendations Found</p>
-					<p className='error'>{error}</p>
-				</div>
+				<Grid item>
+					<Typography variant='subtitle1'>No Recommendations Found</Typography>
+					<Typography variant='subtitle2'>{error}</Typography>
+				</Grid>
 			)}
 			{recs &&
 				recs.map((rec, index) => {
 					return (
 						<Grid
 							item
-							container
-							wrap='wrap'
+							// wrap='wrap'
 							key={index}
 							xs={12}
 							sm={6}
 							md={4}
-							alignItems='center'
+							className={classes.container}
 						>
 							<Card className={classes.root} variant='outlined'>
 								<CardContent>

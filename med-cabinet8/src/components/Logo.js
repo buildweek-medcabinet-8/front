@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 		margin: '3rem auto',
 		backgroundColor: 'lightgray',
 		width: '100%',
-		borderRadius: '75px',
+		borderRadius: '30px',
 		opacity: '.65',
 		flexDirection: 'column',
 		// [theme.breakpoints.down('md')]: {
@@ -23,10 +23,7 @@ const useStyles = makeStyles({
 		maxWidth: '75%',
 	},
 	text: {
-		marginLeft: '3rem',
-		// [theme.breakpoints.down('md')]: {
-		// 	marginLeft: 0,
-		// },
+		marginTop: '1rem',
 	},
 });
 
@@ -34,7 +31,12 @@ function Logo() {
 	const classes = useStyles();
 	return (
 		<div className={classes.div}>
-			<Typography variant='h1' color='primary' className={classes.text}>
+			<Typography
+				variant='h1'
+				color='primary'
+				align='center'
+				className={classes.text}
+			>
 				Med-Cabinet
 			</Typography>
 			<img src={logo} className={classes.img} alt='logo' />

@@ -18,6 +18,15 @@ const useStyles = makeStyles(() => ({
 		display: 'flex',
 		justifyContent: 'space-around',
 	},
+	logo: {
+		height: '2.2rem',
+		marginRight: '.5rem',
+		verticalAlign: 'center',
+	},
+	toolbar: {
+		display: 'flex',
+		alignItems: 'center',
+	},
 }));
 
 function Navbar({ checked, setChecked }) {
@@ -28,10 +37,10 @@ function Navbar({ checked, setChecked }) {
 				position='fixed'
 				className={clsx(classes.appbar, classes.whiteText)}
 			>
-				<Toolbar>
+				<Toolbar className={classes.toolbar}>
 					{checked === true ? <NavMenu /> : null}
+					<img src={logo} alt='Med-Cabinet Logo' className={classes.logo} />
 					<Typography variant='h4' component='span' className={classes.title}>
-						<img src={logo} alt='Med-Cabinet Logo' className='logo' />
 						Med-Cabinet
 					</Typography>
 					{checked ? (
@@ -43,6 +52,7 @@ function Navbar({ checked, setChecked }) {
 								variant='contained'
 								color='secondary'
 								component={Link}
+								size='small'
 								to='/register'
 							>
 								Sign Up!

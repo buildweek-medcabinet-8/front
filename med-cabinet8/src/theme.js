@@ -8,6 +8,6 @@ let theme = createMuiTheme({
 	},
 });
 
-theme = responsiveFontSizes(theme);
+theme = responsiveFontSizes(theme, { factor: 7 });
 
 export default theme;
