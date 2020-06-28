@@ -128,7 +128,7 @@ function AddList({ setProfile, profile, setDialogOpen }) {
 			{
 				effects: formState.effects,
 				flavors: formState.flavors,
-				description: formState.description 
+				description: formState.description,
 			},
 		];
 		setDialogOpen(false);
@@ -147,7 +147,7 @@ function AddList({ setProfile, profile, setDialogOpen }) {
 			listName: '',
 			flavors: [],
 			effects: [],
-			description: "",
+			description: '',
 		});
 	}
 
