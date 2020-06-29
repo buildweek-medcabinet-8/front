@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Button, Container, TextField } from '@material-ui/core';
+import {
+	Grid,
+	Button,
+	Container,
+	TextField,
+	Typography,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -121,7 +127,7 @@ function UpdateStrain({
 		effects: '',
 		description: '',
 		listName: '',
-		message: '',
+		// message: '',
 	});
 
 	const formSchema = yup.object().shape({
@@ -162,7 +168,6 @@ function UpdateStrain({
 			...formState,
 			flavors: e.target.value,
 		};
-		//console.log(formState);
 		validateChange(e);
 		setFormState(newFormData);
 	}
@@ -173,7 +178,6 @@ function UpdateStrain({
 			...formState,
 			effects: e.target.value,
 		};
-		//console.log(formState);
 		validateChange(e);
 		setFormState(newFormData);
 	}
@@ -183,7 +187,7 @@ function UpdateStrain({
 
 		const newFormData = {
 			...formState,
-			[e.target.name]: e.target.value,
+			description: e.target.value,
 		};
 		setFormState(newFormData);
 		validateChange(e);
@@ -225,7 +229,7 @@ function UpdateStrain({
 				]);
 			})
 			.catch((err) => {
-				setErrors({errors, message: err.response.data.message})
+				setErrors({ errors, message: err.response.data.message });
 				console.log('profile/update-list', errors.message);
 			});
 	}
@@ -233,12 +237,12 @@ function UpdateStrain({
 	return (
 		<Container className={classes.container}>
 			<Button fullWidth onClick={handleDelete}>
-				Delete This Profile
+				Delete This Strain Profile
 			</Button>
 			<form onSubmit={handleSubmit}>
 				<Grid container direction='column' alignItems='center'>
 					<Grid item>
-						<p>{formState.listName}</p>
+						<Typography variant='subtitle2'>{formState.listName}</Typography>
 					</Grid>
 					<Grid item>
 						<MultipleSelect
@@ -285,7 +289,7 @@ function UpdateStrain({
 							type='submit'
 							disabled={buttonDisabled}
 						>
-							Update My Strain Profile
+							Update Strain Profile
 						</Button>
 					</Grid>
 				</Grid>

@@ -19,11 +19,6 @@ const useStyles = makeStyles({
 		minWidth: '100%',
 		minHeight: '100%',
 	},
-	bullet: {
-		display: 'inline-block',
-		margin: '0 2px',
-		transform: 'scale(0.8)',
-	},
 	title: {
 		fontSize: 14,
 	},
@@ -31,7 +26,7 @@ const useStyles = makeStyles({
 		marginBottom: 12,
 	},
 	gridContainer: {
-		margin: '1rem 0',
+		margin: '1rem 0 1rem -12px',
 	},
 	ratingText: {
 		verticalAlign: 'top',
@@ -39,11 +34,14 @@ const useStyles = makeStyles({
 	},
 	rating: {
 		textAlign: 'center',
-		margin: '1rem 0',
+		margin: '1rem',
 	},
 	description: {
 		marginBottom: '1rem',
 	},
+	// container: {
+	// 	margin: '1px',
+	// },
 });
 
 export default function Recommendations({ object }) {

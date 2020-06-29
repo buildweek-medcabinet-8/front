@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-	List,
-	ListItem,
-	ListItemText,
-	ListSubheader,
-	Typography,
-	Card,
-	CardContent,
-	Grid,
-} from '@material-ui/core';
+import { Typography, Card, CardContent, Grid } from '@material-ui/core';
 import StarsIcon from '@material-ui/icons/Stars';
 
 const useStyles = makeStyles({
@@ -32,16 +23,15 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function StrainList({strains, toggleEditing}) {
+export default function StrainList({ strains, toggleEditing }) {
 	const classes = useStyles();
 	// eslint-disable-next-line
 	const [recs, setRecs] = useState(strains);
 
-
 	function renderStars(rating, id) {
 		let stars = [];
 		for (let i = 0; i < rating; i++) {
-			stars.push(<StarsIcon key={i}/>);
+			stars.push(<StarsIcon key={i} />);
 		}
 		return stars;
 	}
@@ -52,7 +42,7 @@ export default function StrainList({strains, toggleEditing}) {
 			{recs &&
 				recs.map((rec, index) => {
 					return (
-						<Grid item container key={index} xs={12} sm={6} md={3}>
+						<Grid item container key={index} xs={1} sm={6} md={3}>
 							<Card className={classes.root} variant='outlined'>
 								<CardContent>
 									<Grid item>
@@ -69,12 +59,9 @@ export default function StrainList({strains, toggleEditing}) {
 											{rec.Description}
 										</Typography>
 									</Grid>
-
-
 								</CardContent>
 							</Card>
 						</Grid>
-						
 					);
 				})}
 		</Grid>

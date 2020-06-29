@@ -15,10 +15,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 	chips: {
 		display: 'flex',
-		flexWrap: 'wrap',
+		justifyContent: 'space-evenly',
+		alignItems: 'center',
+		flexDirection: 'column',
 	},
 	chip: {
-		margin: 2,
+		margin: 1,
 	},
 	noLabel: {
 		marginTop: theme.spacing(3),
@@ -62,7 +64,13 @@ export default function MultipleSelect(props) {
 				renderValue={(selected) => (
 					<div className={classes.chips}>
 						{selected.map((value) => (
-							<Chip key={value} label={value} className={classes.chip} />
+							<Chip
+								key={value}
+								label={value}
+								className={classes.chip}
+								size='small'
+								variant='outlined'
+							/>
 						))}
 					</div>
 				)}
