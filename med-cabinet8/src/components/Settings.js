@@ -4,6 +4,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 import { TextField, Grid, Button } from '@material-ui/core';
 import * as yup from 'yup';
 import { makeStyles } from '@material-ui/core';
+import theme from '../theme';
 
 const useStyles = makeStyles({
 	container: {
@@ -18,9 +19,21 @@ const useStyles = makeStyles({
 		top: '50%',
 		left: '50%',
 		transform: 'translate(-50%, -50%)',
+
+		[theme.breakpoints.down('sm')]: {
+			width: '90%',
+		},
+	},
+	form: {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
 	},
 	password: {
 		marginBottom: '2rem',
+		[theme.breakpoints.down('sm')]: {
+			width: '80%',
+		},
 	},
 });
 
@@ -118,7 +131,7 @@ export const Profile = () => {
 			className={classes.container}
 		>
 			<Grid item>
-				<form onSubmit={changePassword}>
+				<form onSubmit={changePassword} className={classes.form}>
 					<TextField
 						fullWidth
 						className={classes.password}
