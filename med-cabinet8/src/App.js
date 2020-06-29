@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// import './App.css';
-//import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ThemeProvider, makeStyles } from '@material-ui/core';
 import { Container } from '@material-ui/core';
@@ -52,7 +50,11 @@ function App() {
 					<Container className={classes.container}>
 						<Navbar checked={checked} setChecked={setChecked} />
 						<Route exact path='/'>
-							<LoginForm setChecked={setChecked} checked={checked} setUsername={setUsername} />
+							<LoginForm
+								setChecked={setChecked}
+								checked={checked}
+								setUsername={setUsername}
+							/>
 						</Route>
 						<Route path='/register' component={Registration} />
 						<PrivateRoute
@@ -62,7 +64,6 @@ function App() {
 						/>
 						<PrivateRoute path='/strain' component={StrainSearch} />
 						<PrivateRoute path='/settings' component={Settings} />
-
 						<PrivateRoute path='/recommendations' component={Recommendations} />
 					</Container>
 					<Footer />
